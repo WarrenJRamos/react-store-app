@@ -1,3 +1,9 @@
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import React, { useState, useEffect, useContext } from "react";
 import { auth } from "../firebase";
 
@@ -21,17 +27,17 @@ export function AuthProvider({ children }) {
 
   // Signup using Firebase authentication API
   function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
+    return createUserWithEmailAndPassword(auth, email, password);
   }
 
   // Login using Firebase authentication API
   function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
+    return signInWithEmailAndPassword(auth, email, password);
   }
 
   // Log out using Firebase authentication API
   function logout() {
-    return auth.signOut();
+    return signOut();
   }
 
   // Reset password using Firebase authentication API
@@ -55,7 +61,7 @@ export function AuthProvider({ children }) {
       when the component gets unmounted from the DOM
   */
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       // Only set isLoading to false once Firebase sets sets the user
       // setLoading(false);
