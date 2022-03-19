@@ -7,7 +7,7 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-export function AuthProvider() {
+export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   // const [loading, setLoading] = useState(true);
 
@@ -58,7 +58,7 @@ export function AuthProvider() {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       // Only set isLoading to false once Firebase sets sets the user
-      setLoading(false);
+      // setLoading(false);
     });
 
     return unsubscribe;
@@ -77,7 +77,8 @@ export function AuthProvider() {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {/* {!loading && children} */}
+      {children}
     </AuthContext.Provider>
   );
 }
