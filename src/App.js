@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // import {Routes, Route } from "react-router-dom";
 import NavigationMain from "./components/Navigation/NavigationMain";
 
-import { AuthProvider } from "./Context/AuthProvider";
+import { AuthProvider, useAuth } from "./Context/AuthProvider";
 
 //global Context
 import GlobalContext from "./Context/globalContext";
