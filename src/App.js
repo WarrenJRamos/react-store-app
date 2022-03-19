@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 // import {Routes, Route } from "react-router-dom";
+import NavigationMain from "./components/Navigation/NavigationMain";
 
 import { AuthProvider } from "./Context/AuthProvider";
 
@@ -28,7 +29,7 @@ function App() {
       <ThemeProvider theme={globalTheme}>
         <GlobalStyles />
         <AuthProvider>
-          <div>Welcome to our store!</div>
+          <NavigationMain />
           {/* Dummy Links */}
           <Link to="/signup">Signup</Link>
           <br />

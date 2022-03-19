@@ -19,6 +19,14 @@ const Globalstyles = createGlobalStyle`
         font-size: 1.15em;
         font-family: "poppins", "sans-serif";
     }
+
+    p {
+      line-height: 1.5;
+    }
+    
+    img {
+      max-width: 100%;
+    }
 `
 
 export default Globalstyles
