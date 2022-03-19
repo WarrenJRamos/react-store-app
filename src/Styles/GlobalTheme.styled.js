@@ -9,6 +9,13 @@ const theme = {
         //experiment colors
         colorFogra: "#040404",
         colorCultured: '#f0f6f6'
+    },
+
+    deviceWidths: {
+        desktopWidth: "1440px",
+        laptopWidth: "1024px",
+        tabletWidth: "768px",
+        mobileWidth: "480px",
     }
 }
 

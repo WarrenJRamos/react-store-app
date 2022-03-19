@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
-
 // import {Routes, Route } from "react-router-dom";
+
+//components 
+import NavigationMain from './components/Navigation/NavigationMain'
 
 //global Context 
 import GlobalContext from './Context/globalContext';
@@ -21,10 +23,9 @@ function App() {
     }}>
       <ThemeProvider theme={globalTheme}>
         <GlobalStyles/>
+            <NavigationMain />
             {/* <Routes> */}
-            <>
               <div>Hello world</div>
-            </>
             {/* </Routes> */}
       </ThemeProvider>
     </GlobalContext.Provider>
