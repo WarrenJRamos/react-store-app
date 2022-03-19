@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Alert, Button, Card, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthProvider";
 
 export default function Login() {
@@ -26,7 +26,7 @@ export default function Login() {
       setErrorMessage("");
       setIsLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/products/mens");
+      navigate("/");
     } catch {
       return setErrorMessage("Something went wrong. You are unable to log in");
     }
@@ -55,6 +55,12 @@ export default function Login() {
           </Form>
         </Card.Body>
       </Card>
+      <div className="w-100 text-center mt-2">
+        Need an account? <Link to="/signup">Sign Up</Link>
+      </div>
+      <div className="w-100 text-center mt-2">
+        Forgot Password? <Link to="/forgot-password">Reset Password</Link>
+      </div>
     </>
   );
 }

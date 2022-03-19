@@ -1,8 +1,12 @@
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
+  updateEmail,
+  updatePassword,
 } from "firebase/auth";
 import React, { useState, useEffect, useContext } from "react";
 import { auth } from "../firebase";
@@ -15,7 +19,6 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
-  // const [loading, setLoading] = useState(true);
 
   /*
     NOTE: 
@@ -26,8 +29,13 @@ export function AuthProvider({ children }) {
   */
 
   // Signup using Firebase authentication API
-  function signup(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+  function signup(email, name, password) {
+    return createUserWithEmailAndPassword(auth, email, password).then(() => {
+      // You also want to update the profile with the name they entered
+      return updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+    });
   }
 
   // Login using Firebase authentication API
@@ -37,22 +45,22 @@ export function AuthProvider({ children }) {
 
   // Log out using Firebase authentication API
   function logout() {
-    return signOut();
+    return signOut(auth);
   }
 
   // Reset password using Firebase authentication API
   function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email);
+    return sendPasswordResetEmail(auth, email);
   }
 
   // Update email using Firebase authentication API
-  function updateEmail(email) {
-    return currentUser.updateEmail(email);
+  function updateUserEmail(email) {
+    return updateEmail(auth.currentUser, email);
   }
 
   // Update password using Firebase authentication API
-  function updatePassword(password) {
-    return currentUser.updatePassword(password);
+  function updateUserPassword(password) {
+    return updatePassword(auth.currentUser, password);
   }
 
   /*
@@ -63,8 +71,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      // Only set isLoading to false once Firebase sets sets the user
-      // setLoading(false);
     });
 
     return unsubscribe;
@@ -77,8 +83,8 @@ export function AuthProvider({ children }) {
     signup,
     logout,
     resetPassword,
-    updateEmail,
-    updatePassword,
+    updateUserEmail,
+    updateUserPassword,
   };
 
   return (
