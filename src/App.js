@@ -25,7 +25,7 @@ function App() {
         <GlobalStyles/>
             <NavigationMain />
             {/* <Routes> */}
-              <div>Hello world</div>
+     
             {/* </Routes> */}
       </ThemeProvider>
     </GlobalContext.Provider>
