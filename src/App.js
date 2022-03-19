@@ -1,25 +1,33 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React,{useState} from 'react';
+
+// import {Routes, Route } from "react-router-dom";
+
+//global Context 
+import GlobalContext from './Context/globalContext';
+
+//styles 
+import {ThemeProvider} from 'styled-components'
+import GlobalStyles from './Styles/GlobalStyles.styled'
+import globalTheme from './Styles/GlobalTheme.styled'
 
 function App() {
+
+  const [test, setTest] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>HELLO! Welcome to our store.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalContext.Provider value={{
+      test,
+      setTest,
+    }}>
+      <ThemeProvider theme={globalTheme}>
+        <GlobalStyles/>
+            {/* <Routes> */}
+            <>
+              <div>Hello world</div>
+            </>
+            {/* </Routes> */}
+      </ThemeProvider>
+    </GlobalContext.Provider>
   );
 }
 
