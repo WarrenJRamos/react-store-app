@@ -21,6 +21,7 @@ import Footer from './components/Footer/Footer';
 // import Login from "./components/Authentication/Login";
 
 import ProductsComponent from './Styles/Products/ProductsComponent.styled';
+import Landing from './components/Landing/Landing';
 function App() {
   const [newProducts, setNewProducts] = useState([]);
 
@@ -61,6 +62,7 @@ function App() {
               <Route path='/' element={<Navigate to='/signup' />} />
               {/* <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} /> */}
+              <Route path='/landing' element={<Landing />} />
               <Route
                 path='/products/*'
                 element={

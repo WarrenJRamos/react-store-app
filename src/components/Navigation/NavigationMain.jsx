@@ -14,7 +14,9 @@ const NavigationMain = () => {
       <div className='nav__main'>
         <div className='title'>
           {/* maybe logo? */}
-          <span>Rrawen</span>
+          <NavLink to='/landing' className='item'>
+            <span>Rrawen</span>
+          </NavLink>
         </div>
         <div className='nav-container'>
           <ul className='list'>

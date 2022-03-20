@@ -45,10 +45,14 @@ export const NavContainer = styled.div`
         /* position: sticky; */
 
         .title {
-          margin-left: 25px;
-          font-weight: 700;
-          font-size: 25px;
-          line-height: 29px;
+          .item {
+            margin-left: 25px;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 29px;
+            color: ${(props) => props.theme.colors.colorTeal};
+            text-decoration: none;
+          }
         }
 
         .nav-container {

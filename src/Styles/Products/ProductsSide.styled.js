@@ -3,9 +3,9 @@ import styled from 'styled-components';
 const Productside = styled.div`
   &.side {
     border: 1px solid #f0f6f6;
-    background: #d3d0cb;
+    background: ${(props) => props.theme.colors.colorTeal};
     position: sticky;
-    color: #393e41;
+    color: ${(props) => props.theme.colors.colorCultured};
     height: 49vh;
     top: 0;
     .title {
@@ -40,6 +40,7 @@ const Productside = styled.div`
         width: 89% !important;
         margin: 12px 6% !important;
         /* height: 1.5rem !important; */
+        color: #d3d0cb !important;
       }
     }
 
