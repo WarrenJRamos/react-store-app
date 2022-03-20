@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import NavigationMain from './components/Navigation/NavigationMain';
 
@@ -21,13 +21,19 @@ import Products from './components/Hero/Products';
 
 import ProductsComponent from './Styles/Products/ProductsComponent.styled';
 function App() {
-  const [test, setTest] = useState(false);
+  const [newProducts, setNewProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products?limit=15')
+      .then((res) => res.json())
+      .then((data) => setNewProducts(data));
+  }, []);
 
   return (
     <GlobalContext.Provider
       value={{
-        test,
-        setTest,
+        newProducts,
+        setNewProducts,
       }}
     >
       <ThemeProvider theme={globalTheme}>
@@ -77,6 +83,12 @@ function App() {
                 />
                 <Route
                   path='womens'
+                  element={
+                    <ProductList classes='products__item products__item-list' />
+                  }
+                />
+                <Route
+                  path='new'
                   element={
                     <ProductList classes='products__item products__item-list' />
                   }

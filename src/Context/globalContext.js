@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 const GlobalContext = React.createContext({
-    test: false,
-})
+  newProducts: [],
+  setNewProducts: () => {},
+});
 
-
-export default GlobalContext
-
+export default GlobalContext;

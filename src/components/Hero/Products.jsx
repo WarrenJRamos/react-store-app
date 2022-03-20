@@ -13,7 +13,9 @@ const Products = (props) => {
       <ProductSideBar
         classes={`${props.classes}__item ${props.classes}__item-side`}
       />
-      {/* <ProductsList classes='products__item products__item-list' /> */}
+      {/* <ProductsList
+        classes={`${props.classes}__item ${props.classes}__item-list`}
+      /> */}
     </>
   );
 };
