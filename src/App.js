@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-// import {Routes, Route } from "react-router-dom";
 import NavigationMain from "./components/Navigation/NavigationMain";
 
 import { AuthProvider, useAuth } from "./Context/AuthProvider";
@@ -21,33 +20,39 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import MyAccount from "./components/Account/MyAccount";
 import MenuListComposition from "./components/Account/MenuListComposition";
 
+//components
+import ProductList from "./components/Hero/ProductsList/ProductsList";
+import Products from "./components/Hero/Products";
+import Footer from "./components/Footer/Footer";
+// import Signup from "./components/Authentication/Signup";
+// import Login from "./components/Authentication/Login";
+
+import ProductsComponent from "./Styles/Products/ProductsComponent.styled";
+import Landing from "./components/Landing/Landing";
 function App() {
-  const [test, setTest] = useState(false);
+  const [newProducts, setNewProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products?limit=15")
+      .then((res) => res.json())
+      .then((data) => setNewProducts(data));
+  }, []);
 
   return (
     <GlobalContext.Provider
       value={{
-        test,
-        setTest,
+        newProducts,
+        setNewProducts,
       }}
     >
       <ThemeProvider theme={globalTheme}>
         <GlobalStyles />
         <AuthProvider>
           <NavigationMain />
-          {/* <Link to="/products">Products</Link>
-          <br />
-          <Link to="/products/shoes">Products/shoes</Link>
-          <br />
-          <Link to="/products/mens">Products/mens</Link>
-          <br />
-          <Link to="/products/shoes">Products/womens</Link>
-          <br /> */}
 
-          {/* Routes */}
           <Routes>
             <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/home" element={<h1>HOME</h1>} />
+            <Route path="/home" element={<Landing />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -58,17 +63,39 @@ function App() {
             <Route
               path="/products/*"
               element={
-                <div>
-                  Products List
+                <ProductsComponent className="products">
+                  <Products classes="products" />
                   <Outlet />
-                </div>
+                </ProductsComponent>
               }
             >
-              <Route path="shoes" element={<div>Shoes Component</div>} />
-              <Route path="mens" element={<div>Mens Component</div>} />
-              <Route path="womens" element={<div>Womens Component</div>} />
+              <Route
+                path="shoes"
+                element={
+                  <ProductList classes="products__item products__item-list" />
+                }
+              />
+              <Route
+                path="mens"
+                element={
+                  <ProductList classes="products__item products__item-list" />
+                }
+              />
+              <Route
+                path="womens"
+                element={
+                  <ProductList classes="products__item products__item-list" />
+                }
+              />
+              <Route
+                path="new"
+                element={
+                  <ProductList classes="products__item products__item-list" />
+                }
+              />
             </Route>
           </Routes>
+          <Footer />
         </AuthProvider>
       </ThemeProvider>
     </GlobalContext.Provider>

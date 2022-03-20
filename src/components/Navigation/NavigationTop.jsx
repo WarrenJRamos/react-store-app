@@ -36,7 +36,7 @@ const NavigationTop = (props) => {
         <FacebookIcon />
       </div>
       <div className="account">
-        {/* <AccountBoxIcon /> */}
+        <AccountBoxIcon />
         <span>
           {currentUser ? (
             <MenuListComposition />

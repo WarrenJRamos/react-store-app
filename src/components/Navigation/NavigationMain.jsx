@@ -14,28 +14,30 @@ const NavigationMain = () => {
       <div className="nav__main">
         <div className="title">
           {/* maybe logo? */}
-          <span>Rrawen</span>
+          <NavLink to="/home" className="item">
+            <span>Rrawen</span>
+          </NavLink>
         </div>
-        <div className="container">
+        <div className="nav-container">
           <ul className="list">
             <li>
-              <NavLink to="/new" className="item">
+              <NavLink to="/products/new" className="item">
                 New
               </NavLink>
             </li>
             <li>
-              <NavLink to="/women" className="item">
+              <NavLink to="/products/womens" className="item">
                 Women
               </NavLink>
             </li>
             <li>
-              <NavLink to="/men" className="item">
+              <NavLink to="/products/mens" className="item">
                 Men
               </NavLink>
             </li>
             <li>
-              <NavLink to="/jewelery" className="item">
-                Jewelery
+              <NavLink to="/products/shoes" className="item">
+                Shoes
               </NavLink>
             </li>
           </ul>
