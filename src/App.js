@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-// import {Routes, Route } from "react-router-dom";
-import NavigationMain from "./components/Navigation/NavigationMain";
+import NavigationMain from './components/Navigation/NavigationMain';
 
-import { AuthProvider, useAuth } from "./Context/AuthProvider";
+import { AuthProvider, useAuth } from './Context/AuthProvider';
 
 //global Context
-import GlobalContext from "./Context/globalContext";
+import GlobalContext from './Context/globalContext';
 
 //styles
-import { ThemeProvider } from "styled-components";
-import GlobalStyles from "./Styles/GlobalStyles.styled";
-import globalTheme from "./Styles/GlobalTheme.styled";
-import { Link, Navigate, Outlet, Route, Routes } from "react-router-dom";
-import Signup from "./components/Authentication/Signup";
-import Login from "./components/Authentication/Login";
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from './Styles/GlobalStyles.styled';
+import globalTheme from './Styles/GlobalTheme.styled';
+import { Link, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
+//components
+import ProductList from './components/Hero/ProductsList/ProductsList';
+import Products from './components/Hero/Products';
+// import Signup from "./components/Authentication/Signup";
+// import Login from "./components/Authentication/Login";
+
+import ProductsComponent from './Styles/Products/ProductsComponent.styled';
 function App() {
   const [test, setTest] = useState(false);
 
@@ -31,38 +35,55 @@ function App() {
         <AuthProvider>
           <NavigationMain />
           {/* Dummy Links */}
-          <Link to="/signup">Signup</Link>
+          {/* <Link to='/signup'>Signup</Link>
           <br />
-          <Link to="/login">Login</Link>
+          <Link to='/login'>Login</Link>
           <br />
-          <Link to="/products">Products</Link>
+          <Link to='/products'>Products</Link>
           <br />
-          <Link to="/products/shoes">Products/shoes</Link>
+          <Link to='/products/shoes'>Products/shoes</Link>
           <br />
-          <Link to="/products/mens">Products/mens</Link>
+          <Link to='/products/mens'>Products/mens</Link>
           <br />
-          <Link to="/products/shoes">Products/womens</Link>
-          <br />
+          <Link to='/products/shoes'>Products/womens</Link>
+          <br /> */}
 
           {/* Routes */}
-          <Routes>
-            <Route path="/" element={<Navigate to="/signup" />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/products/*"
-              element={
-                <div>
-                  Products List
-                  <Outlet />
-                </div>
-              }
-            >
-              <Route path="shoes" element={<div>Shoes Component</div>} />
-              <Route path="mens" element={<div>Mens Component</div>} />
-              <Route path="womens" element={<div>Womens Component</div>} />
-            </Route>
-          </Routes>
+          <ProductsComponent className='products'>
+            <Routes>
+              <Route path='/' element={<Navigate to='/signup' />} />
+              {/* <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} /> */}
+              <Route
+                path='/products/*'
+                element={
+                  <>
+                    <Products classes='products' />
+                    <Outlet />
+                  </>
+                }
+              >
+                <Route
+                  path='shoes'
+                  element={
+                    <ProductList classes='products__item products__item-list' />
+                  }
+                />
+                <Route
+                  path='mens'
+                  element={
+                    <ProductList classes='products__item products__item-list' />
+                  }
+                />
+                <Route
+                  path='womens'
+                  element={
+                    <ProductList classes='products__item products__item-list' />
+                  }
+                />
+              </Route>
+            </Routes>
+          </ProductsComponent>
         </AuthProvider>
       </ThemeProvider>
     </GlobalContext.Provider>
