@@ -63,6 +63,9 @@ export default function Login() {
               placeholder="Password"
               required
             />
+            <button className="forgot-password">
+              <Link to="/forgot-password">Forgot Password?</Link>
+            </button>
           </div>
           <button type="submit" disabled={isLoading}>
             Register
@@ -71,9 +74,6 @@ export default function Login() {
       </Form>
       <div className="w-100 text-center mt-2">
         Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
-      <div className="w-100 text-center mt-2">
-        Forgot Password? <Link to="/forgot-password">Reset Password</Link>
       </div>
     </RegisterContainer>
   );

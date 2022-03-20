@@ -21,6 +21,7 @@ const RegisterContainer = styled.div`
   }
 
   .form-group {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -37,6 +38,16 @@ const RegisterContainer = styled.div`
       padding: 12px 14px;
       border-radius: 5px;
       border: 1px solid ${(props) => props.borderColor};
+    }
+
+    .forgot-password {
+      position: absolute;
+      right: 12px;
+      top: 37%;
+      border: none;
+      background-color: inherit;
+      a {
+      }
     }
   }
 
