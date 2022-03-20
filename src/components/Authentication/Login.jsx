@@ -1,7 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Alert, Button, Card, Form } from "react-bootstrap";
+import { Alert, Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { useTheme } from "styled-components";
 import { useAuth } from "../../Context/AuthProvider";
+import { RegisterContainer } from "../../Styles/Authentication/Register.styled";
+import Form from "./Form/Form";
 
 export default function Login() {
   const emailRef = useRef();
@@ -10,8 +13,11 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const theme = useTheme();
 
   async function submitHandler(event) {
+    console.log("Inside Handle Submit");
+
     event.preventDefault();
 
     if (emailRef.current.value === "" && passwordRef.current.value === "") {
@@ -35,32 +41,40 @@ export default function Login() {
   }
 
   return (
-    <>
-      <Card>
-        <Card.Body>
-          <h2>Login</h2>
-          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-          <Form onSubmit={submitHandler}>
-            <Form.Group>
-              <Form.Label>Email: </Form.Label>
-              <Form.Control type="text" ref={emailRef} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Password: </Form.Label>
-              <Form.Control type="password" ref={passwordRef} />
-            </Form.Group>
-            <Button disabled={isLoading} type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
+    <RegisterContainer
+      headerColor={theme.colors.colorMaize}
+      fontFamilyForm={theme.fonts.fontFamilyForm}
+      fontFamilyFormInputs={theme.fonts.fontFamilyFormInputs}
+      borderColor={theme.colors.colorTimberWolf}
+    >
+      <Form header="Login" subheader="Please fill in the information below:">
+        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+        <form onSubmit={submitHandler}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input type="email" ref={emailRef} placeholder="Email" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              ref={passwordRef}
+              placeholder="Password"
+              required
+            />
+          </div>
+        </form>
+        <button type="submit" disabled={isLoading}>
+          Register
+        </button>
+      </Form>
       <div className="w-100 text-center mt-2">
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>
       <div className="w-100 text-center mt-2">
         Forgot Password? <Link to="/forgot-password">Reset Password</Link>
       </div>
-    </>
+    </RegisterContainer>
   );
 }

@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Card, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { useTheme } from "styled-components";
 import { useAuth } from "../../Context/AuthProvider";
+import { RegisterContainer } from "../../Styles/Authentication/Register.styled";
 
 export default function UpdateProfile() {
   const emailRef = useRef();
@@ -9,8 +11,9 @@ export default function UpdateProfile() {
   const passwordConfirmRef = useRef();
   const { currentUser, updateUserPassword, updateUserEmail } = useAuth();
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const theme = useTheme();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,7 +22,7 @@ export default function UpdateProfile() {
     }
 
     const promises = [];
-    setLoading(true);
+    setIsLoading(true);
     setError("");
 
     if (emailRef.current.value !== currentUser.email) {
@@ -37,51 +40,60 @@ export default function UpdateProfile() {
         setError("Failed to update account");
       })
       .finally(() => {
-        setLoading(false);
+        setIsLoading(false);
       });
   }
 
   return (
-    <>
+    <RegisterContainer
+      headerColor={theme.colors.colorMaize}
+      fontFamilyForm={theme.fonts.fontFamilyForm}
+      fontFamilyFormInputs={theme.fonts.fontFamilyFormInputs}
+      borderColor={theme.colors.colorTimberWolf}
+    >
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
                 type="email"
                 ref={emailRef}
+                placeholder="New email"
                 required
-                defaultValue={currentUser.email}
               />
-            </Form.Group>
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
                 type="password"
                 ref={passwordRef}
                 placeholder="Leave blank to keep the same"
+                required
               />
-            </Form.Group>
-            <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control
+            </div>
+            <div className="form-group">
+              <label htmlFor="password-confirm">Password Confirmation</label>
+              <input
+                id="password-confirm"
                 type="password"
-                ref={passwordConfirmRef}
+                ref={passwordRef}
                 placeholder="Leave blank to keep the same"
+                required
               />
-            </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            </div>
+            <button disabled={isLoading} type="submit">
               Update
-            </Button>
-          </Form>
+            </button>
+          </form>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
         <Link to="/">Cancel</Link>
       </div>
-    </>
+    </RegisterContainer>
   );
 }
