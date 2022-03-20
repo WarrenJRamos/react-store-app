@@ -58,7 +58,7 @@ export default function ForgotPassword() {
         Remember your password? <Link to="/login">Login</Link>
       </div>
       <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
+        Need an account? <Link to="/register">Register</Link>
       </div>
     </RegisterContainer>
   );

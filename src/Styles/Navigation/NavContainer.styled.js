@@ -3,14 +3,18 @@ import styled from "styled-components";
 export const NavContainer = styled.div`
   &.nav {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     background: transparent;
     z-index: 1000;
 
-    &:hover {
-      background-color: ${(props) => props.theme.colors.colorOnyx};
-    }
+    transition: background-color 1s;
 
+    &:hover {
+      /* background-color: ${(props) => props.theme.colors.colorOnyx}; */
+      background-color: rgba(226, 192, 68, 1);
+    }
     .nav {
       /* &__top {
         &-container {

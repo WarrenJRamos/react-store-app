@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 const RegisterContainer = styled.div`
-  color: rgba(27, 27, 27, 1);
-  margin: auto;
+  /* color: rgba(27, 27, 27, 1); */
+  color: white;
   max-width: 641px;
   font-family: ${(props) => props.fontFamilyFormInputs};
+  height: 100vh;
+  margin: 15% auto;
 
   .form-header {
     color: ${(props) => props.headerColor};
