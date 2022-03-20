@@ -17,6 +17,9 @@ import Login from "./components/Authentication/Login";
 import ForgotPassword from "./components/Authentication/ForgotPassword";
 import UpdateProfile from "./components/Authentication/UpdateProfile";
 import Register from "./components/Authentication/Register";
+import ProtectedRoutes from "./ProtectedRoutes";
+import MyAccount from "./components/Account/MyAccount";
+import MenuListComposition from "./components/Account/MenuListComposition";
 
 function App() {
   const [test, setTest] = useState(false);
@@ -32,23 +35,26 @@ function App() {
         <GlobalStyles />
         <AuthProvider>
           <NavigationMain />
-          <Link to="/products">Products</Link>
+          {/* <Link to="/products">Products</Link>
           <br />
           <Link to="/products/shoes">Products/shoes</Link>
           <br />
           <Link to="/products/mens">Products/mens</Link>
           <br />
           <Link to="/products/shoes">Products/womens</Link>
-          <br />
+          <br /> */}
 
           {/* Routes */}
           <Routes>
-            <Route path="/" element={<Navigate to="/register" />} />
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<h1>HOME</h1>} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/update-profile" element={<UpdateProfile />} />
-
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/update-profile" element={<UpdateProfile />} />
+              <Route path="/my-account" element={<MyAccount />} />
+            </Route>
             <Route
               path="/products/*"
               element={

@@ -64,10 +64,10 @@ export default function Login() {
               required
             />
           </div>
+          <button type="submit" disabled={isLoading}>
+            Register
+          </button>
         </form>
-        <button type="submit" disabled={isLoading}>
-          Register
-        </button>
       </Form>
       <div className="w-100 text-center mt-2">
         Need an account? <Link to="/signup">Sign Up</Link>

@@ -7,25 +7,26 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { Alert, Button } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthProvider";
+import MenuListComposition from "../Account/MenuListComposition";
 const NavigationTop = (props) => {
   // console.log(props)
   const { currentUser, logout } = useAuth();
-  const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
+  // const navigate = useNavigate();
+  // const [errorMessage, setErrorMessage] = useState("");
 
   // if (currentUser) {
   //   console.log(currentUser);
   // }
 
-  async function onLogoutHandler() {
-    setErrorMessage("");
-    try {
-      await logout();
-      navigate("/");
-    } catch {
-      return setErrorMessage("Failed to log out");
-    }
-  }
+  // async function onLogoutHandler() {
+  //   setErrorMessage("");
+  //   try {
+  //     await logout();
+  //     navigate("/");
+  //   } catch {
+  //     return setErrorMessage("Failed to log out");
+  //   }
+  // }
 
   return (
     <div className={`${props.classes}-container`}>
@@ -35,15 +36,21 @@ const NavigationTop = (props) => {
         <FacebookIcon />
       </div>
       <div className="account">
-        <Link to="/login" className="account-link">
-          <AccountBoxIcon />
-          <span>{currentUser ? currentUser.displayName : "My Account"}</span>
-        </Link>
+        {/* <AccountBoxIcon /> */}
+        <span>
+          {currentUser ? (
+            <MenuListComposition />
+          ) : (
+            <p>
+              Hi, <Link to="/login">Sign in here</Link>
+            </p>
+          )}
+        </span>
       </div>
-      <Button variant="link" onClick={onLogoutHandler}>
+      {/* <Button variant="link" onClick={onLogoutHandler}>
         Logout
       </Button>
-      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>} */}
     </div>
   );
 };
