@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NavContainer = styled.div`
   &.nav {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;

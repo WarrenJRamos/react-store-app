@@ -72,7 +72,7 @@ export default function MenuListComposition() {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          My Account
+          Hi, {currentUser.displayName}
         </Button>
         <Popper
           open={open}
@@ -98,8 +98,9 @@ export default function MenuListComposition() {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Link to="/my-account">My Account</Link>
+                    </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Button variant="link" onClick={onLogoutHandler}>
                         Logout
