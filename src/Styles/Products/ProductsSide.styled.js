@@ -22,13 +22,16 @@ const Productside = styled.div`
     }
 
     .price {
+      /* flex-direction: column;
+      align-items: center;
+      display: flex; */
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.1rem;
       width: 100%;
       padding: 1rem 0px;
       border-top: 1px solid rgb(204, 204, 204);
-      > label {
+      > span {
         display: flex;
         justify-content: space-around;
       }
@@ -36,7 +39,7 @@ const Productside = styled.div`
       .range {
         width: 89% !important;
         margin: 12px 6% !important;
-        height: 1.5rem !important;
+        /* height: 1.5rem !important; */
       }
     }
 

@@ -16,6 +16,7 @@ import { Link, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 //components
 import ProductList from './components/Hero/ProductsList/ProductsList';
 import Products from './components/Hero/Products';
+import Footer from './components/Footer/Footer';
 // import Signup from "./components/Authentication/Signup";
 // import Login from "./components/Authentication/Login";
 
@@ -96,6 +97,7 @@ function App() {
               </Route>
             </Routes>
           </ProductsComponent>
+          <Footer />
         </AuthProvider>
       </ThemeProvider>
     </GlobalContext.Provider>

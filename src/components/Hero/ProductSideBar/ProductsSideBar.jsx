@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductSide from '../../../Styles/Products/ProductsSide.styled';
 import { Form } from 'react-bootstrap';
-
+import Slider from '@mui/material/Slider';
 const ProductsSideBar = (props) => {
+  function valuetext(value) {
+    return `$${value}`;
+  }
+
+  const [value, setValue] = useState([0, 50]);
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <ProductSide className={`${props.classes} side`}>
       <div className='title'>
         <span>New Items</span>
       </div>
       <div className='price'>
-        <Form.Label>Price</Form.Label>
-        <Form.Range className='range' />
+        <span>Price</span>
+        <Slider
+          className='range'
+          getAriaLabel={() => 'Temperature range'}
+          value={value}
+          onChange={handleChange}
+          valueLabelDisplay='auto'
+          getAriaValueText={valuetext}
+        />
       </div>
       <div className='rating'>
         <Form.Select aria-label='Default select example'>

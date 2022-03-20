@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ProductsComponent = styled.div`
   width: 100vw;
-  height: 131vh;
+  /* height: 131vh; */
   max-width: 100%;
   padding: 20px 30px 20px 30px;
   margin: 0 auto;
@@ -15,7 +15,7 @@ const ProductsComponent = styled.div`
       'side list list list'
       'side list list list'
       'side list list list';
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    /* grid-template-rows: 1fr 1fr 1fr 1fr; */
     grid-template-columns: 1fr 3fr;
     .products {
       &__item {
