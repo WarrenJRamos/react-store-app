@@ -47,9 +47,9 @@ const NavigationMain = () => {
             </li>
           </ul>
         </div>
-        <div className="account">
-          <AccountBoxIcon />
-          <span>
+        <div className="actions">
+          <div className="account">
+            <AccountBoxIcon />
             {currentUser ? (
               <MenuListComposition />
             ) : (
@@ -57,11 +57,11 @@ const NavigationMain = () => {
                 Hi, <Link to="/login">Sign in on Register</Link>
               </p>
             )}
-          </span>
-        </div>
-        <div className="cart">
-          <ShoppingCartIcon />
-          <StarBorderIcon />
+          </div>
+          <div className="cart">
+            <ShoppingCartIcon />
+            <StarBorderIcon />
+          </div>
         </div>
       </div>
     </NavContainer>

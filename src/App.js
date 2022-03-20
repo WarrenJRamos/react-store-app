@@ -29,6 +29,7 @@ import Footer from "./components/Footer/Footer";
 
 import ProductsComponent from "./Styles/Products/ProductsComponent.styled";
 import Landing from "./components/Landing/Landing";
+import LandingV2 from "./components/Landing/LandingV2";
 function App() {
   const [newProducts, setNewProducts] = useState([]);
 
@@ -52,7 +53,7 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/home" element={<Landing />} />
+            <Route path="/home" element={<LandingV2 />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />

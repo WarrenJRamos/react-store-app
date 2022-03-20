@@ -1,9 +1,18 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const NavContainer = styled.div`
   &.nav {
+    position: fixed;
+    width: 100%;
+    background: transparent;
+    z-index: 1000;
+
+    &:hover {
+      background-color: ${(props) => props.theme.colors.colorOnyx};
+    }
+
     .nav {
-      &__top {
+      /* &__top {
         &-container {
           padding: 5px;
           width: 100%;
@@ -31,13 +40,14 @@ export const NavContainer = styled.div`
             }
           }
         }
-      }
+      } */
 
       &__main {
         width: 100%;
         height: 60px;
-        color: ${(props) => props.theme.colors.colorTeal};
-        background: ${(props) => props.theme.colors.colorTimberWolf};
+        color: white;
+        /* color: ${(props) => props.theme.colors.colorTeal}; */
+        /* background: ${(props) => props.theme.colors.colorTimberWolf}; */
         box-shadow: 0px 2px 2px rgba(213, 210, 210, 0.15);
         display: flex;
         align-items: center;
@@ -50,7 +60,8 @@ export const NavContainer = styled.div`
             font-weight: 700;
             font-size: 25px;
             line-height: 29px;
-            color: ${(props) => props.theme.colors.colorTeal};
+            color: white;
+            /* color: ${(props) => props.theme.colors.colorTeal}; */
             text-decoration: none;
           }
         }
@@ -68,17 +79,30 @@ export const NavContainer = styled.div`
               list-style: none;
               .item {
                 text-decoration: none;
-                color: ${(props) => props.theme.colors.colorOnyx};
+                color: white;
+                /* color: ${(props) => props.theme.colors.colorOnyx}; */
               }
             }
           }
         }
 
-        .cart {
-          margin-right: 10px;
+        .actions {
           display: flex;
-          gap: 8px;
-          cursor: pointer;
+          align-items: center;
+
+          .account {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .cart {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+          }
         }
       }
     }
