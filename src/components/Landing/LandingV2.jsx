@@ -1,6 +1,7 @@
 import React from "react";
 import { LandingContainer } from "../../Styles/Landing/LandingV2.styled";
 import Carousel from "./Carousel";
+import LandingSale from "./LandingSale";
 
 export default function LandingV2() {
   return (
@@ -17,6 +18,10 @@ export default function LandingV2() {
           </div>
         </div>
       </div>
+      {/* <div style={{ position: "relative" }}>
+        <Carousel classes="landing" />
+      </div> */}
+      {/* <LandingSale classes="landing" /> */}
     </LandingContainer>
   );
 }
