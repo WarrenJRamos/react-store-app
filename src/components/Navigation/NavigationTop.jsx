@@ -42,7 +42,7 @@ const NavigationTop = (props) => {
             <MenuListComposition />
           ) : (
             <p>
-              Hi, <Link to="/login">Sign in here</Link>
+              Hi, <Link to="/login">Sign in on Register</Link>
             </p>
           )}
         </span>

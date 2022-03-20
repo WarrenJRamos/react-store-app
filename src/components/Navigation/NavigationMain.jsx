@@ -1,16 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 //components
 import NavigationTop from "./NavigationTop";
 //styles and icons
 import { NavContainer } from "../../Styles/Navigation/NavContainer.styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import MenuListComposition from "../Account/MenuListComposition";
+import { useAuth } from "../../Context/AuthProvider";
 
 const NavigationMain = () => {
+  const { currentUser, logout } = useAuth();
+
   return (
     <NavContainer className="nav">
-      <NavigationTop classes={"nav__top"} />
+      {/* <NavigationTop classes={"nav__top"} /> */}
       <div className="nav__main">
         <div className="title">
           {/* maybe logo? */}
@@ -41,6 +46,18 @@ const NavigationMain = () => {
               </NavLink>
             </li>
           </ul>
+        </div>
+        <div className="account">
+          <AccountBoxIcon />
+          <span>
+            {currentUser ? (
+              <MenuListComposition />
+            ) : (
+              <p>
+                Hi, <Link to="/login">Sign in on Register</Link>
+              </p>
+            )}
+          </span>
         </div>
         <div className="cart">
           <ShoppingCartIcon />
