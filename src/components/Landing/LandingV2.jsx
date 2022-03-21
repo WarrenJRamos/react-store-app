@@ -7,7 +7,7 @@ export default function LandingV2() {
   return (
     <LandingContainer>
       <div class="hero">
-        <h1 class="hero__tagline">All the items you could ever dream of</h1>
+        <h1 class="hero__tagline">Lorem ipsum dolor</h1>
         <div class="hero__bottom">
           <p class="hero__content">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at

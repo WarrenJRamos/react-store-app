@@ -7,6 +7,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ProductCard from '../../../Styles/Products/ProductCard.styled';
 
 const Product = ({ product }) => {
+  // console.log(product);
   return (
     <ProductCard className='card-container'>
       <div className='img-container'>

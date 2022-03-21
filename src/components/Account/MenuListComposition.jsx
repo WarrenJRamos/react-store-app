@@ -99,7 +99,7 @@ export default function MenuListComposition() {
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem onClick={handleClose}>
-                      <Link to="/my-account">My Account</Link>
+                      <Link to="/my-account/profile">My Account</Link>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Button variant="link" onClick={onLogoutHandler}>
