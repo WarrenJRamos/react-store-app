@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import NavigationMain from "./components/Navigation/NavigationMain";
-
+import axios from "axios";
 import { AuthProvider, useAuth } from "./Context/AuthProvider";
 
 //global Context
@@ -34,19 +34,38 @@ import Profile from "./components/Account/Profile";
 import Wishlist from "./components/Account/Wishlist";
 import Orders from "./components/Account/Orders";
 function App() {
-  const [newProducts, setNewProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [allProducts, setAllProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(6);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=15")
-      .then((res) => res.json())
-      .then((data) => setNewProducts(data));
+    const fetchProducts = async () => {
+      setLoading(true);
+      const res = await axios.get("https://fakestoreapi.com/products?limit=15");
+      setAllProducts(res.data);
+      setLoading(false);
+    };
+
+    fetchProducts();
   }, []);
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentPageProducts = allProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   return (
     <GlobalContext.Provider
       value={{
-        newProducts,
-        setNewProducts,
+        allProducts,
+        setAllProducts,
+        loading,
+        currentPageProducts,
+        productsPerPage,
+        setCurrentPage,
       }}
     >
       <ThemeProvider theme={globalTheme}>
