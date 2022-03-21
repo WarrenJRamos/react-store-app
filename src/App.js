@@ -30,6 +30,9 @@ import Footer from "./components/Footer/Footer";
 import ProductsComponent from "./Styles/Products/ProductsComponent.styled";
 import Landing from "./components/Landing/Landing";
 import LandingV2 from "./components/Landing/LandingV2";
+import Profile from "./components/Account/Profile";
+import Wishlist from "./components/Account/Wishlist";
+import Orders from "./components/Account/Orders";
 function App() {
   const [newProducts, setNewProducts] = useState([]);
 
@@ -59,7 +62,14 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route element={<ProtectedRoutes />}>
               <Route path="/update-profile" element={<UpdateProfile />} />
-              <Route path="/my-account" element={<MyAccount />} />
+              <Route
+                path="/my-account"
+                element={<MyAccount outlet={<Outlet />} />}
+              >
+                <Route path="profile" element={<Profile />} />
+                <Route path="orders" element={<Orders />} />
+                <Route path="wishlist" element={<Wishlist />} />
+              </Route>
             </Route>
             <Route
               path="/products/*"
