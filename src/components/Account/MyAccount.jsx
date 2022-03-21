@@ -19,7 +19,8 @@ export default function MyAccount(props) {
       colorFogra={theme.colors.colorFogra}
     >
       <div className="top">
-        <h2>Hello, {currentUser.displayName} </h2>
+        <h2>My Account</h2>
+        <p>Welcome back, {currentUser.displayName} </p>
       </div>
       <div className="bottom">
         <nav className="sidenav">

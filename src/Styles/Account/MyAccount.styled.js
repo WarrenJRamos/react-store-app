@@ -3,7 +3,7 @@ import manwoman from "../../Images/Account/manwoman.png";
 
 export const MyAccountContainer = styled.div`
   height: 100vh;
-  color: white;
+  color: ${(props) => props.colorCultured};
   padding-top: 100px;
   /* background: linear-gradient(to left, #eee, #333); */
   background: linear-gradient(
@@ -18,6 +18,7 @@ export const MyAccountContainer = styled.div`
     background-repeat: no-repeat;
     background-size: cover; */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     h2 {
@@ -26,6 +27,10 @@ export const MyAccountContainer = styled.div`
       text-transform: uppercase;
       text-align: center;
       font-size: 3rem;
+    }
+    p {
+      text-align: center;
+      letter-spacing: 2px;
     }
   }
 
@@ -62,8 +67,8 @@ export const MyAccountContainer = styled.div`
             text-decoration: none;
 
             &.link--active {
-              background-color: rgba(255, 255, 255, 0.3);
-              border-left: 5px solid ${(props) => props.colorMaize};
+              background-color: ${(props) => props.colorMaize};
+              border-left: 5px solid ${(props) => props.colorCultured};
             }
           }
         }
