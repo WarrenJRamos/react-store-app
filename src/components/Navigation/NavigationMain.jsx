@@ -9,6 +9,7 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import MenuListComposition from "../Account/MenuListComposition";
 import { useAuth } from "../../Context/AuthProvider";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const NavigationMain = () => {
   const { currentUser, logout } = useAuth();
@@ -59,7 +60,7 @@ const NavigationMain = () => {
             )}
           </div>
           <div className="cart">
-            <ShoppingCartIcon />
+            <ShoppingCart />
             <StarBorderIcon />
           </div>
         </div>
