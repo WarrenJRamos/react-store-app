@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Product from './Product';
 import globalContext from '../../../Context/globalContext';
 
@@ -8,10 +9,27 @@ import ProductCard from '../../../Styles/Products/ProductCard.styled';
 
 import PaginationComponent from '../../Pagination/PaginationComponent';
 const ProductsList = (props) => {
+  const location = useLocation();
+
   const context = useContext(globalContext);
   // const newProducts = context.newProducts;
   const loading = context.loading;
   const currentProducts = context.currentPageProducts;
+  const setFilterCategory = context.setFilterCategory;
+
+  if (location.pathname === '/products/womens') {
+    setFilterCategory('womens');
+  } else if (location.pathname === '/products/new') {
+    setFilterCategory('all');
+  } else if (location.pathname === '/products/mens') {
+    setFilterCategory('mens');
+  } else if (location.pathname === '/products/shoes') {
+    setFilterCategory('shoes');
+  } else if (location.pathname === '/products/hats') {
+    setFilterCategory('hats');
+  }
+
+  // console.log(currentProducts);
 
   if (loading) {
     return <h2>loading....</h2>;

@@ -38,24 +38,59 @@ function App() {
   const [allProducts, setAllProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6);
-
+  const [womensProducts, setWomensProducts] = useState([]);
+  const [mensProducts, setMensProducts] = useState([]);
+  const [hatProducts, sethatProducts] = useState([]);
+  const [shoesProducts, setShoesProducts] = useState([]);
+  const [filterCategory, setFilterCategory] = useState('all');
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const res = await axios.get('https://fakestoreapi.com/products?limit=15');
+      const res = await axios.get('http://localhost:5000/products');
       setAllProducts(res.data);
+      setWomensProducts(
+        res.data.filter((items) => items.category === "Women's")
+      );
+      setMensProducts(res.data.filter((items) => items.category === "Men's"));
+      sethatProducts(res.data.filter((items) => items.category === 'Hats'));
+      setShoesProducts(res.data.filter((items) => items.category === 'Shoes'));
       setLoading(false);
     };
 
     fetchProducts();
   }, []);
 
+  // console.log(allProducts);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentPageProducts = allProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+
+  let currentPageProducts;
+  if (filterCategory === 'all') {
+    currentPageProducts = allProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  } else if (filterCategory === 'womens') {
+    currentPageProducts = womensProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  } else if (filterCategory === 'mens') {
+    currentPageProducts = mensProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  } else if (filterCategory === 'hats') {
+    currentPageProducts = hatProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  } else if (filterCategory === 'shoes') {
+    currentPageProducts = shoesProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  }
 
   return (
     <GlobalContext.Provider
@@ -66,6 +101,7 @@ function App() {
         currentPageProducts,
         productsPerPage,
         setCurrentPage,
+        setFilterCategory,
       }}
     >
       <ThemeProvider theme={globalTheme}>
@@ -101,6 +137,12 @@ function App() {
             >
               <Route
                 path='shoes'
+                element={
+                  <ProductList classes='products__item products__item-list' />
+                }
+              />
+              <Route
+                path='hats'
                 element={
                   <ProductList classes='products__item products__item-list' />
                 }

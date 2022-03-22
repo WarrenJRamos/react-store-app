@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ProductsComponent = styled.div`
   width: 100vw;
@@ -10,11 +10,12 @@ const ProductsComponent = styled.div`
   &.products {
     display: grid;
     gap: 10px;
+    background: ${(props) => props.theme.colors.colorTimberWolf};
     grid-template-areas:
-      "img img img img"
-      "side list list list"
-      "side list list list"
-      "side list list list";
+      'img img img img'
+      'side list list list'
+      'side list list list'
+      'side list list list';
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
     grid-template-columns: 1fr 3fr;
     .products {
@@ -50,6 +51,7 @@ const ProductsComponent = styled.div`
           display: flex;
           flex-wrap: wrap;
           gap: 9px;
+          padding: 10px;
         }
       }
     }

@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 const ProductCard = styled.div`
-  border: 1px solid ${(props) => props.theme.colors.colorTimberWolf};
+  border: 1px solid ${(props) => props.theme.colors.colorOnyx};
   width: 17em;
   height: 430px;
   box-sizing: border-box;
+  color: ${(props) => props.theme.colors.colorTimberWolf};
+  background: ${(props) => props.theme.colors.colorTeal};
   .img-container {
     img {
       height: 355px;
