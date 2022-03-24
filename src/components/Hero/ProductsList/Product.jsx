@@ -1,6 +1,6 @@
 import React from 'react';
 // import test from '../../../Images/Products/test.jpg';
-
+import { NavLink } from 'react-router-dom';
 //icons
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -10,7 +10,9 @@ const Product = ({ product }) => {
   return (
     <ProductCard className='card-container'>
       <div className='img-container'>
-        <img src={product.image} alt='cloting-img' />
+        <NavLink to={`/product/${product.id}`}>
+          <img src={product.image} alt='cloting-img' />
+        </NavLink>
       </div>
       <div className='bottom'>
         <div className='bottom-title'>

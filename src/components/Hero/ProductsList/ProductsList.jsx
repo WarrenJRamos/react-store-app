@@ -17,19 +17,7 @@ const ProductsList = (props) => {
   const currentProducts = context.currentPageProducts;
   const setFilterCategory = context.setFilterCategory;
 
-  if (location.pathname === '/products/womens') {
-    setFilterCategory('womens');
-  } else if (location.pathname === '/products/new') {
-    setFilterCategory('all');
-  } else if (location.pathname === '/products/mens') {
-    setFilterCategory('mens');
-  } else if (location.pathname === '/products/shoes') {
-    setFilterCategory('shoes');
-  } else if (location.pathname === '/products/hats') {
-    setFilterCategory('hats');
-  }
-
-  // console.log(currentProducts);
+  setFilterCategory(location.pathname);
 
   if (loading) {
     return <h2>loading....</h2>;
