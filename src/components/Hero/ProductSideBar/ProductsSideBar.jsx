@@ -7,7 +7,7 @@ const ProductsSideBar = (props) => {
     return `$${value}`;
   }
 
-  const [value, setValue] = useState([0, 50]);
+  const [value, setValue] = useState([0, 1200]);
 
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -22,7 +22,7 @@ const ProductsSideBar = (props) => {
         <span>Price</span>
         <Slider
           className='range'
-          getAriaLabel={() => 'Temperature range'}
+          getAriaLabel={() => 'Price range'}
           value={value}
           onChange={handleChange}
           valueLabelDisplay='auto'

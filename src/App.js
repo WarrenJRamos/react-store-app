@@ -19,7 +19,7 @@ import Register from "./components/Authentication/Register";
 import ProtectedRoutes from "./ProtectedRoutes";
 import MyAccount from "./components/Navigation/MyAccount";
 import MenuListComposition from "./components/Navigation/MenuListComposition";
-
+import SelectedProduct from "./components/SelectedProduct/SelectedProduct";
 //components
 import ProductList from "./components/Hero/ProductsList/ProductsList";
 import Products from "./components/Hero/Products";
@@ -38,25 +38,74 @@ function App() {
   const [allProducts, setAllProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6);
+  const [womensProducts, setWomensProducts] = useState([]);
+  const [mensProducts, setMensProducts] = useState([]);
+  const [hatProducts, sethatProducts] = useState([]);
+  const [shoesProducts, setShoesProducts] = useState([]);
+  const [filterCategory, setFilterCategory] = useState("/products/new");
 
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const res = await axios.get("https://fakestoreapi.com/products?limit=15");
+      const res = await axios.get("http://localhost:5000/products");
       setAllProducts(res.data);
+      setWomensProducts(
+        res.data.filter((items) => items.category.includes("Women's"))
+      );
+      setMensProducts(
+        res.data.filter((items) => items.category.includes("Men's"))
+      );
+      sethatProducts(
+        res.data.filter((items) => items.category.includes("Hats"))
+      );
+      setShoesProducts(
+        res.data.filter((items) => items.category.includes("Shoes"))
+      );
       setLoading(false);
     };
 
     fetchProducts();
   }, []);
 
+  console.log(allProducts);
+  // console.log(filterCategory);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentPageProducts = allProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
 
+  let count;
+  let currentPageProducts;
+  if (filterCategory === "/products/new") {
+    count = Math.ceil(allProducts.length / productsPerPage);
+    currentPageProducts = allProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  } else if (filterCategory === "/products/womens") {
+    count = Math.ceil(womensProducts.length / productsPerPage);
+    currentPageProducts = womensProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  } else if (filterCategory === "/products/mens") {
+    count = Math.ceil(mensProducts.length / productsPerPage);
+    currentPageProducts = mensProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  } else if (filterCategory === "/products/hats") {
+    count = Math.ceil(hatProducts.length / productsPerPage);
+    currentPageProducts = hatProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  } else if (filterCategory === "/products/shoes") {
+    count = Math.ceil(shoesProducts.length / productsPerPage);
+    currentPageProducts = shoesProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+  }
+  console.log(count);
   return (
     <GlobalContext.Provider
       value={{
@@ -66,6 +115,8 @@ function App() {
         currentPageProducts,
         productsPerPage,
         setCurrentPage,
+        setFilterCategory,
+        count,
       }}
     >
       <ThemeProvider theme={globalTheme}>
@@ -90,6 +141,8 @@ function App() {
                 <Route path="wishlist" element={<Wishlist />} />
               </Route>
             </Route>
+            <Route path="/product/:id" element={<SelectedProduct />} />
+
             <Route
               path="/products/*"
               element={
@@ -101,6 +154,12 @@ function App() {
             >
               <Route
                 path="shoes"
+                element={
+                  <ProductList classes="products__item products__item-list" />
+                }
+              />
+              <Route
+                path="hats"
                 element={
                   <ProductList classes="products__item products__item-list" />
                 }

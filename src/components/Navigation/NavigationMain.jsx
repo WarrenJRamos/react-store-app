@@ -42,6 +42,11 @@ const NavigationMain = () => {
               </NavLink>
             </li>
             <li>
+              <NavLink to="/products/hats" className="item">
+                Hats
+              </NavLink>
+            </li>
+            <li>
               <NavLink to="/products/shoes" className="item">
                 Shoes
               </NavLink>
