@@ -35,6 +35,7 @@ export default function ShoppingCart() {
             return (
               <CartItem
                 key={product.id}
+                id={product.id}
                 src={product.image}
                 title={product.title}
                 price={product.price}
