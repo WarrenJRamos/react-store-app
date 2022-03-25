@@ -15,8 +15,9 @@ export const AccountContainer = styled.div`
     gap: 20px;
 
     & h3 {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
+      color: #587b7f;
     }
 
     & p {
@@ -42,6 +43,25 @@ export const AccountContainer = styled.div`
       &-name {
       }
       &-email {
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        border: 2px solid white;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #587b7f;
+        padding: 5px 0;
+      }
+    }
+
+    .profile__members {
+      button {
+        padding: 5px 0;
+        background-color: #587b7f;
+        color: white;
+        border: 2px solid white;
+        border-radius: 5px;
       }
     }
   }

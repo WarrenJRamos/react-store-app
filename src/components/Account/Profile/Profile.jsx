@@ -6,6 +6,8 @@ import UpdateProfile from "../../Authentication/UpdateProfile";
 
 export default function Profile() {
   const { currentUser } = useAuth();
+  const onJoinNow = () => {};
+
   return (
     <AccountContainer className="profile">
       <section className="profile__section profile__about">
@@ -27,7 +29,7 @@ export default function Profile() {
           <Link to="/">Terms & Conditions</Link> andLorem ipsum dolor sit amet,
           consectetur adipiscing elit. Etiam porta dui in turpis viverra ornare.
         </p>
-        <button onClick="">Join now!</button>
+        <button onClick={onJoinNow}>Join now!</button>
       </section>
     </AccountContainer>
   );

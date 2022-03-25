@@ -99,12 +99,29 @@ export default function MenuListComposition() {
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem onClick={handleClose}>
-                      <Link to="/my-account/profile">My Account</Link>
+                      <Link
+                        to="/my-account/profile"
+                        style={{
+                          textDecoration: "none",
+                          color: "black",
+                          textAlign: "center",
+                        }}
+                      >
+                        My Account
+                      </Link>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
-                      <Button variant="link" onClick={onLogoutHandler}>
+                      <button
+                        variant="link"
+                        onClick={onLogoutHandler}
+                        style={{
+                          border: "none",
+                          backgroundColor: "inherit",
+                          margin: "auto",
+                        }}
+                      >
                         Logout
-                      </Button>
+                      </button>
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

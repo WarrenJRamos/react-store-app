@@ -7,7 +7,7 @@ import { NavContainer } from "../../Styles/Navigation/NavContainer.styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import MenuListComposition from "../Account/MenuListComposition";
+import MenuListComposition from "./MenuListComposition";
 import { useAuth } from "../../Context/AuthProvider";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
 

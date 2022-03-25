@@ -18,7 +18,7 @@ import UpdateProfile from "./components/Authentication/UpdateProfile";
 import Register from "./components/Authentication/Register";
 import ProtectedRoutes from "./ProtectedRoutes";
 import MyAccount from "./components/Navigation/MyAccount";
-import MenuListComposition from "./components/Account/MenuListComposition";
+import MenuListComposition from "./components/Navigation/MenuListComposition";
 
 //components
 import ProductList from "./components/Hero/ProductsList/ProductsList";

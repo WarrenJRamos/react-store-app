@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const GlobalContext = React.createContext({
+  allProducts: [],
   newProducts: [],
   setNewProducts: () => {},
 });
