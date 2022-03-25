@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Offcanvas } from "react-bootstrap";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { ShoppingCartContainer } from "../../Styles/ShoppingCart/ShoppingCart.styled";
+import { ShoppingCartContainer } from "../../../Styles/ShoppingCart/ShoppingCart.styled";
 import { useTheme } from "styled-components";
 
 export default function ShoppingCart() {
