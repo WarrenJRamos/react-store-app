@@ -57,7 +57,6 @@ export default function Register() {
     >
       <Form header="register" subheader="Please fill in the information below:">
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Name</label>

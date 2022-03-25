@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "styled-components";
 import { useAuth } from "../../Context/AuthProvider";
 import { RegisterContainer } from "../../Styles/Authentication/Register.styled";
+import Form from "./Form/Form";
 
 export default function UpdateProfile() {
   const emailRef = useRef();
@@ -51,48 +52,42 @@ export default function UpdateProfile() {
       fontFamilyFormInputs={theme.fonts.fontFamilyFormInputs}
       borderColor={theme.colors.colorTimberWolf}
     >
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Update Profile</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                ref={emailRef}
-                placeholder="New email"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                ref={passwordRef}
-                placeholder="Leave blank to keep the same"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password-confirm">Password Confirmation</label>
-              <input
-                id="password-confirm"
-                type="password"
-                ref={passwordRef}
-                placeholder="Leave blank to keep the same"
-                required
-              />
-            </div>
-            <button disabled={isLoading} type="submit">
-              Update
-            </button>
-          </form>
-        </Card.Body>
-      </Card>
+      <Form
+        header="Update Profile"
+        subheader="Please fill in the information below:"
+        onSubmit={handleSubmit}
+      >
+        {error && <Alert variant="danger">{error}</Alert>}
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input type="email" ref={emailRef} placeholder="New email" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            ref={passwordRef}
+            placeholder="Leave blank to keep the same"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password-confirm">Password Confirmation</label>
+          <input
+            id="password-confirm"
+            type="password"
+            ref={passwordRef}
+            placeholder="Leave blank to keep the same"
+            required
+          />
+        </div>
+        <button disabled={isLoading} type="submit">
+          Update
+        </button>
+      </Form>
       <div className="w-100 text-center mt-2">
-        <Link to="/">Cancel</Link>
+        <Link to="/my-account/profile">Cancel</Link>
       </div>
     </RegisterContainer>
   );
