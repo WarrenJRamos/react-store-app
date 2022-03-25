@@ -44,7 +44,7 @@ function App() {
   const [hatProducts, sethatProducts] = useState([]);
   const [shoesProducts, setShoesProducts] = useState([]);
   const [filterCategory, setFilterCategory] = useState("/products/new");
-
+  const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -113,7 +113,7 @@ function App() {
       indexOfLastProduct
     );
   }
-  console.log(count);
+  console.log(cartItems);
   return (
     <GlobalContext.Provider
       value={{
@@ -125,6 +125,8 @@ function App() {
         setCurrentPage,
         setFilterCategory,
         count,
+        cartItems,
+        setCartItems,
       }}
     >
       <ThemeProvider theme={globalTheme}>

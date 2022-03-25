@@ -42,7 +42,6 @@ const ProductsList = (props) => {
               </div>
               <div className='bottom-price'>
                 <span>$55.45</span>
-                <AddShoppingCartIcon className='cart' />
               </div>
             </div>
           </ProductCard>
