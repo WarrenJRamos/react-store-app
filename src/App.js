@@ -17,7 +17,7 @@ import ForgotPassword from "./components/Authentication/ForgotPassword";
 import UpdateProfile from "./components/Authentication/UpdateProfile";
 import Register from "./components/Authentication/Register";
 import ProtectedRoutes from "./ProtectedRoutes";
-import MyAccount from "./components/Account/MyAccount";
+import MyAccount from "./components/Navigation/MyAccount";
 import MenuListComposition from "./components/Account/MenuListComposition";
 
 //components
@@ -30,9 +30,9 @@ import Footer from "./components/Footer/Footer";
 import ProductsComponent from "./Styles/Products/ProductsComponent.styled";
 import Landing from "./components/Landing/Landing";
 import LandingV2 from "./components/Landing/LandingV2";
-import Profile from "./components/Account/Profile";
-import Wishlist from "./components/Account/Wishlist";
-import Orders from "./components/Account/Orders";
+import Profile from "./components/Account/Profile/Profile";
+import Wishlist from "./components/Account/Wishlist/Wishlist";
+import Orders from "./components/Account/Orders/Orders";
 function App() {
   const [loading, setLoading] = useState(false);
   const [allProducts, setAllProducts] = useState([]);

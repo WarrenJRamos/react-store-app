@@ -1,5 +1,5 @@
 import React from "react";
-import UpdateProfile from "../Authentication/UpdateProfile";
+import UpdateProfile from "../../Authentication/UpdateProfile";
 
 export default function Profile() {
   return (
