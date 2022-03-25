@@ -21,8 +21,8 @@ import MyAccount from "./components/Navigation/MyAccount";
 import MenuListComposition from "./components/Navigation/MenuListComposition";
 import SelectedProduct from "./components/SelectedProduct/SelectedProduct";
 //components
-import ProductList from "./components/Hero/ProductsList/ProductsList";
-import Products from "./components/Hero/Products";
+import ProductList from "./components/Products/ProductsList/ProductsList";
+import Products from "./components/Products/Products";
 import Footer from "./components/Footer/Footer";
 // import Signup from "./components/Authentication/Signup";
 // import Login from "./components/Authentication/Login";
