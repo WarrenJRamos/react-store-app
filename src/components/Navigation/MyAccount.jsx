@@ -5,7 +5,7 @@ import { useAuth } from "../../Context/AuthProvider";
 import {
   MyAccountContainer,
   MyAccountContentContainer,
-} from "../../Styles/Account/MyAccount.styled";
+} from "../../Styles/Navigation/MyAccount.styled";
 
 export default function MyAccount(props) {
   const { currentUser } = useAuth();
