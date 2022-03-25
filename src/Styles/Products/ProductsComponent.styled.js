@@ -50,8 +50,8 @@ const ProductsComponent = styled.div`
           grid-area: list;
           display: flex;
           flex-wrap: wrap;
-          gap: 9px;
-          padding: 10px;
+          gap: 19px;
+          padding: 37px;
         }
       }
     }
