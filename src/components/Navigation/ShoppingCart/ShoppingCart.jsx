@@ -31,7 +31,7 @@ export default function ShoppingCart() {
           <Offcanvas.Title style={{ color: "#e2c044" }}>CART</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {globalContext.allProducts.map((product) => {
+          {globalContext.cartItems.map((product) => {
             return (
               <CartItem
                 key={product.id}
