@@ -48,26 +48,26 @@ function App() {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      // const res = await axios.get("http://localhost:5000/products");
-      // setAllProducts(res.data);
-      const productsDummy = p.Products;
-      console.log(productsDummy);
-      setAllProducts(productsDummy);
+      const res = await axios.get("http://localhost:3333/products");
+      setAllProducts(res.data);
+      // const productsDummy = p.Products;
+      // console.log(productsDummy);
+      // setAllProducts(productsDummy);
       setWomensProducts(
-        // res.data.filter((items) => items.category.includes("Women's"))
-        productsDummy.filter((items) => items.category.includes("Women's"))
+        res.data.filter((items) => items.category.includes("Women's"))
+        // productsDummy.filter((items) => items.category.includes("Women's"))
       );
       setMensProducts(
-        // res.data.filter((items) => items.category.includes("Men's"))
-        productsDummy.filter((items) => items.category.includes("Men's"))
+        res.data.filter((items) => items.category.includes("Men's"))
+        // productsDummy.filter((items) => items.category.includes("Men's"))
       );
       sethatProducts(
-        // res.data.filter((items) => items.category.includes("Hats"))
-        productsDummy.filter((items) => items.category.includes("Hats"))
+        res.data.filter((items) => items.category.includes("Hats"))
+        // productsDummy.filter((items) => items.category.includes("Hats"))
       );
       setShoesProducts(
-        // res.data.filter((items) => items.category.includes("Shoes"))
-        productsDummy.filter((items) => items.category.includes("Shoes"))
+        res.data.filter((items) => items.category.includes("Shoes"))
+        // productsDummy.filter((items) => items.category.includes("Shoes"))
       );
       setLoading(false);
     };
