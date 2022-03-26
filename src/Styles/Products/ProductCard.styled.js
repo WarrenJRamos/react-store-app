@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ProductCard = styled.div`
   border: 1px solid ${(props) => props.theme.colors.colorOnyx};
@@ -42,10 +42,14 @@ const ProductCard = styled.div`
       align-items: center;
       justify-content: space-between;
 
-      .cart {
-        color: ${(props) => props.theme.colors.colorMaize};
-        font-size: 1.2rem;
-        cursor: pointer;
+      button {
+        background: none;
+        border: none;
+        .cart {
+          color: ${(props) => props.theme.colors.colorMaize};
+          font-size: 1.2rem;
+          cursor: pointer;
+        }
       }
     }
   }

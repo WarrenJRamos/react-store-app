@@ -1,39 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import NavigationMain from "./components/Navigation/NavigationMain";
-import axios from "axios";
-import { AuthProvider, useAuth } from "./Context/AuthProvider";
+import NavigationMain from './components/Navigation/NavigationMain';
+import axios from 'axios';
+import { AuthProvider, useAuth } from './Context/AuthProvider';
 
 //global Context
-import GlobalContext from "./Context/globalContext";
+import GlobalContext from './Context/globalContext';
 
 //styles
-import { ThemeProvider } from "styled-components";
-import GlobalStyles from "./Styles/GlobalStyles.styled";
-import globalTheme from "./Styles/GlobalTheme.styled";
-import { Link, Navigate, Outlet, Route, Routes } from "react-router-dom";
-import Login from "./components/Authentication/Login";
-import ForgotPassword from "./components/Authentication/ForgotPassword";
-import UpdateProfile from "./components/Authentication/UpdateProfile";
-import Register from "./components/Authentication/Register";
-import ProtectedRoutes from "./ProtectedRoutes";
-import MyAccount from "./components/Navigation/MyAccount";
-import MenuListComposition from "./components/Navigation/MenuListComposition";
-import SelectedProduct from "./components/SelectedProduct/SelectedProduct";
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from './Styles/GlobalStyles.styled';
+import globalTheme from './Styles/GlobalTheme.styled';
+import { Link, Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import Login from './components/Authentication/Login';
+import ForgotPassword from './components/Authentication/ForgotPassword';
+import UpdateProfile from './components/Authentication/UpdateProfile';
+import Register from './components/Authentication/Register';
+import ProtectedRoutes from './ProtectedRoutes';
+import MyAccount from './components/Navigation/MyAccount';
+import MenuListComposition from './components/Navigation/MenuListComposition';
+import SelectedProduct from './components/SelectedProduct/SelectedProduct';
 //components
-import ProductList from "./components/Products/ProductsList/ProductsList";
-import Products from "./components/Products/Products";
-import Footer from "./components/Footer/Footer";
+import ProductList from './components/Products/ProductsList/ProductsList';
+import Products from './components/Products/Products';
+import Footer from './components/Footer/Footer';
 // import Signup from "./components/Authentication/Signup";
 // import Login from "./components/Authentication/Login";
 
-import ProductsComponent from "./Styles/Products/ProductsComponent.styled";
-import Landing from "./components/Landing/Landing";
-import LandingV2 from "./components/Landing/LandingV2";
-import Profile from "./components/Account/Profile/Profile";
-import Wishlist from "./components/Account/Wishlist/Wishlist";
-import Orders from "./components/Account/Orders/Orders";
-import { products as p } from "./dummy";
+import ProductsComponent from './Styles/Products/ProductsComponent.styled';
+import Landing from './components/Landing/Landing';
+import LandingV2 from './components/Landing/LandingV2';
+import Profile from './components/Account/Profile/Profile';
+import Wishlist from './components/Account/Wishlist/Wishlist';
+import Orders from './components/Account/Orders/Orders';
+import { products as p } from './dummy';
 function App() {
   const [loading, setLoading] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
@@ -43,8 +43,8 @@ function App() {
   const [mensProducts, setMensProducts] = useState([]);
   const [hatProducts, sethatProducts] = useState([]);
   const [shoesProducts, setShoesProducts] = useState([]);
-  const [filterCategory, setFilterCategory] = useState("/products/new");
-
+  const [filterCategory, setFilterCategory] = useState('/products/new');
+  const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -63,11 +63,11 @@ function App() {
       );
       sethatProducts(
         // res.data.filter((items) => items.category.includes("Hats"))
-        productsDummy.filter((items) => items.category.includes("Hats"))
+        productsDummy.filter((items) => items.category.includes('Hats'))
       );
       setShoesProducts(
         // res.data.filter((items) => items.category.includes("Shoes"))
-        productsDummy.filter((items) => items.category.includes("Shoes"))
+        productsDummy.filter((items) => items.category.includes('Shoes'))
       );
       setLoading(false);
     };
@@ -82,38 +82,38 @@ function App() {
 
   let count;
   let currentPageProducts;
-  if (filterCategory === "/products/new") {
+  if (filterCategory === '/products/new') {
     count = Math.ceil(allProducts.length / productsPerPage);
     currentPageProducts = allProducts.slice(
       indexOfFirstProduct,
       indexOfLastProduct
     );
-  } else if (filterCategory === "/products/womens") {
+  } else if (filterCategory === '/products/womens') {
     count = Math.ceil(womensProducts.length / productsPerPage);
     currentPageProducts = womensProducts.slice(
       indexOfFirstProduct,
       indexOfLastProduct
     );
-  } else if (filterCategory === "/products/mens") {
+  } else if (filterCategory === '/products/mens') {
     count = Math.ceil(mensProducts.length / productsPerPage);
     currentPageProducts = mensProducts.slice(
       indexOfFirstProduct,
       indexOfLastProduct
     );
-  } else if (filterCategory === "/products/hats") {
+  } else if (filterCategory === '/products/hats') {
     count = Math.ceil(hatProducts.length / productsPerPage);
     currentPageProducts = hatProducts.slice(
       indexOfFirstProduct,
       indexOfLastProduct
     );
-  } else if (filterCategory === "/products/shoes") {
+  } else if (filterCategory === '/products/shoes') {
     count = Math.ceil(shoesProducts.length / productsPerPage);
     currentPageProducts = shoesProducts.slice(
       indexOfFirstProduct,
       indexOfLastProduct
     );
   }
-  console.log(count);
+  console.log(cartItems);
   return (
     <GlobalContext.Provider
       value={{
@@ -125,6 +125,8 @@ function App() {
         setCurrentPage,
         setFilterCategory,
         count,
+        cartItems,
+        setCartItems,
       }}
     >
       <ThemeProvider theme={globalTheme}>
@@ -133,61 +135,61 @@ function App() {
           <NavigationMain />
 
           <Routes>
-            <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/home" element={<LandingV2 />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path='/' element={<Navigate to='/home' />} />
+            <Route path='/home' element={<LandingV2 />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/forgot-password' element={<ForgotPassword />} />
             <Route element={<ProtectedRoutes />}>
-              <Route path="/update-profile" element={<UpdateProfile />} />
+              <Route path='/update-profile' element={<UpdateProfile />} />
               <Route
-                path="/my-account"
+                path='/my-account'
                 element={<MyAccount outlet={<Outlet />} />}
               >
-                <Route path="profile" element={<Profile />} />
-                <Route path="orders" element={<Orders />} />
-                <Route path="wishlist" element={<Wishlist />} />
+                <Route path='profile' element={<Profile />} />
+                <Route path='orders' element={<Orders />} />
+                <Route path='wishlist' element={<Wishlist />} />
               </Route>
             </Route>
-            <Route path="/product/:id" element={<SelectedProduct />} />
+            <Route path='/product/:id' element={<SelectedProduct />} />
 
             <Route
-              path="/products/*"
+              path='/products/*'
               element={
-                <ProductsComponent className="products">
-                  <Products classes="products" />
+                <ProductsComponent className='products'>
+                  <Products classes='products' />
                   <Outlet />
                 </ProductsComponent>
               }
             >
               <Route
-                path="shoes"
+                path='shoes'
                 element={
-                  <ProductList classes="products__item products__item-list" />
+                  <ProductList classes='products__item products__item-list' />
                 }
               />
               <Route
-                path="hats"
+                path='hats'
                 element={
-                  <ProductList classes="products__item products__item-list" />
+                  <ProductList classes='products__item products__item-list' />
                 }
               />
               <Route
-                path="mens"
+                path='mens'
                 element={
-                  <ProductList classes="products__item products__item-list" />
+                  <ProductList classes='products__item products__item-list' />
                 }
               />
               <Route
-                path="womens"
+                path='womens'
                 element={
-                  <ProductList classes="products__item products__item-list" />
+                  <ProductList classes='products__item products__item-list' />
                 }
               />
               <Route
-                path="new"
+                path='new'
                 element={
-                  <ProductList classes="products__item products__item-list" />
+                  <ProductList classes='products__item products__item-list' />
                 }
               />
             </Route>
