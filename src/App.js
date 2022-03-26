@@ -67,7 +67,8 @@ function App() {
     fetchProducts();
   }, []);
 
-  console.log(filterCategory);
+  console.log(allProducts);
+  // console.log(filterCategory);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
