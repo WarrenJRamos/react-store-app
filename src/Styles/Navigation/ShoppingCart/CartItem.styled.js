@@ -53,7 +53,7 @@ export const CartItemContainer = styled.article`
           text-transform: uppercase;
           background-color: transparent;
           border: none;
-          border-bottom: 2px solid #e2c044;
+          /* border-bottom: 2px solid #e2c044; */
         }
       }
     }

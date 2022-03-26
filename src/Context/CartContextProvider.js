@@ -83,23 +83,36 @@ const cartReducer = (state, action) => {
 
     let updatedItems;
     const existingItem = state.items[existingItemIndex];
-    const updatedTotalPrice = state.totalPrice - existingItem.price;
+    // const updatedTotalPrice = state.totalPrice - existingItem.price;
+    let updatedTotalPrice;
 
-    // Case 1: The existing item only has a count of 1
-    if (existingItem.amount === 1) {
-      // Return a new items array without the item
+    // Case 1: Completely remove that item, no matter how many is in the amount field
+    if (action.option && action.option === "COMPLETE_REMOVE") {
+      console.log("Inside complete remove");
+      updatedTotalPrice =
+        state.totalPrice - existingItem.price * existingItem.amount;
       updatedItems = state.items.filter((item) => {
         return item.id !== action.id;
       });
-    }
-    // Case 2: There are multiple instances of the same item already in cart
-    else {
-      updatedItems = [...state.items];
-      updatedItems[existingItemIndex] = {
-        ...existingItem,
-        // Simply subtract one since we are only removing one item
-        amount: existingItem.amount - 1,
-      };
+    } else {
+      // REMOVING ONLY ONE ITEM
+      updatedTotalPrice = state.totalPrice - existingItem.price;
+      // Case 2: The existing item only has an amount of 1
+      if (existingItem.amount === 1) {
+        // Return a new items array without the item
+        updatedItems = state.items.filter((item) => {
+          return item.id !== action.id;
+        });
+      }
+      // Case 3: There are multiple instances of the same item already in cart
+      else {
+        updatedItems = [...state.items];
+        updatedItems[existingItemIndex] = {
+          ...existingItem,
+          // Simply subtract one since we are only removing one item
+          amount: existingItem.amount - 1,
+        };
+      }
     }
 
     return {
@@ -126,8 +139,8 @@ export const CartContextProvider = (props) => {
     dispatchCartAction({ type: "ADD", item: item, option: option });
   };
 
-  const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({ type: "REMOVE", id: id });
+  const removeItemFromCartHandler = (id, option) => {
+    dispatchCartAction({ type: "REMOVE", id: id, option: option });
   };
 
   const clearCartHandler = () => {

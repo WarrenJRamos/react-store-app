@@ -36,12 +36,12 @@ const Product = ({ product }) => {
       name: product.title,
       amount: enteredAmountNumber,
       price: product.price,
-      description: product.description,
-      category: product.category,
+      // description: product.description,
+      // category: product.category,
       image: product.image,
-      rating: {
-        ...product.rating,
-      },
+      // rating: {
+      //   ...product.rating,
+      // },
     });
     // setCartItems((prev) => {
     //   const cartArr = [...prev];
