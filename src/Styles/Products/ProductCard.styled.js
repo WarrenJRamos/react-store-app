@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 const ProductCard = styled.div`
-  border: 1px solid ${(props) => props.theme.colors.colorOnyx};
+  :hover {
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #c3c3c3;
+  }
+  padding: 10px;
   width: 17em;
   height: 430px;
   box-sizing: border-box;
   color: ${(props) => props.theme.colors.colorTimberWolf};
-  background: ${(props) => props.theme.colors.colorTeal};
+  background: ${(props) => props.theme.colors.colorBlack};
   .img-container {
     img {
       height: 355px;
@@ -14,6 +18,7 @@ const ProductCard = styled.div`
       object-fit: cover;
       object-position: top;
       margin-bottom: 0.5rem;
+      filter: drop-shadow(91px 3px 140px gray);
     }
   }
 

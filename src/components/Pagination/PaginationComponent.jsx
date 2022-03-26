@@ -27,11 +27,14 @@ const PagDiv = styled.div`
   /* background: white;
   display: flex;
   margin: auto; */
+  button {
+    color: rgb(253 253 253);
+  }
   display: grid;
   grid-template-columns: 4fr 7fr;
   .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-    background-color: rgb(88 123 127);
-    color: rgb(211 208 203);
+    background-color: rgb(253 253 253);
+    color: rgb(38 38 38);
   }
   button:hover {
     background-color: #e2c044;
