@@ -16,7 +16,7 @@ export default function Login() {
   const theme = useTheme();
 
   async function submitHandler(event) {
-    console.log("Inside Handle Submit");
+    // console.log("Inside Handle Submit");
 
     event.preventDefault();
 

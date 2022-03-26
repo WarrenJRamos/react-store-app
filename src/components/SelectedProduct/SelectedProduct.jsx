@@ -24,7 +24,7 @@ const SelectedProduct = () => {
   });
 
   const id = useParams().id;
-  console.log(id);
+  // console.log(id);
   useEffect(() => {
     setIsLoading(true);
     fetch(`http://localhost:3333/products/${id}`)
@@ -39,7 +39,7 @@ const SelectedProduct = () => {
 
   const interest = Math.round((product.price / 4 + Number.EPSILON) * 100) / 100;
   //   const interest = (product.price / 4).toFixed(2);
-  console.log(product);
+  // console.log(product);
   return (
     <SelectedComponent>
       <div className="img-container">

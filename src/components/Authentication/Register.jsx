@@ -21,7 +21,7 @@ export default function Register() {
   const theme = useTheme();
 
   async function handleSubmit(e) {
-    console.log("Inside Handle Submit");
+    // console.log("Inside Handle Submit");
     e.preventDefault();
 
     // Check if the user re-entered their password correctly

@@ -17,7 +17,7 @@ const Product = ({ product }) => {
 
   const addToCartClickHandler = (event) => {
     event.preventDefault();
-    console.log("Adding item to cart");
+    // console.log("Adding item to cart");
     const enteredAmount = amountInputRef.current.value;
     const enteredAmountNumber = +enteredAmount;
 

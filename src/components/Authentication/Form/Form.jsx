@@ -2,8 +2,8 @@ import React from "react";
 import { Alert } from "react-bootstrap";
 
 export default function Form(props) {
-  console.log("form");
-  console.log(props.header);
+  // console.log("form");
+  // console.log(props.header);
   return (
     <div>
       <h2 className="form-header">{props.header}</h2>

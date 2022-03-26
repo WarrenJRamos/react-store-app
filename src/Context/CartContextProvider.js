@@ -11,9 +11,9 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
-  console.log("Inside cartReducer");
+  // console.log("Inside cartReducer");
   if (action.type === "ADD") {
-    console.log("Inside dispatch action of type ADD");
+    // console.log("Inside dispatch action of type ADD");
     let updatedTotalPrice;
     let existingItemIndex;
     let updatedItems;
@@ -88,7 +88,7 @@ const cartReducer = (state, action) => {
 
     // Case 1: Completely remove that item, no matter how many is in the amount field
     if (action.option && action.option === "COMPLETE_REMOVE") {
-      console.log("Inside complete remove");
+      // console.log("Inside complete remove");
       updatedTotalPrice =
         state.totalPrice - existingItem.price * existingItem.amount;
       updatedItems = state.items.filter((item) => {
@@ -135,7 +135,7 @@ export const CartContextProvider = (props) => {
   );
 
   const addItemToCartHandler = (item, option) => {
-    console.log("Inside cart context producer addItemToCartHandler");
+    // console.log("Inside cart context producer addItemToCartHandler");
     dispatchCartAction({ type: "ADD", item: item, option: option });
   };
 

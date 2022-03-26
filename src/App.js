@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import NavigationMain from "./components/Navigation/NavigationMain";
 import axios from "axios";
-import { AuthProvider, useAuth } from "./Context/AuthProvider";
+import { AuthProvider } from "./Context/AuthProvider";
 
 //global Context
 import GlobalContext from "./Context/globalContext";
@@ -11,14 +11,13 @@ import GlobalContext from "./Context/globalContext";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./Styles/GlobalStyles.styled";
 import globalTheme from "./Styles/GlobalTheme.styled";
-import { Link, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import Login from "./components/Authentication/Login";
 import ForgotPassword from "./components/Authentication/ForgotPassword";
 import UpdateProfile from "./components/Authentication/UpdateProfile";
 import Register from "./components/Authentication/Register";
 import ProtectedRoutes from "./ProtectedRoutes";
 import MyAccount from "./components/Navigation/MyAccount";
-import MenuListComposition from "./components/Navigation/MenuListComposition";
 import SelectedProduct from "./components/SelectedProduct/SelectedProduct";
 //components
 import ProductList from "./components/Products/ProductsList/ProductsList";
@@ -28,13 +27,12 @@ import Footer from "./components/Footer/Footer";
 // import Login from "./components/Authentication/Login";
 
 import ProductsComponent from "./Styles/Products/ProductsComponent.styled";
-import Landing from "./components/Landing/Landing";
 import LandingV2 from "./components/Landing/LandingV2";
 import Profile from "./components/Account/Profile/Profile";
 import Wishlist from "./components/Account/Wishlist/Wishlist";
 import Orders from "./components/Account/Orders/Orders";
-import { products as p } from "./dummy";
 import { CartContextProvider } from "./Context/CartContextProvider";
+
 function App() {
   const [loading, setLoading] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
@@ -46,6 +44,7 @@ function App() {
   const [shoesProducts, setShoesProducts] = useState([]);
   const [filterCategory, setFilterCategory] = useState("/products/new");
   const [cartItems, setCartItems] = useState([]);
+
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -114,7 +113,7 @@ function App() {
       indexOfLastProduct
     );
   }
-  // console.log(cartItems);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -135,7 +134,6 @@ function App() {
         <AuthProvider>
           <CartContextProvider>
             <NavigationMain />
-
             <Routes>
               <Route path="/" element={<Navigate to="/home" />} />
               <Route path="/home" element={<LandingV2 />} />
@@ -153,6 +151,8 @@ function App() {
                   <Route path="wishlist" element={<Wishlist />} />
                 </Route>
               </Route>
+
+              {/* We should probably move this into the /products */}
               <Route path="/product/:id" element={<SelectedProduct />} />
 
               <Route

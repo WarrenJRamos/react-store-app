@@ -12,7 +12,7 @@ export default function ShoppingCart() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const cartContext = useContext(CartContext);
-  console.log(cartContext.items);
+  // console.log(cartContext.items);
 
   const theme = useTheme();
 
