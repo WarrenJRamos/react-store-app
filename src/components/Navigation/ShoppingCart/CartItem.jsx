@@ -9,6 +9,7 @@ export default function CartItem(props) {
         <img src={props.src} alt="item" />
       </button>
       <h3 className="cart-item__title">{props.title}</h3>
+      <p>{props.amount}</p>
       <p className="cart-item__price">${props.price}</p>
       <div className="cart-item__actions">
         <button className="cart-item__actions--add">Add to bag</button>

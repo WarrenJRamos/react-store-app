@@ -5,12 +5,14 @@ import { ShoppingCartContainer } from "../../../Styles/Navigation/ShoppingCart/S
 import { useTheme } from "styled-components";
 import GlobalContext from "../../../Context/globalContext";
 import CartItem from "./CartItem";
+import { CartContext } from "../../../Context/CartContextProvider";
 
 export default function ShoppingCart() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const globalContext = useContext(GlobalContext);
+  const cartContext = useContext(CartContext);
+  console.log(cartContext.items);
 
   const theme = useTheme();
 
@@ -31,14 +33,16 @@ export default function ShoppingCart() {
           <Offcanvas.Title style={{ color: "#e2c044" }}>CART</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {globalContext.cartItems.map((product) => {
+          {<div>${cartContext.totalPrice.toFixed(2)}</div>}
+          {cartContext.items.map((product) => {
             return (
               <CartItem
                 key={product.id}
                 id={product.id}
                 src={product.image}
-                title={product.title}
+                title={product.name}
                 price={product.price}
+                amount={product.amount}
               />
             );
           })}

@@ -34,6 +34,7 @@ import Profile from "./components/Account/Profile/Profile";
 import Wishlist from "./components/Account/Wishlist/Wishlist";
 import Orders from "./components/Account/Orders/Orders";
 import { products as p } from "./dummy";
+import { CartContextProvider } from "./Context/CartContextProvider";
 function App() {
   const [loading, setLoading] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
@@ -75,7 +76,7 @@ function App() {
     fetchProducts();
   }, []);
 
-  console.log(allProducts);
+  // console.log(allProducts);
   // console.log(filterCategory);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -113,7 +114,7 @@ function App() {
       indexOfLastProduct
     );
   }
-  console.log(cartItems);
+  // console.log(cartItems);
   return (
     <GlobalContext.Provider
       value={{
@@ -132,69 +133,71 @@ function App() {
       <ThemeProvider theme={globalTheme}>
         <GlobalStyles />
         <AuthProvider>
-          <NavigationMain />
+          <CartContextProvider>
+            <NavigationMain />
 
-          <Routes>
-            <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/home" element={<LandingV2 />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route element={<ProtectedRoutes />}>
-              <Route path="/update-profile" element={<UpdateProfile />} />
-              <Route
-                path="/my-account"
-                element={<MyAccount outlet={<Outlet />} />}
-              >
-                <Route path="profile" element={<Profile />} />
-                <Route path="orders" element={<Orders />} />
-                <Route path="wishlist" element={<Wishlist />} />
+            <Routes>
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/home" element={<LandingV2 />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/update-profile" element={<UpdateProfile />} />
+                <Route
+                  path="/my-account"
+                  element={<MyAccount outlet={<Outlet />} />}
+                >
+                  <Route path="profile" element={<Profile />} />
+                  <Route path="orders" element={<Orders />} />
+                  <Route path="wishlist" element={<Wishlist />} />
+                </Route>
               </Route>
-            </Route>
-            <Route path="/product/:id" element={<SelectedProduct />} />
+              <Route path="/product/:id" element={<SelectedProduct />} />
 
-            <Route
-              path="/products/*"
-              element={
-                <ProductsComponent className="products">
-                  <Products classes="products" />
-                  <Outlet />
-                </ProductsComponent>
-              }
-            >
               <Route
-                path="shoes"
+                path="/products/*"
                 element={
-                  <ProductList classes="products__item products__item-list" />
+                  <ProductsComponent className="products">
+                    <Products classes="products" />
+                    <Outlet />
+                  </ProductsComponent>
                 }
-              />
-              <Route
-                path="hats"
-                element={
-                  <ProductList classes="products__item products__item-list" />
-                }
-              />
-              <Route
-                path="mens"
-                element={
-                  <ProductList classes="products__item products__item-list" />
-                }
-              />
-              <Route
-                path="womens"
-                element={
-                  <ProductList classes="products__item products__item-list" />
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProductList classes="products__item products__item-list" />
-                }
-              />
-            </Route>
-          </Routes>
-          <Footer />
+              >
+                <Route
+                  path="shoes"
+                  element={
+                    <ProductList classes="products__item products__item-list" />
+                  }
+                />
+                <Route
+                  path="hats"
+                  element={
+                    <ProductList classes="products__item products__item-list" />
+                  }
+                />
+                <Route
+                  path="mens"
+                  element={
+                    <ProductList classes="products__item products__item-list" />
+                  }
+                />
+                <Route
+                  path="womens"
+                  element={
+                    <ProductList classes="products__item products__item-list" />
+                  }
+                />
+                <Route
+                  path="new"
+                  element={
+                    <ProductList classes="products__item products__item-list" />
+                  }
+                />
+              </Route>
+            </Routes>
+            <Footer />
+          </CartContextProvider>
         </AuthProvider>
       </ThemeProvider>
     </GlobalContext.Provider>
