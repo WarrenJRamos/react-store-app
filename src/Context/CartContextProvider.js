@@ -3,7 +3,6 @@ import React, { useReducer } from "react";
 export const CartContext = React.createContext({
   items: [],
   totalPrice: 0,
-  totalNumber,
 });
 
 const defaultCartState = {
