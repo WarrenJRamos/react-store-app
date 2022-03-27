@@ -43,11 +43,6 @@ const Product = ({ product }) => {
       //   ...product.rating,
       // },
     });
-    // setCartItems((prev) => {
-    //   const cartArr = [...prev];
-    //   cartArr.push(product);
-    //   return cartArr;
-    // });
   };
 
   return (

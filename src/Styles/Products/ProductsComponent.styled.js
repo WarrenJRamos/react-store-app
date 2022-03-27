@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ProductsComponent = styled.div`
   width: 100vw;
@@ -12,10 +12,10 @@ const ProductsComponent = styled.div`
     gap: 10px;
     background: ${(props) => props.theme.colors.colorBlack};
     grid-template-areas:
-      'img img img img'
-      'side list list list'
-      'side list list list'
-      'side list list list';
+      "img img img img"
+      "side list list list"
+      "side list list list"
+      "side list list list";
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
     grid-template-columns: 1fr 3fr;
     .products {
@@ -37,11 +37,9 @@ const ProductsComponent = styled.div`
           }
 
           .img-container {
-            max-width: 100%;
-            object-fit: fill;
+            height: 100%;
+            object-fit: cover;
             object-position: top center;
-            /* height: fit-content;
-            width: fit-content; */
           }
         }
 
