@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const AccountContainer = styled.div`
-  background-color: #e2c044;
+  /* background-color: #e2c044; */
+  background-color: ${(props) => props.colorBlack};
   /* background-color: #d3d0cb; */
   height: 100%;
   padding-top: 50px;
@@ -32,7 +33,7 @@ export const AccountContainer = styled.div`
 
       &::after {
         margin-top: 10px;
-        content: "";
+        content: '';
         height: 5px;
         display: block;
         background-color: #587b7f;
