@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../../Context/CartContextProvider";
 import { CartItemContainer } from "../../../Styles/Navigation/ShoppingCart/CartItem.styled";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export default function CartItem(props) {
   const cartContext = useContext(CartContext);
@@ -39,7 +40,7 @@ export default function CartItem(props) {
         onClick={onRemoveOneItemCompletely}
         className="cart-item--remove-completely"
       >
-        X
+        <ClearIcon />
       </button>
       <button onClick={onItemClick} className="cart-item__image">
         <img src={props.src} alt="item" />

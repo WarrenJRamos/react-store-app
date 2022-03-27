@@ -6,6 +6,7 @@ import { useTheme } from "styled-components";
 import GlobalContext from "../../../Context/globalContext";
 import CartItem from "./CartItem";
 import { CartContext } from "../../../Context/CartContextProvider";
+import CartHeader from "./CartHeader";
 
 export default function ShoppingCart() {
   const [show, setShow] = useState(false);
@@ -15,7 +16,6 @@ export default function ShoppingCart() {
   // console.log(cartContext.items);
 
   const theme = useTheme();
-
   return (
     <ShoppingCartContainer colorCultured={theme.colors.colorCultured}>
       <button type="button" className="shoppingCartButton" onClick={handleShow}>
@@ -33,7 +33,7 @@ export default function ShoppingCart() {
           <Offcanvas.Title style={{ color: "#e2c044" }}>CART</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {<div>${cartContext.totalPrice.toFixed(2)}</div>}
+          {cartContext.items.length > 0 ? <CartHeader /> : ""}
           {cartContext.items.map((product) => {
             return (
               <CartItem
