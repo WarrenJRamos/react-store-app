@@ -7,8 +7,9 @@ const FootCard = styled.div`
   align-content: center;
   align-items: center;
   justify-content: center;
+  border-top: 1px solid #4d4d4d;
   color: ${(props) => props.theme.colors.colorTimberWolf};
-  background: ${(props) => props.theme.colors.colorTeal};
+  background: ${(props) => props.theme.colors.colorBlack};
 
   .footer-columns {
     width: 1051px;

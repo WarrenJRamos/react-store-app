@@ -1,17 +1,22 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import productsDefault from '../../../Images/Products/products1.jpg';
-import products1 from '../../../Images/Products/mens.jpg';
-import products2 from '../../../Images/Products/womens.jpg';
-
+import mens from '../../../Images/Products/mens.jpg';
+import womens from '../../../Images/Products/womens.jpg';
+import hats from '../../../Images/Products/hats.jpg';
+import shoes from '../../../Images/Products/shoes.jpg';
 const ProductsImg = (props) => {
   const location = useLocation();
   // console.log(location.pathname);
   let img = productsDefault;
   if (location.pathname === '/products/womens') {
-    img = products2;
+    img = womens;
   } else if (location.pathname === '/products/mens') {
-    img = products1;
+    img = mens;
+  } else if (location.pathname === '/products/hats') {
+    img = hats;
+  } else if (location.pathname === '/products/shoes') {
+    img = shoes;
   }
   return (
     <div className={`${props.classes}`}>
