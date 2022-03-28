@@ -11,6 +11,7 @@ const ProductCard = styled.div`
         box-sizing: border-box;
         border: none;
         margin: auto;
+        font-family: 'Crimson Pro';
         border-bottom: 1px solid hsla(0, 0%, 100%, 0.4);
         font-size: 0.9375rem;
         line-height: 1.3rem;
