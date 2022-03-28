@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const Productside = styled.div`
   &.side {
-    border: 1px solid #f0f6f6;
-    background: ${(props) => props.theme.colors.colorTeal};
+    border: 1px solid #c3c3c3;
+    background: ${(props) => props.theme.colors.colorBlack};
     position: sticky;
     color: ${(props) => props.theme.colors.colorCultured};
     height: 49vh;

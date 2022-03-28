@@ -1,17 +1,20 @@
-import styled from "styled-components";
-import manwoman from "../../Images/Account/manwoman.png";
+import styled from 'styled-components';
+import manwoman from '../../Images/Account/manwoman.png';
 
 export const MyAccountContainer = styled.div`
-  height: 100vh;
+  /* height: 100vh;
   color: ${(props) => props.colorCultured};
-  padding-top: 100px;
+  padding-top: 100px; */
   /* background: linear-gradient(to left, #eee, #333); */
-  background: linear-gradient(
+  /* background: linear-gradient(
     to left,
     ${(props) => props.colorFogra},
     ${(props) => props.colorTeal}
-  );
-
+  ); */
+  height: 100vh;
+  color: ${(props) => props.colorCultured};
+  background-color: ${(props) => props.colorBlack};
+  padding: 48px;
   .top {
     height: 30%;
     /* background: url(${manwoman});
@@ -27,6 +30,7 @@ export const MyAccountContainer = styled.div`
       text-transform: uppercase;
       text-align: center;
       font-size: 3rem;
+      color: ${(props) => props.colorMaize};
     }
     p {
       text-align: center;
@@ -38,9 +42,9 @@ export const MyAccountContainer = styled.div`
     height: 70%;
     display: grid;
     grid-template-areas:
-      "sidenav sidenavcontent sidenavcontent sidenavcontent"
-      "sidenav sidenavcontent sidenavcontent sidenavcontent"
-      "sidenav sidenavcontent sidenavcontent sidenavcontent";
+      'sidenav sidenavcontent sidenavcontent sidenavcontent'
+      'sidenav sidenavcontent sidenavcontent sidenavcontent'
+      'sidenav sidenavcontent sidenavcontent sidenavcontent';
     grid-template-columns: 1fr 2fr;
 
     .sidenav {
@@ -67,8 +71,9 @@ export const MyAccountContainer = styled.div`
             text-decoration: none;
 
             &.link--active {
-              background-color: ${(props) => props.colorMaize};
-              border-left: 5px solid ${(props) => props.colorCultured};
+              /* background-color: ${(props) => props.colorMaize}; */
+              border-bottom: 3px solid ${(props) => props.colorMaize};
+              /* border-left: 5px solid ${(props) => props.colorMaize}; */
             }
           }
         }
