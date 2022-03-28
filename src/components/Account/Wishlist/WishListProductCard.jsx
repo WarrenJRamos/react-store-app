@@ -1,17 +1,12 @@
 import React, { useContext, useRef, useState } from 'react';
-// import test from '../../../Images/Products/test.jpg';
 import { NavLink } from 'react-router-dom';
-//icons
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import ProductCard from '../../../Styles/Products/ProductCard.styled';
-import globalContext from '../../../Context/globalContext';
+
 import { CartContext } from '../../../Context/CartContextProvider';
 
-const Product = ({ product }) => {
-  const context = useContext(globalContext);
-  const setCartItems = context.setCartItems;
-  const setWishList = context.setWishList;
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
+import WishCard from '../../../Styles/Account/Profile/WishListCard';
+const WishListProductCard = ({ product }) => {
   const cartContext = useContext(CartContext);
   const [isValidAmount, setIsValidAmount] = useState(true);
   const amountInputRef = useRef();
@@ -45,27 +40,8 @@ const Product = ({ product }) => {
       // },
     });
   };
-
-  const addToWishClickHandler = (product) => {
-    setWishList((prev) => {
-      const items = [...prev];
-      items.push(product);
-      return items;
-    });
-  };
-
   return (
-    <ProductCard className='card-container'>
-      <div className='top'>
-        <div>
-          <NavLink to={`/product/${product.id}`}>
-            <span>Quick view</span>
-          </NavLink>
-        </div>
-        <button onClick={() => addToWishClickHandler(product)}>
-          <FavoriteBorderIcon className='fav' />
-        </button>
-      </div>
+    <WishCard className='card-container'>
       <div className='img-container'>
         <NavLink to={`/product/${product.id}`}>
           <img src={product.image} alt='cloting-img' />
@@ -95,8 +71,8 @@ const Product = ({ product }) => {
           </form>
         </div>
       </div>
-    </ProductCard>
+    </WishCard>
   );
 };
 
-export default Product;
+export default WishListProductCard;

@@ -1,87 +1,30 @@
 import styled from 'styled-components';
 
-const ProductCard = styled.div`
-  :hover {
-    border: 1px solid #c3c3c3;
-    /* transition: all 0.3s ease-in-out; */
-    .top {
-      div {
-        display: flex;
-        color: #fff;
-        box-sizing: border-box;
-        border: none;
-        margin: auto;
-        font-family: 'Crimson Pro';
-        border-bottom: 1px solid hsla(0, 0%, 100%, 0.4);
-        font-size: 0.9375rem;
-        line-height: 1.3rem;
-        a {
-          text-decoration: none;
-        }
-        span {
-          cursor: pointer;
-          border: none;
-          text-decoration: none;
-          color: white;
-        }
-      }
-
-      button {
-        .fav {
-          display: flex;
-          height: auto;
-          padding-right: 0;
-          color: ${(props) => props.theme.colors.colorTimberWolf};
-          cursor: pointer;
-        }
-      }
-    }
-  }
+const WishCard = styled.div`
   padding: 10px;
   width: 17em;
-  height: 430px;
+  height: 337px;
   box-sizing: border-box;
   border: none;
   color: ${(props) => props.theme.colors.colorTimberWolf};
-  background: ${(props) => props.theme.colors.colorBlack};
+  /* background: ${(props) => props.theme.colors.colorBlack}; */
   transition: all 0.3s ease-in-out;
   .img-container {
     img {
-      height: 319px;
-      /* height: 355px; */
+      /* height: 319px; */
+      height: 233px;
       width: 100%;
       object-fit: cover;
       object-position: top;
       margin-bottom: 0.5rem;
-      filter: drop-shadow(91px 3px 140px gray);
+      /* filter: drop-shadow(91px 3px 140px gray); */
       opacity: 1;
     }
   }
-
-  .top {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-
-    div {
-      display: none;
-      span {
-      }
-    }
-
-    button {
-      background: none;
-      border: none;
-      .fav {
-        display: none;
-      }
-    }
-  }
-
   .bottom {
     .bottom-title {
       max-width: 85%;
+      max-height: 39%;
       margin-left: auto;
       margin-right: auto;
       text-align: center;
@@ -133,4 +76,5 @@ const ProductCard = styled.div`
     }
   }
 `;
-export default ProductCard;
+
+export default WishCard;

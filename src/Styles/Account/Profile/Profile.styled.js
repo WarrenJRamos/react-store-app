@@ -10,6 +10,16 @@ export const AccountContainer = styled.div`
   padding-right: 140px;
   border-left: 5px solid #f0f6f6;
 
+  .container {
+    width: 55vw;
+    height: 51vh;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: overlay;
+  }
+
   &.profile {
     display: flex;
     flex-direction: column;
