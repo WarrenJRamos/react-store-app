@@ -15,7 +15,7 @@ const Product = ({ product }) => {
   const cartContext = useContext(CartContext);
   const [isValidAmount, setIsValidAmount] = useState(true);
   const amountInputRef = useRef();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(null);
 
   const addToCartClickHandler = (event) => {
     event.preventDefault();
@@ -53,16 +53,15 @@ const Product = ({ product }) => {
       items.push(product);
       return items;
     });
-    setIsFavorite(true);
+    setIsFavorite(product.id);
   };
 
   const removeWishHandler = (product) => {
-    console.log('remove');
     setWishList((prev) => {
       const items = prev.filter((obj) => obj.id !== product.id);
       return items;
     });
-    setIsFavorite((prev) => !prev);
+    setIsFavorite(null);
   };
 
   // console.log(wishList);
@@ -74,7 +73,7 @@ const Product = ({ product }) => {
             <span>Quick view</span>
           </NavLink>
         </div>
-        {isFavorite ? (
+        {isFavorite === product.id ? (
           <>
             <button onClick={() => removeWishHandler(product)}>
               <FavoriteIcon className='faved' />
