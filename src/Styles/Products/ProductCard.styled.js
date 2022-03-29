@@ -35,6 +35,16 @@ const ProductCard = styled.div`
           cursor: pointer;
         }
       }
+
+      button {
+        .faved {
+          display: flex;
+          height: auto;
+          padding-right: 0;
+          color: ${(props) => props.theme.colors.colorTimberWolf};
+          cursor: pointer;
+        }
+      }
     }
   }
   padding: 10px;
@@ -74,6 +84,9 @@ const ProductCard = styled.div`
       background: none;
       border: none;
       .fav {
+        display: none;
+      }
+      .faved {
         display: none;
       }
     }

@@ -11,7 +11,7 @@ export const MyAccountContainer = styled.div`
     ${(props) => props.colorFogra},
     ${(props) => props.colorTeal}
   ); */
-  height: 100vh;
+  height: 110vh;
   color: ${(props) => props.colorCultured};
   background-color: ${(props) => props.colorBlack};
   padding: 48px;

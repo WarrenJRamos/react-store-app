@@ -3,6 +3,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 //icons
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ProductCard from '../../../Styles/Products/ProductCard.styled';
 import globalContext from '../../../Context/globalContext';
@@ -10,11 +11,11 @@ import { CartContext } from '../../../Context/CartContextProvider';
 
 const Product = ({ product }) => {
   const context = useContext(globalContext);
-  const setCartItems = context.setCartItems;
   const setWishList = context.setWishList;
   const cartContext = useContext(CartContext);
   const [isValidAmount, setIsValidAmount] = useState(true);
   const amountInputRef = useRef();
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const addToCartClickHandler = (event) => {
     event.preventDefault();
@@ -52,8 +53,19 @@ const Product = ({ product }) => {
       items.push(product);
       return items;
     });
+    setIsFavorite(true);
   };
 
+  const removeWishHandler = (product) => {
+    console.log('remove');
+    setWishList((prev) => {
+      const items = prev.filter((obj) => obj.id !== product.id);
+      return items;
+    });
+    setIsFavorite((prev) => !prev);
+  };
+
+  // console.log(wishList);
   return (
     <ProductCard className='card-container'>
       <div className='top'>
@@ -62,9 +74,19 @@ const Product = ({ product }) => {
             <span>Quick view</span>
           </NavLink>
         </div>
-        <button onClick={() => addToWishClickHandler(product)}>
-          <FavoriteBorderIcon className='fav' />
-        </button>
+        {isFavorite ? (
+          <>
+            <button onClick={() => removeWishHandler(product)}>
+              <FavoriteIcon className='faved' />
+            </button>
+          </>
+        ) : (
+          <>
+            <button onClick={() => addToWishClickHandler(product)}>
+              <FavoriteBorderIcon className='fav' />
+            </button>
+          </>
+        )}
       </div>
       <div className='img-container'>
         <NavLink to={`/product/${product.id}`}>

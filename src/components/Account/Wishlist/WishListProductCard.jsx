@@ -2,11 +2,10 @@ import React, { useContext, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { CartContext } from '../../../Context/CartContextProvider';
-
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import WishCard from '../../../Styles/Account/Profile/WishListCard';
-const WishListProductCard = ({ product }) => {
+const WishListProductCard = ({ product, setWishList }) => {
   const cartContext = useContext(CartContext);
   const [isValidAmount, setIsValidAmount] = useState(true);
   const amountInputRef = useRef();
@@ -40,17 +39,27 @@ const WishListProductCard = ({ product }) => {
       // },
     });
   };
+
+  const removeFavorite = (id) => {
+    setWishList((prev) => {
+      return prev.filter((product) => product.id !== id);
+    });
+  };
   return (
     <WishCard className='card-container'>
+      <button onClick={() => removeFavorite(product.id)}>
+        <FavoriteIcon className='icon' />
+      </button>
       <div className='img-container'>
         <NavLink to={`/product/${product.id}`}>
           <img src={product.image} alt='cloting-img' />
         </NavLink>
       </div>
-      <div className='bottom'>
+      <div className='bottom-div'>
         <div className='bottom-title'>
           <span>{product.name}</span>
         </div>
+
         <div className='bottom-price'>
           <span>${product.price}</span>
           <form onSubmit={addToCartClickHandler}>

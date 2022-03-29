@@ -9,6 +9,26 @@ const WishCard = styled.div`
   color: ${(props) => props.theme.colors.colorTimberWolf};
   /* background: ${(props) => props.theme.colors.colorBlack}; */
   transition: all 0.3s ease-in-out;
+
+  :hover {
+    button {
+      background: none;
+      border: none;
+      margin-left: 5px;
+      display: flex;
+      .icon {
+        color: ${(props) => props.theme.colors.colorTimberWolf};
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  button {
+    display: none;
+  }
+
   .img-container {
     img {
       /* height: 319px; */
@@ -21,8 +41,10 @@ const WishCard = styled.div`
       opacity: 1;
     }
   }
-  .bottom {
+  .bottom-div {
     .bottom-title {
+      /* display: flex;
+      justify-content: space-around; */
       max-width: 85%;
       max-height: 39%;
       margin-left: auto;

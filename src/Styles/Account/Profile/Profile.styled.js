@@ -20,6 +20,19 @@ export const AccountContainer = styled.div`
     overflow: overlay;
   }
 
+  .button {
+    margin-top: 15px;
+    button {
+      padding: 4px;
+      font-size: 15px;
+      white-space: normal;
+      letter-spacing: 1.2px;
+      width: 191px;
+      height: 46px;
+      border: none;
+    }
+  }
+
   &.profile {
     display: flex;
     flex-direction: column;
