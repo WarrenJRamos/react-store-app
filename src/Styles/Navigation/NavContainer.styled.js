@@ -6,7 +6,7 @@ export const NavContainer = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    background: transparent;
+    background: black;
     z-index: 1000;
 
     transition: background-color 1s;

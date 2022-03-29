@@ -33,7 +33,11 @@ export default function ShoppingCart() {
           <Offcanvas.Title style={{ color: "#e2c044" }}>CART</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {cartContext.items.length > 0 ? <CartHeader /> : ""}
+          {cartContext.items.length > 0 ? (
+            <CartHeader handleClose={handleClose} />
+          ) : (
+            ""
+          )}
           {cartContext.items.map((product) => {
             return (
               <CartItem
@@ -43,6 +47,7 @@ export default function ShoppingCart() {
                 title={product.name}
                 price={product.price}
                 amount={product.amount}
+                handleClose={handleClose}
               />
             );
           })}

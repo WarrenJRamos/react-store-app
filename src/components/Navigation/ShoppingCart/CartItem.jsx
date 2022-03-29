@@ -10,7 +10,7 @@ export default function CartItem(props) {
 
   const onItemClick = () => {
     navigate(`/product/${props.id}`);
-    return;
+    props.handleClose(false);
   };
 
   const onAddOneItem = () => {

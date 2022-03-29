@@ -6,15 +6,17 @@ import LandingSale from "./LandingSale";
 export default function LandingV2() {
   return (
     <LandingContainer>
-      <div class="hero">
-        <h1 class="hero__tagline">Lorem ipsum dolor</h1>
-        <div class="hero__bottom">
-          <p class="hero__content">
+      <div className="hero">
+        <h1 className="hero__tagline">Lorem ipsum dolor</h1>
+        <div className="hero__bottom">
+          <p className="hero__content">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at
             lacus eros. Morbi tincidunt sit
           </p>
-          <div class="cta-group">
-            <button class="hero__cta--primary">Discover our collection</button>
+          <div className="cta-group">
+            <button className="hero__cta--primary">
+              Discover our collection
+            </button>
           </div>
         </div>
       </div>

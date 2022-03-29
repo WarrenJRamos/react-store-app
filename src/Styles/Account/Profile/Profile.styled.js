@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AccountContainer = styled.div`
   /* background-color: #e2c044; */
@@ -9,6 +9,7 @@ export const AccountContainer = styled.div`
   padding-left: 40px;
   padding-right: 140px;
   border-left: 5px solid #f0f6f6;
+  overflow: auto;
 
   &.profile {
     display: flex;
@@ -33,7 +34,7 @@ export const AccountContainer = styled.div`
 
       &::after {
         margin-top: 10px;
-        content: '';
+        content: "";
         height: 5px;
         display: block;
         background-color: #587b7f;

@@ -32,6 +32,7 @@ import Profile from "./components/Account/Profile/Profile";
 import Wishlist from "./components/Account/Wishlist/Wishlist";
 import Orders from "./components/Account/Orders/Orders";
 import { CartContextProvider } from "./Context/CartContextProvider";
+import Checkout from "./components/Checkout/Checkout";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -140,6 +141,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/checkout" element={<Checkout />} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/update-profile" element={<UpdateProfile />} />
                 <Route
