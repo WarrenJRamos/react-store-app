@@ -13,7 +13,7 @@ const theme = {
   },
 
   fonts: {
-    fontFamilyForm: "'Arimo', sans-serif",
+    fontFamilyForm: "'Arimo','Crimson Pro',sans-serif",
     fontFamilyFormInputs: '"poppins", "sans-serif"',
   },
   deviceWidths: {

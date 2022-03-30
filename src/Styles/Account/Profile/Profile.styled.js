@@ -11,6 +11,29 @@ export const AccountContainer = styled.div`
   border-left: 5px solid #f0f6f6;
   overflow: auto;
 
+  .container {
+    width: 55vw;
+    height: 51vh;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: overlay;
+  }
+
+  .button {
+    margin-top: 15px;
+    button {
+      padding: 4px;
+      font-size: 15px;
+      white-space: normal;
+      letter-spacing: 1.2px;
+      width: 191px;
+      height: 46px;
+      border: none;
+    }
+  }
+
   &.profile {
     display: flex;
     flex-direction: column;

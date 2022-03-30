@@ -1,21 +1,14 @@
 import React, { useContext, useRef, useState } from 'react';
-// import test from '../../../Images/Products/test.jpg';
 import { NavLink } from 'react-router-dom';
-//icons
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import ProductCard from '../../../Styles/Products/ProductCard.styled';
-import globalContext from '../../../Context/globalContext';
-import { CartContext } from '../../../Context/CartContextProvider';
 
-const Product = ({ product }) => {
-  const context = useContext(globalContext);
-  const setWishList = context.setWishList;
+import { CartContext } from '../../../Context/CartContextProvider';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import WishCard from '../../../Styles/Account/Profile/WishListCard';
+const WishListProductCard = ({ product, setWishList }) => {
   const cartContext = useContext(CartContext);
   const [isValidAmount, setIsValidAmount] = useState(true);
   const amountInputRef = useRef();
-  const [isFavorite, setIsFavorite] = useState(null);
 
   const addToCartClickHandler = (event) => {
     event.preventDefault();
@@ -47,55 +40,26 @@ const Product = ({ product }) => {
     });
   };
 
-  const addToWishClickHandler = (product) => {
+  const removeFavorite = (id) => {
     setWishList((prev) => {
-      const items = [...prev];
-      items.push(product);
-      return items;
+      return prev.filter((product) => product.id !== id);
     });
-    setIsFavorite(product.id);
   };
-
-  const removeWishHandler = (product) => {
-    setWishList((prev) => {
-      const items = prev.filter((obj) => obj.id !== product.id);
-      return items;
-    });
-    setIsFavorite(null);
-  };
-
-  // console.log(wishList);
   return (
-    <ProductCard className='card-container'>
-      <div className='top'>
-        <div>
-          <NavLink to={`/product/${product.id}`}>
-            <span>Quick view</span>
-          </NavLink>
-        </div>
-        {isFavorite === product.id ? (
-          <>
-            <button onClick={() => removeWishHandler(product)}>
-              <FavoriteIcon className='faved' />
-            </button>
-          </>
-        ) : (
-          <>
-            <button onClick={() => addToWishClickHandler(product)}>
-              <FavoriteBorderIcon className='fav' />
-            </button>
-          </>
-        )}
-      </div>
+    <WishCard className='card-container'>
+      <button onClick={() => removeFavorite(product.id)}>
+        <FavoriteIcon className='icon' />
+      </button>
       <div className='img-container'>
         <NavLink to={`/product/${product.id}`}>
           <img src={product.image} alt='cloting-img' />
         </NavLink>
       </div>
-      <div className='bottom'>
+      <div className='bottom-div'>
         <div className='bottom-title'>
           <span>{product.name}</span>
         </div>
+
         <div className='bottom-price'>
           <span>${product.price}</span>
           <form onSubmit={addToCartClickHandler}>
@@ -116,8 +80,8 @@ const Product = ({ product }) => {
           </form>
         </div>
       </div>
-    </ProductCard>
+    </WishCard>
   );
 };
 
-export default Product;
+export default WishListProductCard;

@@ -11,6 +11,7 @@ const ProductCard = styled.div`
         box-sizing: border-box;
         border: none;
         margin: auto;
+        font-family: 'Crimson Pro';
         border-bottom: 1px solid hsla(0, 0%, 100%, 0.4);
         font-size: 0.9375rem;
         line-height: 1.3rem;
@@ -25,11 +26,24 @@ const ProductCard = styled.div`
         }
       }
 
-      .fav {
-        display: flex;
-        height: auto;
-        padding-right: 0;
-        cursor: pointer;
+      button {
+        .fav {
+          display: flex;
+          height: auto;
+          padding-right: 0;
+          color: ${(props) => props.theme.colors.colorTimberWolf};
+          cursor: pointer;
+        }
+      }
+
+      button {
+        .faved {
+          display: flex;
+          height: auto;
+          padding-right: 0;
+          color: ${(props) => props.theme.colors.colorTimberWolf};
+          cursor: pointer;
+        }
       }
     }
   }
@@ -66,8 +80,15 @@ const ProductCard = styled.div`
       }
     }
 
-    .fav {
-      display: none;
+    button {
+      background: none;
+      border: none;
+      .fav {
+        display: none;
+      }
+      .faved {
+        display: none;
+      }
     }
   }
 

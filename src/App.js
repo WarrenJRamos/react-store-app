@@ -45,7 +45,7 @@ function App() {
   const [shoesProducts, setShoesProducts] = useState([]);
   const [filterCategory, setFilterCategory] = useState("/products/new");
   const [cartItems, setCartItems] = useState([]);
-
+  const [wishList, setWishList] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -128,6 +128,8 @@ function App() {
         count,
         cartItems,
         setCartItems,
+        wishList,
+        setWishList,
       }}
     >
       <ThemeProvider theme={globalTheme}>
