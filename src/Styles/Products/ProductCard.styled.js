@@ -1,9 +1,52 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ProductCard = styled.div`
-  :hover {
+  border: 1px solid #c3c3c3;
+  .top {
+    div {
+      display: flex;
+      color: #fff;
+      box-sizing: border-box;
+      border: none;
+      margin: auto;
+      font-family: "Crimson Pro";
+      border-bottom: 1px solid hsla(0, 0%, 100%, 0.4);
+      font-size: 0.9375rem;
+      line-height: 1.3rem;
+      a {
+        text-decoration: none;
+      }
+      span {
+        cursor: pointer;
+        border: none;
+        text-decoration: none;
+        color: white;
+      }
+    }
+
+    button {
+      .fav {
+        display: flex;
+        height: auto;
+        padding-right: 0;
+        color: ${(props) => props.theme.colors.colorTimberWolf};
+        cursor: pointer;
+      }
+    }
+
+    button {
+      .faved {
+        display: flex;
+        height: auto;
+        padding-right: 0;
+        color: ${(props) => props.theme.colors.colorTimberWolf};
+        cursor: pointer;
+      }
+    }
+  }
+
+  /* :hover {
     border: 1px solid #c3c3c3;
-    /* transition: all 0.3s ease-in-out; */
     .top {
       div {
         display: flex;
@@ -46,7 +89,7 @@ const ProductCard = styled.div`
         }
       }
     }
-  }
+  } */
   padding: 10px;
   width: 17em;
   height: 430px;
@@ -83,12 +126,12 @@ const ProductCard = styled.div`
     button {
       background: none;
       border: none;
-      .fav {
+      /* .fav {
         display: none;
       }
       .faved {
         display: none;
-      }
+      } */
     }
   }
 

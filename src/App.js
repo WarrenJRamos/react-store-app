@@ -171,31 +171,46 @@ function App() {
                 <Route
                   path="shoes"
                   element={
-                    <ProductsList classes="products__item products__item-list" />
+                    <ProductsList
+                      classes="products__item products__item-list"
+                      pageName="shoes"
+                    />
                   }
                 />
                 <Route
                   path="hats"
                   element={
-                    <ProductsList classes="products__item products__item-list" />
+                    <ProductsList
+                      classes="products__item products__item-list"
+                      pageName="hats"
+                    />
                   }
                 />
                 <Route
                   path="mens"
                   element={
-                    <ProductsList classes="products__item products__item-list" />
+                    <ProductsList
+                      classes="products__item products__item-list"
+                      pageName="mens"
+                    />
                   }
                 />
                 <Route
                   path="womens"
                   element={
-                    <ProductsList classes="products__item products__item-list" />
+                    <ProductsList
+                      classes="products__item products__item-list"
+                      pageName="womens"
+                    />
                   }
                 />
                 <Route
                   path="new"
                   element={
-                    <ProductsList classes="products__item products__item-list" />
+                    <ProductsList
+                      classes="products__item products__item-list"
+                      pageName="new"
+                    />
                   }
                 />
               </Route>

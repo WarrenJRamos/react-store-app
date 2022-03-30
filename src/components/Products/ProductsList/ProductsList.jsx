@@ -13,6 +13,7 @@ const ProductsList = (props) => {
   const [httpError, setHttpError] = useState();
   const context = useContext(globalContext);
   const setWishList = context.setWishList;
+  console.log("Re rendered products list");
 
   const location = useLocation();
 
@@ -24,7 +25,7 @@ const ProductsList = (props) => {
   setFilterCategory(location.pathname);
 
   useEffect(() => {
-    console.log("hello");
+    console.log("Inside use effect, pageName: ", props.pageName);
     const fetchWishList = async () => {
       console.log("API WAS CALLED, GET WISHLIST");
 
@@ -57,7 +58,7 @@ const ProductsList = (props) => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, []);
+  }, [props.pageName]);
 
   if (loading) {
     return <h2>loading....</h2>;
