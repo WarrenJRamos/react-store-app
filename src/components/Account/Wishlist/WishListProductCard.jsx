@@ -1,10 +1,10 @@
-import React, { useContext, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 
-import { CartContext } from '../../../Context/CartContextProvider';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import WishCard from '../../../Styles/Account/Profile/WishListCard';
+import { CartContext } from "../../../Context/CartContextProvider";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import WishCard from "../../../Styles/Account/Profile/WishListCard";
 const WishListProductCard = ({ product, setWishList }) => {
   const cartContext = useContext(CartContext);
   const [isValidAmount, setIsValidAmount] = useState(true);
@@ -26,7 +26,7 @@ const WishListProductCard = ({ product, setWishList }) => {
     }
 
     cartContext.addItem({
-      id: product.id,
+      id: product.productId,
       // name = title
       name: product.title,
       amount: enteredAmountNumber,
@@ -42,40 +42,40 @@ const WishListProductCard = ({ product, setWishList }) => {
 
   const removeFavorite = (id) => {
     setWishList((prev) => {
-      return prev.filter((product) => product.id !== id);
+      return prev.filter((product) => product.productId !== id);
     });
   };
   return (
-    <WishCard className='card-container'>
-      <button onClick={() => removeFavorite(product.id)}>
-        <FavoriteIcon className='icon' />
+    <WishCard className="card-container">
+      <button onClick={() => removeFavorite(product.productId)}>
+        <FavoriteIcon className="icon" />
       </button>
-      <div className='img-container'>
-        <NavLink to={`/product/${product.id}`}>
-          <img src={product.image} alt='cloting-img' />
+      <div className="img-container">
+        <NavLink to={`/product/${product.productId}`}>
+          <img src={product.image} alt="cloting-img" />
         </NavLink>
       </div>
-      <div className='bottom-div'>
-        <div className='bottom-title'>
+      <div className="bottom-div">
+        <div className="bottom-title">
           <span>{product.name}</span>
         </div>
 
-        <div className='bottom-price'>
+        <div className="bottom-price">
           <span>${product.price}</span>
           <form onSubmit={addToCartClickHandler}>
             <input
               ref={amountInputRef}
-              label='Amount'
+              label="Amount"
               id={`amount_${product.id}`}
-              style={{ width: '40px' }}
-              type='number'
-              min='1'
-              max='5'
-              step='1'
-              defaultValue='1'
+              style={{ width: "40px" }}
+              type="number"
+              min="1"
+              max="5"
+              step="1"
+              defaultValue="1"
             />
-            <button type='submit'>
-              <AddShoppingCartIcon className='cart' />
+            <button type="submit">
+              <AddShoppingCartIcon className="cart" />
             </button>
           </form>
         </div>

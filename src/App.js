@@ -20,7 +20,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import MyAccount from "./components/Navigation/MyAccount";
 import SelectedProduct from "./components/SelectedProduct/SelectedProduct";
 //components
-import ProductList from "./components/Products/ProductsList/ProductsList";
+import ProductsList from "./components/Products/ProductsList/ProductsList";
 import Products from "./components/Products/Products";
 import Footer from "./components/Footer/Footer";
 // import Signup from "./components/Authentication/Signup";
@@ -171,31 +171,31 @@ function App() {
                 <Route
                   path="shoes"
                   element={
-                    <ProductList classes="products__item products__item-list" />
+                    <ProductsList classes="products__item products__item-list" />
                   }
                 />
                 <Route
                   path="hats"
                   element={
-                    <ProductList classes="products__item products__item-list" />
+                    <ProductsList classes="products__item products__item-list" />
                   }
                 />
                 <Route
                   path="mens"
                   element={
-                    <ProductList classes="products__item products__item-list" />
+                    <ProductsList classes="products__item products__item-list" />
                   }
                 />
                 <Route
                   path="womens"
                   element={
-                    <ProductList classes="products__item products__item-list" />
+                    <ProductsList classes="products__item products__item-list" />
                   }
                 />
                 <Route
                   path="new"
                   element={
-                    <ProductList classes="products__item products__item-list" />
+                    <ProductsList classes="products__item products__item-list" />
                   }
                 />
               </Route>

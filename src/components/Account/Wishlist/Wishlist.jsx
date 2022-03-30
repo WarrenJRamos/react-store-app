@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { AccountContainer } from '../../../Styles/Account/Profile/Profile.styled';
-import WishListProductCard from './WishListProductCard';
-import globalContext from '../../../Context/globalContext';
+import React, { useContext } from "react";
+import { AccountContainer } from "../../../Styles/Account/Profile/Profile.styled";
+import WishListProductCard from "./WishListProductCard";
+import globalContext from "../../../Context/globalContext";
 export default function Wishlist() {
   const context = useContext(globalContext);
   const wishList = context.wishList;
@@ -11,9 +11,9 @@ export default function Wishlist() {
   };
 
   return (
-    <AccountContainer className='wishlist'>
+    <AccountContainer className="wishlist">
       <h3>Wishlist</h3>
-      <div className='container'>
+      <div className="container">
         {wishList.map((product) => (
           <WishListProductCard
             key={product.id}
@@ -23,7 +23,7 @@ export default function Wishlist() {
         ))}
       </div>
       {wishList.length > 2 && (
-        <div className='button'>
+        <div className="button">
           <button onClick={handleClearWishList}>Clear All</button>
         </div>
       )}

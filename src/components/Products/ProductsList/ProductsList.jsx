@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Product from "./Product";
 import globalContext from "../../../Context/globalContext";
@@ -9,15 +9,53 @@ import ProductCard from "../../../Styles/Products/ProductCard.styled";
 
 import PaginationComponent from "../../Pagination/PaginationComponent";
 const ProductsList = (props) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
+  const context = useContext(globalContext);
+  const setWishList = context.setWishList;
+
   const location = useLocation();
 
-  const context = useContext(globalContext);
   // const newProducts = context.newProducts;
   const loading = context.loading;
   const currentProducts = context.currentPageProducts;
   const setFilterCategory = context.setFilterCategory;
 
   setFilterCategory(location.pathname);
+
+  useEffect(() => {
+    console.log("hello");
+    const fetchWishList = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_FIREBASE_REALTIME_DATABASE}/wishlist.json`
+      );
+
+      if (!response.ok) {
+        throw new Error("No data acquired");
+      }
+
+      const responseData = await response.json();
+
+      const loadedWishList = [];
+      for (const key in responseData) {
+        loadedWishList.push({
+          id: key,
+          productId: responseData[key].product.id,
+          image: responseData[key].product.image,
+          name: responseData[key].product.name,
+          price: responseData[key].product.price,
+          user: responseData[key].user,
+        });
+      }
+      setWishList(loadedWishList);
+      setIsLoading(false);
+    };
+
+    fetchWishList().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
+  }, []);
 
   if (loading) {
     return <h2>loading....</h2>;
