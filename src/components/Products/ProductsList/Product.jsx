@@ -53,6 +53,7 @@ const Product = ({ product }) => {
   };
 
   const postWishList = async () => {
+    console.log("API WAS CALLED, POST WISHLIST ITEM");
     const response = await fetch(
       `${process.env.REACT_APP_FIREBASE_REALTIME_DATABASE}/wishlist.json`,
       {

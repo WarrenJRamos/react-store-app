@@ -23,6 +23,7 @@ const Checkout = (props) => {
   const isFiveChars = (value) => value.trim().length === 5;
 
   const submitOrder = async (data) => {
+    console.log("API WAS CALLED, SUBMITTING ORDER");
     setIsSubmitting(true);
     await fetch(
       `${process.env.REACT_APP_FIREBASE_REALTIME_DATABASE}/orders.json`,
@@ -132,8 +133,12 @@ const Checkout = (props) => {
         )}
       </div>
       <div className={"classes.actions"}>
-        <button onClick={props.onClick}>Cancel</button>
-        <button className={"classes.submit"}>Confirm</button>
+        <button onClick={props.onClick} type="button">
+          Cancel
+        </button>
+        <button className={"classes.submit"} type="submit">
+          Confirm
+        </button>
       </div>
     </CheckoutForm>
   );

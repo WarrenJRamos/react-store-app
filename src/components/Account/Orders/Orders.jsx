@@ -9,6 +9,7 @@ export default function Orders() {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("API WAS CALLED, GETTING ORDERS");
       const response = await fetch(
         `${process.env.REACT_APP_FIREBASE_REALTIME_DATABASE}/orders.json`
       );
