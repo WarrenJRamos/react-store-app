@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const Globalstyles = createGlobalStyle`
 
@@ -16,11 +16,12 @@ const Globalstyles = createGlobalStyle`
         height: 100%;
         color: ${(props) => props.theme.colors.colorFogra};
         ${
-          '' /* background-color: ${(props) => props.theme.colors.colorCultured}; */
+          "" /* background-color: ${(props) => props.theme.colors.colorCultured}; */
         }
         background-color: rgba(4,4,4,0.9);
         font-size: 1.15em;
-        font-family: 'Crimson Pro', "sans-serif";
+        font-family: 'Nunito Sans', sans-serif;
+        ${"" /* font-family: 'Crimson Pro', "sans-serif"; */}
         /* font-family: "poppins", "sans-serif"; */
     }
 

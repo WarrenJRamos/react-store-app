@@ -21,7 +21,7 @@ const NavigationMain = () => {
         <div className="title">
           {/* maybe logo? */}
           <NavLink to="/home" className="item">
-            <span>Rrawen</span>
+            <span className="company-name">Rrawen</span>
           </NavLink>
         </div>
         <div className="nav-container">
