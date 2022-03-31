@@ -95,7 +95,9 @@ const ProductCard = styled.div`
   height: 430px;
   box-sizing: border-box;
   border: none;
-  color: ${(props) => props.theme.colors.colorTimberWolf};
+  /* background-color: #c2c2ff; */
+  color: white;
+  /* color: ${(props) => props.theme.colors.colorTimberWolf}; */
   background: ${(props) => props.theme.colors.colorBlack};
   transition: all 0.3s ease-in-out;
   .img-container {
