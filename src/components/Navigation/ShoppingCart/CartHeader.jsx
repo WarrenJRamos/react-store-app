@@ -18,13 +18,16 @@ export default function CartHeader(props) {
 
   return (
     <CartHeaderContainer>
-      <button onClick={onReadyToCheckout} className="checkout-button">
-        Checkout
+      <p className="price">Total: ${cartContext.totalPrice.toFixed(2)}</p>
+      <button
+        onClick={onReadyToCheckout}
+        className="cart-button checkout-button"
+      >
+        Checkout now
       </button>
-      <button onClick={onClearCart} className="clear-button">
-        Clear Cart
+      <button onClick={onClearCart} className="cart-button clear-button">
+        Clear cart
       </button>
-      <div>Total: ${cartContext.totalPrice.toFixed(2)}</div>
     </CartHeaderContainer>
   );
 }

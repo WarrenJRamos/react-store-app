@@ -27,10 +27,12 @@ export default function ShoppingCart() {
         onHide={handleClose}
         placement="end"
         name="end"
-        style={{ backgroundColor: "#587B7F" }}
+        style={{ backgroundColor: "#d3d0cb" }}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title style={{ color: "#e2c044" }}>CART</Offcanvas.Title>
+          <Offcanvas.Title style={{ color: "#587B7F", fontWeight: "bold" }}>
+            CART
+          </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           {cartContext.items.length > 0 ? (

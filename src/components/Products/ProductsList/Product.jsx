@@ -40,7 +40,7 @@ const Product = ({ product }) => {
     cartContext.addItem({
       id: product.id,
       // name = title
-      name: product.title,
+      name: product.name,
       amount: enteredAmountNumber,
       price: product.price,
       // description: product.description,

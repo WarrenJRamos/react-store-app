@@ -14,14 +14,14 @@ export const CartItemContainer = styled.article`
     .cart-item {
       &--remove-completely {
         position: absolute;
-        right: 0px;
-        top: -13px;
+        right: 10px;
+        top: 10px;
         border: none;
         border-radius: 10px;
         background-color: white;
         color: red;
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
         z-index: 10;
 
         &:hover {
@@ -56,13 +56,13 @@ export const CartItemContainer = styled.article`
 
       &__title {
         margin-top: 8px;
-        color: white;
-        font-size: 16px;
+        color: #587b7f;
+        font-size: 20px;
       }
 
       &__price {
-        color: white;
-        font-size: 16px;
+        color: #587b7f;
+        font-size: 20px;
       }
 
       &__actions {
@@ -70,12 +70,18 @@ export const CartItemContainer = styled.article`
         gap: 10px;
 
         button {
-          color: #e2c044;
-          font-size: 17px;
+          font-size: 29px;
           text-transform: uppercase;
           background-color: transparent;
           border: none;
           /* border-bottom: 2px solid #e2c044; */
+
+          &.cart-item__actions--add {
+            color: #587b7f;
+          }
+          &.cart-item__actions--remove {
+            color: red;
+          }
         }
       }
     }
