@@ -9,6 +9,7 @@ import ProductCard from "../../../Styles/Products/ProductCard.styled";
 import globalContext from "../../../Context/globalContext";
 import { CartContext } from "../../../Context/CartContextProvider";
 import { useAuth } from "../../../Context/AuthProvider";
+import { Snackbar } from "@mui/material";
 
 const Product = ({ product }) => {
   const context = useContext(globalContext);
@@ -21,9 +22,15 @@ const Product = ({ product }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
   const { currentUser } = useAuth();
+  const [snackbarIsActive, setSnackbarIsActive] = useState(false);
+
+  const handleSnackbarClose = () => {
+    setSnackbarIsActive(false);
+  };
 
   const addToCartClickHandler = (event) => {
     event.preventDefault();
+    setSnackbarIsActive(true);
     // console.log("Adding item to cart");
     const enteredAmount = amountInputRef.current.value;
     const enteredAmountNumber = +enteredAmount;
@@ -152,6 +159,12 @@ const Product = ({ product }) => {
           </form>
         </div>
       </div>
+      <Snackbar
+        open={snackbarIsActive}
+        autoHideDuration={2000}
+        onClose={handleSnackbarClose}
+        message={`Added ${product.name} to Cart`}
+      />
     </ProductCard>
   );
 };
