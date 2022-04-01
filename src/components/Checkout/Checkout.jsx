@@ -1,8 +1,10 @@
 import React, { useRef, useState, useContext } from "react";
 import { CheckoutForm } from "../../Styles/Checkout/Checkout.styled";
 import { CartContext } from "../../Context/CartContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = (props) => {
+  const navigate = useNavigate();
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -81,16 +83,16 @@ const Checkout = (props) => {
       });
   };
 
+  const onCancel = () => {
+    navigate("/");
+  };
+
   if (isSubmitting) {
     return <p style={{ margin: "auto", fontSize: "100px" }}>Submitting data</p>;
   }
 
   if (didSubmit) {
-    return (
-      <p style={{ margin: "auto", fontSize: "100px" }}>
-        You've submitted your order!
-      </p>
-    );
+    navigate("/checkout-success");
   }
 
   const nameControlClasses = `control
@@ -104,39 +106,54 @@ const Checkout = (props) => {
 
   return (
     <CheckoutForm className={"classes.form"} onSubmit={onSubmitHandler}>
+      <h2 className="checkout-header">Checkout</h2>
       <div className={nameControlClasses}>
         <label htmlFor="name">Your Name</label>
-        <input type="text" id="name" ref={nameInputRef} />
+        <input type="text" id="name" ref={nameInputRef} placeholder="Name" />
         {!formInputsValidity.name && (
           <p className="error">Please enter a valid name!</p>
         )}
       </div>
       <div className={streetControlClasses}>
         <label htmlFor="street">Street</label>
-        <input type="text" id="street" ref={streetInputRef} />
+        <input
+          type="text"
+          id="street"
+          ref={streetInputRef}
+          placeholder="Street"
+        />
         {!formInputsValidity.street && (
           <p className="error">Please enter a valid street!</p>
         )}
       </div>
       <div className={postalControlClasses}>
         <label htmlFor="postal">Postal Code</label>
-        <input type="text" id="postal" ref={postalInputRef} />
+        <input
+          type="text"
+          id="postal"
+          ref={postalInputRef}
+          placeholder="Postal Code"
+        />
         {!formInputsValidity.postal && (
           <p className="error">Please enter a valid postal code!</p>
         )}
       </div>
       <div className={cityControlClasses}>
         <label htmlFor="city">City</label>
-        <input type="text" id="city" ref={cityInputRef} />
+        <input type="text" id="city" ref={cityInputRef} placeholder="City" />
         {!formInputsValidity.city && (
           <p className="error">Please enter a valid city!</p>
         )}
       </div>
-      <div className={"classes.actions"}>
-        <button onClick={props.onClick} type="button">
+      <div className="checkout-actions">
+        <button
+          className="checkout-actions--cancel"
+          onClick={onCancel}
+          type="button"
+        >
           Cancel
         </button>
-        <button className={"classes.submit"} type="submit">
+        <button className={"checkout-actions--submit"} type="submit">
           Confirm
         </button>
       </div>
