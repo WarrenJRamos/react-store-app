@@ -71,6 +71,7 @@ export default function MenuListComposition() {
           aria-expanded={open ? "true" : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
+          style={{ color: "#587B7F", fontWeight: "bold" }}
         >
           Hi, {currentUser.displayName}
         </Button>
@@ -103,7 +104,7 @@ export default function MenuListComposition() {
                         to="/my-account/profile"
                         style={{
                           textDecoration: "none",
-                          color: "black",
+                          color: "#587B7F",
                           textAlign: "center",
                         }}
                       >
@@ -118,6 +119,7 @@ export default function MenuListComposition() {
                           border: "none",
                           backgroundColor: "inherit",
                           margin: "auto",
+                          color: "#587B7F",
                         }}
                       >
                         Logout

@@ -95,6 +95,11 @@ export const NavContainer = styled.div`
                 text-decoration: none;
                 color: white;
                 /* color: ${(props) => props.theme.colors.colorOnyx}; */
+
+                &--active {
+                  color: #587b7f;
+                  font-size: 22px;
+                }
               }
 
               &:hover {
