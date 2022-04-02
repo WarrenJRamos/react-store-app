@@ -131,7 +131,7 @@ const Product = ({ product }) => {
         )}
       </div>
       <div className="img-container">
-        <NavLink to={`/product/${product.id}`}>
+        <NavLink to={`/items/${product.id}`}>
           <img src={product.image} alt="cloting-img" />
         </NavLink>
       </div>

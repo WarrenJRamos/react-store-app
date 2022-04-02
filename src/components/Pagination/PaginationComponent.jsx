@@ -1,18 +1,24 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import Stack from '@mui/material/Stack';
-import Pagination from '@mui/material/Pagination';
+import React, { useContext, useEffect } from "react";
+import styled from "styled-components";
+import Stack from "@mui/material/Stack";
+import Pagination from "@mui/material/Pagination";
 
-import globalContext from '../../Context/globalContext';
+import globalContext from "../../Context/globalContext";
 
-const PaginationComponent = () => {
+const PaginationComponent = (props) => {
   const context = useContext(globalContext);
   const count = context.count;
   // const productsPerPage = context.productsPerPage;
   const setCurrentPage = context.setCurrentPage;
   const handlePageChange = (e, p) => {
+    console.log(p);
     setCurrentPage(p);
   };
+
+  // useEffect(() => {
+  //   console.log("inside use effect", props.pageName);
+  //   setCurrentPage(1);
+  // }, [props.pageName]);
 
   // const count = Math.ceil(allProducts.length / productsPerPage);
   return (

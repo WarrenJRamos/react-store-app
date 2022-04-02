@@ -50,8 +50,13 @@ function App() {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const res = await axios.get("http://localhost:3333/products");
+      // const res = await axios.get("http://localhost:3333/products");
+      const res = await axios.get(
+        "https://store-3a04a-default-rtdb.firebaseio.com/products.json"
+      );
+      console.log(res.data);
       setAllProducts(res.data);
+      console.log(res.data[0].category);
       // const productsDummy = p.Products;
       // console.log(productsDummy);
       // setAllProducts(productsDummy);
@@ -159,7 +164,7 @@ function App() {
               </Route>
 
               {/* We should probably move this into the /products */}
-              <Route path="/product/:id" element={<SelectedProduct />} />
+              <Route path="/items/:id" element={<SelectedProduct />} />
 
               <Route
                 path="/products/*"

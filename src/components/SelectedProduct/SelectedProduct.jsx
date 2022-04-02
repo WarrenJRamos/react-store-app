@@ -27,7 +27,7 @@ const SelectedProduct = () => {
   // console.log(id);
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:3333/products/${id}`)
+    fetch(`https://store-3a04a-default-rtdb.firebaseio.com/products/${id}.json`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);

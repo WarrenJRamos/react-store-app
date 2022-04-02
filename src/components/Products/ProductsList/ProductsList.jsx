@@ -88,7 +88,7 @@ const ProductsList = (props) => {
           </ProductCard>
         )}
       </div>
-      <PaginationComponent />
+      <PaginationComponent pageName={props.pageName} />
     </div>
   );
 };
