@@ -62,6 +62,7 @@ export default function Orders() {
         return (
           <Order
             id={order.id}
+            key={order.id}
             orderedItems={order.orderedItems}
             user={order.user}
           />

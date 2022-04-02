@@ -15,8 +15,8 @@ const Product = (props) => {
   const { currentUser } = useAuth();
   const context = useContext(globalContext);
   const cartContext = useContext(CartContext);
+  const wishList = context.wishList;
   const setWishList = context.setWishList;
-  const [isValidQuantity, setIsValidQuantity] = useState(true);
   const [snackbarIsActive, setSnackbarIsActive] = useState(false);
   // if true, it becomes a filled in heart
   const [isFavorite, setIsFavorite] = useState(null);
@@ -39,8 +39,6 @@ const Product = (props) => {
       enteredQuantityNumber < 1 ||
       enteredQuantityNumber > 5
     ) {
-      setIsValidQuantity(false);
-      setTimeout(setIsValidQuantity(true), 3000);
       return;
     }
 
@@ -82,18 +80,40 @@ const Product = (props) => {
   };
 
   const addToWishClickHandler = () => {
+    console.log("Trying to add to wish list");
+    console.log("Wish List: ", wishList);
+    const wishListItem = wishList.find((wishListItem) => {
+      return (
+        wishListItem.product.id === props.product.id &&
+        wishListItem.user === currentUser.displayName
+      );
+    });
+    console.log(wishListItem);
+
+    // If wishListItem exists, don't add to wishList
+    if (wishListItem) {
+      console.log(wishListItem);
+      console.log("Already in wish list, so didn't add to wish list");
+      return;
+    }
+
+    // Add to wishList since it doesn't exist
     postWishList()
       .then((value) => {
+        console.log("Successfully posted to wishlist table");
         setIsFavorite(props.product.id);
         // After adding the item in the table, also update the local wishlist
         setWishList((prev) => {
           const newWishList = [...prev];
           newWishList.push({
-            id: props.product.id,
-            productId: props.product.productId,
-            name: props.product.wishListItem.name,
-            price: props.product.wishListItem.price,
-            image: props.product.wishListItem.image,
+            user: currentUser.displayName,
+            product: {
+              id: props.product.id,
+              productId: props.product.productId,
+              name: props.product.name,
+              price: props.product.price,
+              image: props.product.image,
+            },
           });
           return newWishList;
         });
@@ -157,7 +177,6 @@ const Product = (props) => {
         <div className="bottom-price">
           <span>${props.product.price}</span>
           <form onSubmit={addToCartClickHandler}>
-            {isValidQuantity ? <p>Is not a valid quantity</p> : ""}
             <label htmlFor={`quantity_${props.product.id}`}>QTY: </label>
             <input
               ref={quantityInputRef}
