@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CartItemContainer = styled.article`
   &.cart-item {
@@ -6,22 +6,23 @@ export const CartItemContainer = styled.article`
     padding: 10px;
     background-color: inherit;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* flex-direction: column; */
     align-items: center;
     text-align: center;
     margin-bottom: 15px;
-
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     .cart-item {
       &--remove-completely {
         position: absolute;
-        right: 10px;
-        top: 10px;
+        /* right: 10px; */
+        top: -6px;
         border: none;
         border-radius: 10px;
         background-color: white;
-        color: red;
+        color: #878c8cc2;
         width: 30px;
-        height: 30px;
+        height: 35px;
         z-index: 10;
 
         &:hover {
@@ -41,7 +42,8 @@ export const CartItemContainer = styled.article`
         /* width: 200px;
         height: 250px; */
         border: none;
-
+        width: 124px;
+        height: 100%;
         img {
           max-width: 100%;
           width: 100%;
@@ -55,14 +57,28 @@ export const CartItemContainer = styled.article`
       }
 
       &__title {
-        margin-top: 8px;
+        /* margin-top: 8px; */
         color: #587b7f;
-        font-size: 20px;
+        font-size: 1rem;
+        text-align: left;
+        width: 86%;
+        line-height: 18px;
+        /* font-size: 20px; */
+      }
+
+      &__qty {
+        letter-spacing: 0.5px;
+        font-size: 0.8rem;
+        line-height: 0.8125rem;
+        color: #587b7f;
       }
 
       &__price {
+        letter-spacing: 0.5px;
+        font-size: 0.8rem;
+        line-height: 0.8125rem;
         color: #587b7f;
-        font-size: 20px;
+        /* font-size: 0.95rem; */
       }
 
       &__actions {
@@ -80,7 +96,8 @@ export const CartItemContainer = styled.article`
             color: #587b7f;
           }
           &.cart-item__actions--remove {
-            color: red;
+            /* color: red; */
+            color: #e2c044;
           }
         }
       }
