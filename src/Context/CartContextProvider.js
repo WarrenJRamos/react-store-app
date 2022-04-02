@@ -32,7 +32,7 @@ const cartReducer = (state, action) => {
 
       const updatedItem = {
         ...existingItem,
-        amount: existingItem.amount + 1,
+        quantity: existingItem.quantity + 1,
       };
 
       updatedItems = [...state.items];
@@ -42,7 +42,7 @@ const cartReducer = (state, action) => {
     else {
       // Calculate the new cart price
       updatedTotalPrice =
-        state.totalPrice + action.item.price * action.item.amount;
+        state.totalPrice + action.item.price * action.item.quantity;
 
       // Find the index of the item
       existingItemIndex = state.items.findIndex((item) => {
@@ -56,7 +56,7 @@ const cartReducer = (state, action) => {
       if (existingItem) {
         const updatedItem = {
           ...existingItem,
-          amount: existingItem.amount + action.item.amount,
+          quantity: existingItem.quantity + action.item.quantity,
         };
         // Copy the previous items array
         updatedItems = [...state.items];
@@ -86,19 +86,19 @@ const cartReducer = (state, action) => {
     // const updatedTotalPrice = state.totalPrice - existingItem.price;
     let updatedTotalPrice;
 
-    // Case 1: Completely remove that item, no matter how many is in the amount field
+    // Case 1: Completely remove that item, no matter how many is in the quantity field
     if (action.option && action.option === "COMPLETE_REMOVE") {
       // console.log("Inside complete remove");
       updatedTotalPrice =
-        state.totalPrice - existingItem.price * existingItem.amount;
+        state.totalPrice - existingItem.price * existingItem.quantity;
       updatedItems = state.items.filter((item) => {
         return item.id !== action.id;
       });
     } else {
       // REMOVING ONLY ONE ITEM
       updatedTotalPrice = state.totalPrice - existingItem.price;
-      // Case 2: The existing item only has an amount of 1
-      if (existingItem.amount === 1) {
+      // Case 2: The existing item only has an quantity of 1
+      if (existingItem.quantity === 1) {
         // Return a new items array without the item
         updatedItems = state.items.filter((item) => {
           return item.id !== action.id;
@@ -110,7 +110,7 @@ const cartReducer = (state, action) => {
         updatedItems[existingItemIndex] = {
           ...existingItem,
           // Simply subtract one since we are only removing one item
-          amount: existingItem.amount - 1,
+          quantity: existingItem.quantity - 1,
         };
       }
     }

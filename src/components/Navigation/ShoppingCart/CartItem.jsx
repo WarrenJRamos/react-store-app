@@ -23,7 +23,7 @@ export default function CartItem(props) {
         name: props.title,
         price: props.price,
         image: props.image,
-        amount: props.amount,
+        quantity: props.quantity,
       },
       "ONE"
     );
@@ -49,7 +49,7 @@ export default function CartItem(props) {
         <img src={props.src} alt="item" />
       </button>
       <h3 className="cart-item__title">
-        {props.title} <span className="amount">({props.amount})</span>
+        {props.title} <span className="amount">({props.quantity})</span>
       </h3>
       <p className="cart-item__price">${props.price}</p>
       <div className="cart-item__actions">

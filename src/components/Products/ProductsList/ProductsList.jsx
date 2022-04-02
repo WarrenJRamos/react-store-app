@@ -9,66 +9,25 @@ import ProductCard from "../../../Styles/Products/ProductCard.styled";
 
 import PaginationComponent from "../../Pagination/PaginationComponent";
 const ProductsList = (props) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
   const context = useContext(globalContext);
-  const setWishList = context.setWishList;
-  console.log("Re rendered products list");
-
-  const location = useLocation();
-
-  // const newProducts = context.newProducts;
   const loading = context.loading;
-  const currentProducts = context.currentPageProducts;
-  const setFilterCategory = context.setFilterCategory;
-
-  setFilterCategory(location.pathname);
-
-  useEffect(() => {
-    console.log("Inside use effect, pageName: ", props.pageName);
-    const fetchWishList = async () => {
-      console.log("API WAS CALLED, GET WISHLIST");
-
-      const response = await fetch(
-        `${process.env.REACT_APP_FIREBASE_REALTIME_DATABASE}/wishlist.json`
-      );
-
-      if (!response.ok) {
-        throw new Error("No data acquired");
-      }
-
-      const responseData = await response.json();
-
-      const loadedWishList = [];
-      for (const key in responseData) {
-        loadedWishList.push({
-          id: key,
-          productId: responseData[key].product.id,
-          image: responseData[key].product.image,
-          name: responseData[key].product.name,
-          price: responseData[key].product.price,
-          user: responseData[key].user,
-        });
-      }
-      setWishList(loadedWishList);
-      setIsLoading(false);
-    };
-
-    fetchWishList().catch((error) => {
-      setIsLoading(false);
-      setHttpError(error.message);
-    });
-  }, [props.pageName]);
+  console.log("Inside ProductsList: ", props);
+  console.log("Inside ProductsList: ", props.products);
 
   if (loading) {
     return <h2>loading....</h2>;
   }
 
+  // Remember to referense product.id instead of product.productId
+
+  // If the current product id is found within the wishList (from context),
+  //  then set the isInsideWishlist boolean to true
+  // For Product component: isInsideWishlist={}
   return (
     <div className={`${props.classes}`}>
       <div className={`${props.classes}`}>
-        {currentProducts ? (
-          currentProducts.map((product) => (
+        {props.products ? (
+          props.products.map((product) => (
             <Product key={product.id} product={product} />
           ))
         ) : (
@@ -88,7 +47,7 @@ const ProductsList = (props) => {
           </ProductCard>
         )}
       </div>
-      <PaginationComponent pageName={props.pageName} />
+      {/* <PaginationComponent pageName={props.pageName} /> */}
     </div>
   );
 };
