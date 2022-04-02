@@ -9,7 +9,7 @@ export default function Order(props) {
         {props.orderedItems.map((item) => {
           return (
             <p>
-              {item.amount}, {item.id}, {item.price}
+              {item.quantity}, {item.id}, {item.price}
             </p>
           );
         })}

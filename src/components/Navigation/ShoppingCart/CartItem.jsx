@@ -23,7 +23,7 @@ export default function CartItem(props) {
         name: props.title,
         price: props.price,
         image: props.image,
-        amount: props.amount,
+        quantity: props.quantity,
       },
       'ONE'
     );
@@ -62,7 +62,7 @@ export default function CartItem(props) {
           {/* <span className='amount'>({props.amount})</span> */}
         </span>
 
-        <span className='cart-item__qty'>QTY: {props.amount}</span>
+        <span className='cart-item__qty'>QTY: {props.quantity}</span>
         <span className='cart-item__price'>PRICE : ${props.price}</span>
         <div className='cart-item__actions'>
           <button className='cart-item__actions--add' onClick={onAddOneItem}>

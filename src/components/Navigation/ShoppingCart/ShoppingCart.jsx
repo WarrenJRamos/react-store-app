@@ -54,7 +54,7 @@ export default function ShoppingCart() {
                   src={product.image}
                   title={product.name}
                   price={product.price}
-                  amount={product.amount}
+                  quantity={product.quantity}
                   handleClose={handleClose}
                 />
               );
