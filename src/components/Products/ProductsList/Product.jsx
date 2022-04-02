@@ -1,15 +1,15 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext, useRef, useState, useEffect } from 'react';
 // import test from '../../../Images/Products/test.jpg';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 //icons
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import ProductCard from "../../../Styles/Products/ProductCard.styled";
-import globalContext from "../../../Context/globalContext";
-import { CartContext } from "../../../Context/CartContextProvider";
-import { useAuth } from "../../../Context/AuthProvider";
-import { Snackbar } from "@mui/material";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ProductCard from '../../../Styles/Products/ProductCard.styled';
+import globalContext from '../../../Context/globalContext';
+import { CartContext } from '../../../Context/CartContextProvider';
+import { useAuth } from '../../../Context/AuthProvider';
+import { Snackbar } from '@mui/material';
 
 const Product = ({ product }) => {
   const context = useContext(globalContext);
@@ -60,11 +60,11 @@ const Product = ({ product }) => {
   };
 
   const postWishList = async () => {
-    console.log("API WAS CALLED, POST WISHLIST ITEM");
+    console.log('API WAS CALLED, POST WISHLIST ITEM');
     const response = await fetch(
       `${process.env.REACT_APP_FIREBASE_REALTIME_DATABASE}/wishlist.json`,
       {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({
           user: currentUser.displayName,
           product: {
@@ -109,8 +109,8 @@ const Product = ({ product }) => {
 
   // console.log(wishList);
   return (
-    <ProductCard className="card-container">
-      <div className="top">
+    <ProductCard className='card-container'>
+      <div className='top'>
         <div>
           <NavLink to={`/product/${product.id}`}>
             <span>Quick view</span>
@@ -119,42 +119,42 @@ const Product = ({ product }) => {
         {isFavorite === product.id ? (
           <>
             <button onClick={() => removeWishHandler(product)}>
-              <FavoriteIcon className="faved" />
+              <FavoriteIcon className='faved' />
             </button>
           </>
         ) : (
           <>
             <button onClick={() => addToWishClickHandler(product)}>
-              <FavoriteBorderIcon className="fav" />
+              <FavoriteBorderIcon className='fav' />
             </button>
           </>
         )}
       </div>
-      <div className="img-container">
+      <div className='img-container'>
         <NavLink to={`/items/${product.id}`}>
-          <img src={product.image} alt="cloting-img" />
+          <img src={product.image} alt='cloting-img' />
         </NavLink>
       </div>
-      <div className="bottom">
-        <div className="bottom-title">
+      <div className='bottom'>
+        <div className='bottom-title'>
           <span>{product.name}</span>
         </div>
-        <div className="bottom-price">
+        <div className='bottom-price'>
           <span>${product.price}</span>
           <form onSubmit={addToCartClickHandler}>
             <input
               ref={amountInputRef}
-              label="Amount"
+              label='Amount'
               id={`amount_${product.id}`}
-              style={{ width: "40px" }}
-              type="number"
-              min="1"
-              max="5"
-              step="1"
-              defaultValue="1"
+              style={{ width: '40px' }}
+              type='number'
+              min='1'
+              max='5'
+              step='1'
+              defaultValue='1'
             />
-            <button type="submit">
-              <AddShoppingCartIcon className="cart" />
+            <button type='submit'>
+              <AddShoppingCartIcon className='cart' />
             </button>
           </form>
         </div>
