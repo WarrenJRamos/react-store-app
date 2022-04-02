@@ -1,15 +1,15 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext, useRef, useState, useEffect } from 'react';
 // import test from '../../../Images/Products/test.jpg';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 //icons
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import ProductCard from "../../../Styles/Products/ProductCard.styled";
-import globalContext from "../../../Context/globalContext";
-import { CartContext } from "../../../Context/CartContextProvider";
-import { useAuth } from "../../../Context/AuthProvider";
-import { Snackbar } from "@mui/material";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ProductCard from '../../../Styles/Products/ProductCard.styled';
+import globalContext from '../../../Context/globalContext';
+import { CartContext } from '../../../Context/CartContextProvider';
+import { useAuth } from '../../../Context/AuthProvider';
+import { Snackbar } from '@mui/material';
 
 const Product = (props) => {
   const { currentUser } = useAuth();
@@ -55,11 +55,10 @@ const Product = (props) => {
   // Gets called when user adds item to wishlist (via addToWishClickHandler)
   const postWishList = async () => {
     console.log("API WAS CALLED, POST WISHLIST ITEM");
-
     const response = await fetch(
       `${process.env.REACT_APP_FIREBASE_REALTIME_DATABASE}/wishlist.json`,
       {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({
           user: currentUser.displayName,
           product: {
@@ -144,8 +143,8 @@ const Product = (props) => {
   // use props.isInsideWishlist
   // if isInsideWishlist is set to true, apply the FavoriteIcon
   return (
-    <ProductCard className="card-container">
-      <div className="top">
+    <ProductCard className='card-container'>
+      <div className='top'>
         <div>
           <NavLink to={`/items/${props.product.id}`}>
             <span>Quick view</span>
@@ -188,8 +187,8 @@ const Product = (props) => {
               step="1"
               defaultValue="1"
             />
-            <button type="submit">
-              <AddShoppingCartIcon className="cart" />
+            <button type='submit'>
+              <AddShoppingCartIcon className='cart' />
             </button>
           </form>
         </div>
