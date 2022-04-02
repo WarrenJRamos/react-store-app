@@ -23,7 +23,7 @@ const SelectedProduct = () => {
     inputProps: { "aria-label": item },
   });
 
-  const id = useParams().id;
+  const id = useParams().id - 1;
   // console.log(id);
   useEffect(() => {
     setIsLoading(true);
