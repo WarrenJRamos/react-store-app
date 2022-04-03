@@ -13,6 +13,23 @@ const ProductsList = (props) => {
   const loading = context.loading;
   console.log("Inside ProductsList: ", props);
   console.log("Inside ProductsList: ", props.products);
+  // need props.products
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(9);
+
+  // Reset to page 1 when the user changes page
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [props.pageName]);
+
+  // Get current products
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  // Map through currentProducts instead of props.products
+  const currentProducts = props.products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   if (loading) {
     return <h2>loading....</h2>;
@@ -27,7 +44,7 @@ const ProductsList = (props) => {
     <div className={`${props.classes}`}>
       <div className={`${props.classes}`}>
         {props.products ? (
-          props.products.map((product) => (
+          currentProducts.map((product) => (
             <Product key={product.id} product={product} />
           ))
         ) : (
@@ -47,7 +64,12 @@ const ProductsList = (props) => {
           </ProductCard>
         )}
       </div>
-      {/* <PaginationComponent pageName={props.pageName} /> */}
+      <PaginationComponent
+        productsPerPage={productsPerPage}
+        totalProducts={props.products.length}
+        setCurrentPage={setCurrentPage}
+        pageName={props.pageName}
+      />
     </div>
   );
 };

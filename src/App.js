@@ -147,45 +147,6 @@ function App() {
     });
   }, []);
 
-  // console.log(allProducts);
-  // console.log(filterCategory);
-  // const indexOfLastProduct = currentPage * productsPerPage;
-  // const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-
-  // let count;
-  // let currentPageProducts;
-  // if (filterCategory === "/products/new") {
-  //   count = Math.ceil(allProducts.length / productsPerPage);
-  //   currentPageProducts = allProducts.slice(
-  //     indexOfFirstProduct,
-  //     indexOfLastProduct
-  //   );
-  // } else if (filterCategory === "/products/womens") {
-  //   count = Math.ceil(womensProducts.length / productsPerPage);
-  //   currentPageProducts = womensProducts.slice(
-  //     indexOfFirstProduct,
-  //     indexOfLastProduct
-  //   );
-  // } else if (filterCategory === "/products/mens") {
-  //   count = Math.ceil(mensProducts.length / productsPerPage);
-  //   currentPageProducts = mensProducts.slice(
-  //     indexOfFirstProduct,
-  //     indexOfLastProduct
-  //   );
-  // } else if (filterCategory === "/products/hats") {
-  //   count = Math.ceil(hatProducts.length / productsPerPage);
-  //   currentPageProducts = hatProducts.slice(
-  //     indexOfFirstProduct,
-  //     indexOfLastProduct
-  //   );
-  // } else if (filterCategory === "/products/shoes") {
-  //   count = Math.ceil(shoesProducts.length / productsPerPage);
-  //   currentPageProducts = shoesProducts.slice(
-  //     indexOfFirstProduct,
-  //     indexOfLastProduct
-  //   );
-  // }
-
   return (
     <GlobalContext.Provider
       value={{
