@@ -127,14 +127,17 @@ function App() {
       const responseData = await response.json();
 
       const loadedWishList = [];
+
       for (const key in responseData) {
         loadedWishList.push({
-          id: key,
-          productId: responseData[key].product.id,
-          image: responseData[key].product.image,
-          name: responseData[key].product.name,
-          price: responseData[key].product.price,
           user: responseData[key].user,
+          product: {
+            id: key,
+            productId: responseData[key].product.id,
+            name: responseData[key].product.name,
+            price: responseData[key].product.price,
+            image: responseData[key].product.image,
+          },
         });
       }
       setWishList(loadedWishList);
