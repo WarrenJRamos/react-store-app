@@ -21,6 +21,7 @@ const Product = (props) => {
   // if true, it becomes a filled in heart
   const [isFavorite, setIsFavorite] = useState(null);
   const quantityInputRef = useRef();
+  const [itemIsInsideWishList] = useState(props.isInsideWishList);
 
   const handleSnackbarClose = () => {
     setSnackbarIsActive(false);
@@ -143,6 +144,8 @@ const Product = (props) => {
 
   // use props.isInsideWishlist
   // if isInsideWishlist is set to true, apply the FavoriteIcon
+
+  console.log("PRODUCT: ", currentUser, props.isInsideWishList);
   return (
     <ProductCard className="card-container">
       <div className="top">
@@ -151,7 +154,7 @@ const Product = (props) => {
             <span>Quick view</span>
           </NavLink>
         </div>
-        {isFavorite === props.product.id ? (
+        {currentUser && itemIsInsideWishList ? (
           <>
             <button onClick={() => removeWishHandler()}>
               <FavoriteIcon className="faved" />
