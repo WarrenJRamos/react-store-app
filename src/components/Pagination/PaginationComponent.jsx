@@ -48,14 +48,15 @@ const PaginationComponent = (props) => {
 };
 
 const PagDiv = styled.div`
-  /* background: white;
+  /* background: white; */
   display: flex;
-  margin: auto; */
+  justify-content: center;
+  text-align: center;
   button {
     color: rgb(253 253 253);
   }
-  display: grid;
-  grid-template-columns: 4fr 7fr;
+  /* display: grid; */
+  /* grid-template-columns: 4fr 7fr; */
   /* .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
     background-color: rgb(253 253 253);
     color: rgb(38 38 38);

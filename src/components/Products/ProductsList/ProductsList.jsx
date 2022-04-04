@@ -56,43 +56,51 @@ const ProductsList = (props) => {
   };
 
   return (
-    <div className={`${props.classes}`}>
+    <>
+      <PaginationComponent
+        productsPerPage={productsPerPage}
+        totalProducts={props.products.length}
+        setCurrentPage={setCurrentPage}
+        pageName={props.pageName}
+      />
       <div className={`${props.classes}`}>
-        {props.products ? (
-          currentProducts.map((product) => {
-            let isInsideWishList = false;
-            if (currentUser) {
-              if (checkIfInsideWishList(product.productId)) {
-                isInsideWishList = true;
+        <div className={`${props.classes}`}>
+          {props.products ? (
+            currentProducts.map((product) => {
+              let isInsideWishList = false;
+              if (currentUser) {
+                if (checkIfInsideWishList(product.productId)) {
+                  isInsideWishList = true;
+                }
               }
-            }
-            {
-              /* console.log("MAPPING THROUGH", isInsideWishList); */
-            }
-            return (
-              <Product
-                key={product.productId}
-                product={product}
-                isInsideWishList={isInsideWishList}
-              />
-            );
-          })
-        ) : (
-          <ProductCard className="card-container">
-            <div className="img-container">
-              <img src={test} alt="cloting-img" />
-            </div>
-            <div className="bottom">
-              <div className="bottom-title">
-                <span>Random item name</span>
-                <FavoriteBorderIcon className="fav" />
+              {
+                /* console.log("MAPPING THROUGH", isInsideWishList); */
+              }
+              return (
+                <Product
+                  key={product.productId}
+                  product={product}
+                  isInsideWishList={isInsideWishList}
+                />
+              );
+            })
+          ) : (
+            <ProductCard className="card-container">
+              <div className="img-container">
+                <img src={test} alt="cloting-img" />
               </div>
-              <div className="bottom-price">
-                <span>$55.45</span>
+              <div className="bottom">
+                <div className="bottom-title">
+                  <span>Random item name</span>
+                  <FavoriteBorderIcon className="fav" />
+                </div>
+                <div className="bottom-price">
+                  <span>$55.45</span>
+                </div>
               </div>
-            </div>
-          </ProductCard>
-        )}
+            </ProductCard>
+          )}
+        </div>
       </div>
       <PaginationComponent
         productsPerPage={productsPerPage}
@@ -100,7 +108,7 @@ const ProductsList = (props) => {
         setCurrentPage={setCurrentPage}
         pageName={props.pageName}
       />
-    </div>
+    </>
   );
 };
 

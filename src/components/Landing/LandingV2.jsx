@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { LandingContainer } from "../../Styles/Landing/LandingV2.styled";
 import Carousel from "./Carousel";
 import LandingSale from "./LandingSale";
 
 export default function LandingV2() {
   const [effect, setEffect] = useState(false);
+  const navigate = useNavigate();
 
   // Be defiant, be yourself. This is the new era. Choose SXU.
 
@@ -15,6 +17,10 @@ export default function LandingV2() {
     // }, 2000);
     // return timeout;
   }, []);
+
+  const onViewNowHandler = () => {
+    navigate("/products/new");
+  };
 
   return (
     <LandingContainer>
@@ -29,7 +35,9 @@ export default function LandingV2() {
             Be defiant, be yourself. This is the new era. Choose SXU.
           </p>
           <div className="cta-group">
-            <button className="hero__cta--primary">View now</button>
+            <button className="hero__cta--primary" onClick={onViewNowHandler}>
+              View now
+            </button>
           </div>
         </div>
       </div>
