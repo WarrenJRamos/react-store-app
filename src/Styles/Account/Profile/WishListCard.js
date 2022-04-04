@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const WishCard = styled.div`
   padding: 10px;

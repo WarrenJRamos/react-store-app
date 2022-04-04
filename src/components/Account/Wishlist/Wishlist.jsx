@@ -18,7 +18,7 @@ export default function Wishlist() {
     if (wishListItem.user === currentUser.displayName) {
       WishListItems.push(
         <WishListProductCard
-          key={wishListItem.product.id}
+          key={wishListItem.product.productId}
           product={wishListItem.product}
           setWishList={setWishList}
         />
