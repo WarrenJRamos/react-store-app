@@ -45,6 +45,14 @@ const Product = (props) => {
       return;
     }
 
+    console.log({
+      firebaseProductId: props.product.firebaseProductId,
+      productId: props.product.productId,
+      name: props.product.name,
+      price: props.product.price,
+      image: props.product.image,
+      quantity: enteredQuantityNumber,
+    });
     cartContext.addItem({
       firebaseProductId: props.product.firebaseProductId,
       productId: props.product.productId,

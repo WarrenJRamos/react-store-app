@@ -25,7 +25,7 @@ const cartReducer = (state, action) => {
       updatedTotalPrice = state.totalPrice + action.item.price;
 
       existingItemIndex = state.items.findIndex((item) => {
-        return item.id === action.item.id;
+        return item.firebaseProductId === action.item.firebaseProductId;
       });
 
       existingItem = state.items[existingItemIndex];
@@ -46,7 +46,7 @@ const cartReducer = (state, action) => {
 
       // Find the index of the item
       existingItemIndex = state.items.findIndex((item) => {
-        return item.id === action.item.id;
+        return item.firebaseProductId === action.item.firebaseProductId;
       });
 
       // Will return falsy value if item doesn't exist
@@ -78,7 +78,7 @@ const cartReducer = (state, action) => {
 
   if (action.type === "REMOVE") {
     const existingItemIndex = state.items.findIndex((item) => {
-      return item.id === action.id;
+      return item.firebaseProductId === action.firebaseProductId;
     });
 
     let updatedItems;
@@ -92,7 +92,7 @@ const cartReducer = (state, action) => {
       updatedTotalPrice =
         state.totalPrice - existingItem.price * existingItem.quantity;
       updatedItems = state.items.filter((item) => {
-        return item.id !== action.id;
+        return item.firebaseProductId !== action.firebaseProductId;
       });
     } else {
       // REMOVING ONLY ONE ITEM
@@ -101,7 +101,7 @@ const cartReducer = (state, action) => {
       if (existingItem.quantity === 1) {
         // Return a new items array without the item
         updatedItems = state.items.filter((item) => {
-          return item.id !== action.id;
+          return item.firebaseProductId !== action.firebaseProductId;
         });
       }
       // Case 3: There are multiple instances of the same item already in cart
@@ -139,8 +139,12 @@ export const CartContextProvider = (props) => {
     dispatchCartAction({ type: "ADD", item: item, option: option });
   };
 
-  const removeItemFromCartHandler = (id, option) => {
-    dispatchCartAction({ type: "REMOVE", id: id, option: option });
+  const removeItemFromCartHandler = (firebaseProductId, option) => {
+    dispatchCartAction({
+      type: "REMOVE",
+      firebaseProductId: firebaseProductId,
+      option: option,
+    });
   };
 
   const clearCartHandler = () => {
