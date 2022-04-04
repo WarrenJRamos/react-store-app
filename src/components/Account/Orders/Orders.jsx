@@ -62,12 +62,15 @@ export default function Orders() {
         {orders.map((order) => {
           console.log(order);
           return (
-            <Order
-              id={order.id}
-              key={order.id}
-              orderedItems={order.orderedItems}
-              user={order.user}
-            />
+            <div className='content'>
+              <Order
+                id={order.id}
+                key={order.id}
+                orderedItems={order.orderedItems}
+                user={order.user}
+              />
+              <span>4/3/2022</span>
+            </div>
           );
         })}
       </div>

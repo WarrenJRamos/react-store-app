@@ -18,6 +18,16 @@ export const AccountContainer = styled.div`
       height: 51vh;
       padding: 10px;
       cursor: pointer;
+      gap: 10px;
+      .content {
+        display: flex;
+        flex-direction: column;
+        span {
+          font-size: 0.8125rem;
+          letter-spacing: 0.5px;
+          font-style: italic;
+        }
+      }
     }
   }
 

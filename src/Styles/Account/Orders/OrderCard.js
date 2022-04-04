@@ -10,15 +10,21 @@ const OrderCard = styled.div`
     width: 100%;
     padding: 8px;
     border-bottom: 1px solid #dddcdc;
-    padding: 10px;
+    /* padding: 10px; */
     &-top {
       display: flex;
       flex-direction: column;
       .store {
+        padding: 6px;
         font-weight: 700;
         font-size: 19px;
         line-height: 29px;
-        color: #587b7f;
+        background: black;
+        letter-spacing: 3px;
+        color: #ffffff;
+        span {
+          color: #e2c044;
+        }
       }
       .invoice {
         font-size: 0.8125rem;
@@ -91,6 +97,17 @@ const OrderCard = styled.div`
     display: flex;
     padding: 10px;
     justify-content: flex-end;
+    div {
+      background: black;
+      color: #ffffff;
+      padding: 6px;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 1.8px;
+      span {
+        color: #e2c044;
+      }
+    }
   }
 `;
 

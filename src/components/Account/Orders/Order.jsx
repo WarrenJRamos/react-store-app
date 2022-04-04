@@ -23,14 +23,6 @@ export default function Order(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // let total;
-  // const calculatedTotal = () => {
-  //   total = props.orderedItems.reduce((item) => {
-  //     total + item.price * item.quantity;
-  //   }, 0);
-  //   return total;
-  // };
-  // console.log(total);
   return (
     <div>
       <div onClick={handleOpen}>
@@ -46,7 +38,9 @@ export default function Order(props) {
           <OrderCard>
             <div className='head'>
               <div className='head-top'>
-                <span className='store'>RRawen</span>
+                <div className='store'>
+                  R<span>R</span>awen
+                </div>
                 <span className='invoice'>#{props.id}</span>
               </div>
               <div className='head-bottom'>
@@ -69,7 +63,11 @@ export default function Order(props) {
                 );
               })}
             </div>
-            <div className='total'>Total:</div>
+            <div className='total'>
+              <div>
+                T<span>o</span>tal: $100
+              </div>
+            </div>
           </OrderCard>
         </Box>
       </Modal>
