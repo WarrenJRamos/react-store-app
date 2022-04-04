@@ -100,7 +100,7 @@ const WishListProductCard = ({ product }) => {
         <FavoriteIcon className="icon" />
       </button>
       <div className="img-container">
-        <NavLink to={`/items/${product.productId}`}>
+        <NavLink to={`/items/${product.firebaseProductId}`}>
           <img src={product.image} alt="cloting-img" />
         </NavLink>
       </div>

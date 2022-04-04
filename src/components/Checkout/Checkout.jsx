@@ -36,6 +36,7 @@ const Checkout = (props) => {
         body: JSON.stringify({
           user: data,
           orderedItems: cartContext.items,
+          totalPrice: cartContext.totalPrice,
         }),
       }
     );
@@ -77,6 +78,7 @@ const Checkout = (props) => {
       street: enteredStreet,
       postal: enteredPostal,
       city: enteredCity,
+      date: new Date(),
     })
       .then((response) => {
         // console.log(response);
