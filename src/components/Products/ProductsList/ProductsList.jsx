@@ -8,9 +8,12 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ProductCard from "../../../Styles/Products/ProductCard.styled";
 
 import PaginationComponent from "../../Pagination/PaginationComponent";
+import { useAuth } from "../../../Context/AuthProvider";
 const ProductsList = (props) => {
+  const { currentUser } = useAuth();
   const context = useContext(globalContext);
   const loading = context.loading;
+  const wishList = context.wishList;
   console.log("Inside ProductsList: ", props);
   console.log("Inside ProductsList: ", props.products);
   // need props.products
@@ -35,18 +38,45 @@ const ProductsList = (props) => {
     return <h2>loading....</h2>;
   }
 
-  // Remember to referense product.id instead of product.productId
+  const checkIfInsideWishList = (productId) => {
+    // console.log("Check if inside wishlist", wishList);
+    let i = 0;
+    for (const wishListItem in wishList) {
+      // console.log(i, wishList[wishListItem].product.productId, productId);
+      // console.log(i, wishList[wishListItem].user, currentUser.displayName);
+      if (
+        wishList[wishListItem].product.productId === productId &&
+        wishList[wishListItem].user === currentUser.displayName
+      ) {
+        return true;
+      }
+      i++;
+    }
+    return false;
+  };
 
-  // If the current product id is found within the wishList (from context),
-  //  then set the isInsideWishlist boolean to true
-  // For Product component: isInsideWishlist={}
   return (
     <div className={`${props.classes}`}>
       <div className={`${props.classes}`}>
         {props.products ? (
-          currentProducts.map((product) => (
-            <Product key={product.id} product={product} />
-          ))
+          currentProducts.map((product) => {
+            let isInsideWishList = false;
+            if (currentUser) {
+              if (checkIfInsideWishList(product.productId)) {
+                isInsideWishList = true;
+              }
+            }
+            {
+              /* console.log("MAPPING THROUGH", isInsideWishList); */
+            }
+            return (
+              <Product
+                key={product.productId}
+                product={product}
+                isInsideWishList={isInsideWishList}
+              />
+            );
+          })
         ) : (
           <ProductCard className="card-container">
             <div className="img-container">

@@ -68,10 +68,10 @@ function App() {
       // variables which we pass to each product page
       for (let i = 0; i < responseData.length; i++) {
         let transformedProduct = {
-          id: i,
+          firebaseProductId: i,
+          productId: responseData[i].id,
           category: responseData[i].category,
           description: responseData[i].description,
-          productId: responseData[i].id,
           image: responseData[i].image,
           name: responseData[i].name,
           price: responseData[i].price,
@@ -132,8 +132,9 @@ function App() {
         loadedWishList.push({
           user: responseData[key].user,
           product: {
-            id: key,
-            productId: responseData[key].product.id,
+            firebaseWishListId: key,
+            firebaseProductId: responseData[key].product.firebaseProductId,
+            productId: responseData[key].product.productId,
             name: responseData[key].product.name,
             price: responseData[key].product.price,
             image: responseData[key].product.image,

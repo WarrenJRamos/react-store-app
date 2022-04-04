@@ -21,6 +21,9 @@ const Product = (props) => {
   // if true, it becomes a filled in heart
   const [isFavorite, setIsFavorite] = useState(null);
   const quantityInputRef = useRef();
+  const [itemIsInsideWishList, setItemIsInsideWishList] = useState(
+    props.isInsideWishList
+  );
 
   const handleSnackbarClose = () => {
     setSnackbarIsActive(false);
@@ -43,7 +46,7 @@ const Product = (props) => {
     }
 
     cartContext.addItem({
-      id: props.product.id,
+      firebaseProductId: props.product.firebaseProductId,
       productId: props.product.productId,
       name: props.product.name,
       price: props.product.price,
@@ -62,7 +65,7 @@ const Product = (props) => {
         body: JSON.stringify({
           user: currentUser.displayName,
           product: {
-            id: props.product.id,
+            firebaseProductId: props.product.firebaseProductId,
             productId: props.product.productId,
             name: props.product.name,
             price: props.product.price,
@@ -82,9 +85,9 @@ const Product = (props) => {
     console.log("Trying to add to wish list");
     console.log("Wish List: ", wishList);
     const wishListItem = wishList.find((wishListItem) => {
-      console.log(wishListItem.product.id, props.product.id);
+      console.log(wishListItem.product.productId, props.product.productId);
       return (
-        wishListItem.product.id === props.product.id &&
+        wishListItem.product.productId === props.product.productId &&
         wishListItem.user === currentUser.displayName
       );
     });
@@ -101,14 +104,14 @@ const Product = (props) => {
     postWishList()
       .then((value) => {
         console.log("Successfully posted to wishlist table");
-        setIsFavorite(props.product.id);
+        setIsFavorite(props.product.productId);
         // After adding the item in the table, also update the local wishlist
         setWishList((prev) => {
           const newWishList = [...prev];
           newWishList.push({
             user: currentUser.displayName,
             product: {
-              id: props.product.id,
+              firebaseProductId: props.product.firebaseProductId,
               productId: props.product.productId,
               name: props.product.name,
               price: props.product.price,
@@ -132,41 +135,115 @@ const Product = (props) => {
   //   const responseData = response.json();
   // }
 
-  const removeWishHandler = () => {
-    // deleteWishItem().then((value) => {}).catch((error) => {console.log(error.message)});
-    // setWishList((prev) => {
-    //   const items = prev.filter((obj) => obj.id !== product.id);
-    //   return items;
-    // });
-    setIsFavorite(null);
+  const fetchWishList = async () => {
+    console.log("API WAS CALLED, GET WISHLIST");
+
+    const response = await fetch(
+      `${process.env.REACT_APP_FIREBASE_REALTIME_DATABASE}/wishlist.json`
+    );
+
+    if (!response.ok) {
+      throw new Error("No data acquired");
+    }
+
+    const responseData = await response.json();
+
+    const loadedWishList = [];
+
+    for (const key in responseData) {
+      loadedWishList.push({
+        user: responseData[key].user,
+        product: {
+          firebaseWishListId: key,
+          firebaseProductId: responseData[key].product.firebaseProductId,
+          productId: responseData[key].product.productId,
+          name: responseData[key].product.name,
+          price: responseData[key].product.price,
+          image: responseData[key].product.image,
+        },
+      });
+    }
+
+    // Find the wish list item which is the same as the user and productId match
+    const indexOfItemToRemove = loadedWishList.findIndex(
+      (wishListItem, index) => {
+        console.log(index, wishListItem.user, currentUser.displayName);
+        console.log(
+          index,
+          wishListItem.product.productId,
+          props.product.productId
+        );
+        return (
+          wishListItem.user === currentUser.displayName &&
+          wishListItem.product.productId === props.product.productId
+        );
+      }
+    );
+
+    console.log(indexOfItemToRemove);
+
+    if (indexOfItemToRemove > -1) {
+      const responseDelete = await fetch(
+        `https://store-3a04a-default-rtdb.firebaseio.com/wishlist/${loadedWishList[indexOfItemToRemove].product.firebaseWishListId}.json`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      setWishList((prev) => {
+        const updatedWishList = [...prev];
+        updatedWishList.splice(indexOfItemToRemove, 1);
+        return updatedWishList;
+      });
+    }
   };
 
-  // use props.isInsideWishlist
-  // if isInsideWishlist is set to true, apply the FavoriteIcon
+  const removeWishHandler = () => {
+    console.log("removing from wishlist");
+    // Retrieve the ENTIRE wish list from firebase
+    // Find the wish list item which is the same as the user and productId match
+    // Send a delete request for that element
+    fetchWishList()
+      .then((value) => {})
+      .catch((error) => {
+        console.log(error.message);
+      });
+    setIsFavorite(null);
+    setItemIsInsideWishList(false);
+    // setWishList((prevWishList) => {
+    //   const items = prevWishList.filter((prevWishListItem) => prevWishListItem.product.productId !== props.product.id);
+    //   return items;
+    // });
+  };
+
   return (
     <ProductCard className="card-container">
       <div className="top">
         <div>
-          <NavLink to={`/items/${props.product.id}`}>
+          <NavLink to={`/items/${props.product.firebaseProductId}`}>
             <span>Quick view</span>
           </NavLink>
         </div>
-        {isFavorite === props.product.id ? (
-          <>
-            <button onClick={() => removeWishHandler()}>
-              <FavoriteIcon className="faved" />
-            </button>
-          </>
+        {currentUser ? (
+          itemIsInsideWishList || isFavorite === props.product.productId ? (
+            <>
+              <button onClick={() => removeWishHandler()}>
+                <FavoriteIcon className="faved" />
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => addToWishClickHandler()}>
+                <FavoriteBorderIcon className="fav" />
+              </button>
+            </>
+          )
         ) : (
-          <>
-            <button onClick={() => addToWishClickHandler()}>
-              <FavoriteBorderIcon className="fav" />
-            </button>
-          </>
+          ""
         )}
       </div>
       <div className="img-container">
-        <NavLink to={`/items/${props.product.id}`}>
+        <NavLink to={`/items/${props.product.firebaseProductId}`}>
           <img src={props.product.image} alt="clothing-img" />
         </NavLink>
       </div>
@@ -177,10 +254,10 @@ const Product = (props) => {
         <div className="bottom-price">
           <span>${props.product.price}</span>
           <form onSubmit={addToCartClickHandler}>
-            <label htmlFor={`quantity_${props.product.id}`}>QTY: </label>
+            <label htmlFor={`quantity_${props.product.productId}`}>QTY: </label>
             <input
               ref={quantityInputRef}
-              id={`quantity_${props.product.id}`}
+              id={`quantity_${props.product.productId}`}
               style={{ width: "40px" }}
               type="number"
               min="1"

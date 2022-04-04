@@ -9,9 +9,9 @@ export default function Wishlist() {
   const { currentUser } = useAuth();
   const wishList = context.wishList;
   const setWishList = context.setWishList;
-  const handleClearWishList = () => {
-    setWishList([]);
-  };
+  // const handleClearWishList = () => {
+  //   setWishList([]);
+  // };
 
   const WishListItems = [];
   wishList.map((wishListItem) => {
@@ -30,11 +30,11 @@ export default function Wishlist() {
     <AccountContainer className="wishlist">
       <h3>Wishlist</h3>
       <div className="container">{WishListItems}</div>
-      {wishList.length > 2 && (
+      {/* {wishList.length > 2 && (
         <div className="button">
           <button onClick={handleClearWishList}>Clear All</button>
         </div>
-      )}
+      )} */}
     </AccountContainer>
   );
 }
