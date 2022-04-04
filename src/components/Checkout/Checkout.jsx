@@ -2,9 +2,11 @@ import React, { useRef, useState, useContext } from "react";
 import { CheckoutForm } from "../../Styles/Checkout/Checkout.styled";
 import { CartContext } from "../../Context/CartContextProvider";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Context/AuthProvider";
 
 const Checkout = (props) => {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -70,6 +72,7 @@ const Checkout = (props) => {
     }
 
     submitOrder({
+      email: currentUser.email,
       name: enteredName,
       street: enteredStreet,
       postal: enteredPostal,
