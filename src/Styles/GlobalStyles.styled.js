@@ -20,7 +20,9 @@ const Globalstyles = createGlobalStyle`
         }
         background-color: rgba(4,4,4,0.9);
         font-size: 1.15em;
-        font-family: "poppins", "sans-serif";
+        font-family: 'Nunito Sans', sans-serif;
+        ${"" /* font-family: 'Crimson Pro', "sans-serif"; */}
+        /* font-family: "poppins", "sans-serif"; */
     }
 
     p {

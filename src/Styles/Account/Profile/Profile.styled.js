@@ -9,6 +9,50 @@ export const AccountContainer = styled.div`
   padding-left: 40px;
   padding-right: 140px;
   border-left: 5px solid #f0f6f6;
+  overflow: auto;
+
+  &.orders {
+    .orders__container {
+      width: 44vw;
+      display: flex;
+      height: 51vh;
+      padding: 10px;
+      cursor: pointer;
+      gap: 10px;
+      .content {
+        display: flex;
+        flex-direction: column;
+        span {
+          font-size: 0.8125rem;
+          letter-spacing: 0.5px;
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  .container {
+    width: 55vw;
+    height: 51vh;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: overlay;
+  }
+
+  .button {
+    margin-top: 15px;
+    button {
+      padding: 4px;
+      font-size: 15px;
+      white-space: normal;
+      letter-spacing: 1.2px;
+      width: 191px;
+      height: 46px;
+      border: none;
+    }
+  }
 
   &.profile {
     display: flex;

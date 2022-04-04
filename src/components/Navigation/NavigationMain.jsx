@@ -21,33 +21,58 @@ const NavigationMain = () => {
         <div className="title">
           {/* maybe logo? */}
           <NavLink to="/home" className="item">
-            <span>Rrawen</span>
+            <span className="company-name">.RRawen</span>
           </NavLink>
         </div>
         <div className="nav-container">
           <ul className="list">
             <li>
-              <NavLink to="/products/new" className="item">
+              <NavLink
+                to="/products/new"
+                className={({ isActive }) =>
+                  isActive ? "item item--active" : "item"
+                }
+              >
                 New
               </NavLink>
             </li>
             <li>
-              <NavLink to="/products/womens" className="item">
+              <NavLink
+                to="/products/womens"
+                className={({ isActive }) =>
+                  isActive ? "item item--active" : "item"
+                }
+              >
                 Women
               </NavLink>
             </li>
             <li>
-              <NavLink to="/products/mens" className="item">
+              <NavLink
+                to="/products/mens"
+                className={({ isActive }) =>
+                  isActive ? "item item--active" : "item"
+                }
+              >
                 Men
               </NavLink>
             </li>
             <li>
-              <NavLink to="/products/hats" className="item">
+              <NavLink
+                to="/products/hats"
+                className={({ isActive }) =>
+                  isActive ? "item item--active" : "item"
+                }
+              >
                 Hats
               </NavLink>
             </li>
             <li>
-              <NavLink to="/products/shoes" className="item">
+              <NavLink
+                to="/products/shoes"
+                className={({ isActive }) =>
+                  isActive ? "item item--active" : "item"
+                }
+              >
                 Shoes
               </NavLink>
             </li>

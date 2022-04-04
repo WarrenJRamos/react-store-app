@@ -6,7 +6,7 @@ export const NavContainer = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    background: transparent;
+    /* background: black; */
     z-index: 1000;
 
     transition: background-color 1s;
@@ -59,6 +59,12 @@ export const NavContainer = styled.div`
         /* position: sticky; */
 
         .title {
+          font-family: "Playfair Display", serif;
+
+          .company-name {
+            font-size: 2.5rem;
+          }
+
           .item {
             margin-left: 25px;
             font-weight: 700;
@@ -72,6 +78,7 @@ export const NavContainer = styled.div`
 
         .nav-container {
           .list {
+            font-family: "Nunito Sans", sans-serif;
             display: flex;
             gap: 50px;
             font-weight: 600;
@@ -79,12 +86,24 @@ export const NavContainer = styled.div`
             text-transform: uppercase;
             line-height: 23px;
             margin-bottom: 0px;
+
             li {
               list-style: none;
+              transition: all 0.5s ease-out;
+
               .item {
                 text-decoration: none;
                 color: white;
                 /* color: ${(props) => props.theme.colors.colorOnyx}; */
+
+                &--active {
+                  color: #587b7f;
+                  font-size: 22px;
+                }
+              }
+
+              &:hover {
+                transform: scale(1.3);
               }
             }
           }
@@ -93,11 +112,16 @@ export const NavContainer = styled.div`
         .actions {
           display: flex;
           align-items: center;
+          gap: 15px;
 
           .account {
             display: flex;
             justify-content: center;
             align-items: center;
+
+            a {
+              color: white;
+            }
           }
 
           .cart {

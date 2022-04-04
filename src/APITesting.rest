@@ -1,0 +1,4 @@
+GET https://store-3a04a-default-rtdb.firebaseio.com/products.json
+
+###
+GET https://store-3a04a-default-rtdb.firebaseio.com/orders.json

@@ -6,6 +6,7 @@ import { useTheme } from "styled-components";
 import GlobalContext from "../../../Context/globalContext";
 import CartItem from "./CartItem";
 import { CartContext } from "../../../Context/CartContextProvider";
+
 import CartHeader from "./CartHeader";
 
 export default function ShoppingCart() {
@@ -13,7 +14,7 @@ export default function ShoppingCart() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const cartContext = useContext(CartContext);
-  // console.log(cartContext.items);
+  console.log("Shopping Cart Items: ", cartContext.items);
 
   const theme = useTheme();
   return (
@@ -27,25 +28,43 @@ export default function ShoppingCart() {
         onHide={handleClose}
         placement="end"
         name="end"
-        style={{ backgroundColor: "#587B7F" }}
+        style={{ backgroundColor: "#fafafa", marginTop: " 63px" }}
       >
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title style={{ color: "#e2c044" }}>CART</Offcanvas.Title>
+        <Offcanvas.Header
+          closeButton
+          style={{ borderBottom: "1px solid rgba(0, 0, 0, 0.1)" }}
+        >
+          <Offcanvas.Title
+            style={{
+              color: "#587B7F",
+              fontWeight: "bold",
+            }}
+          >
+            {/* CART */}
+            <ShoppingCartIcon fontSize="large" />
+          </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {cartContext.items.length > 0 ? <CartHeader /> : ""}
-          {cartContext.items.map((product) => {
-            return (
-              <CartItem
-                key={product.id}
-                id={product.id}
-                src={product.image}
-                title={product.name}
-                price={product.price}
-                amount={product.amount}
-              />
-            );
-          })}
+          <div style={{ height: "400px", overflowY: "overlay" }}>
+            {cartContext.items.map((product) => {
+              return (
+                <CartItem
+                  key={product.firebaseProductId}
+                  firebaseProductId={product.firebaseProductId}
+                  src={product.image}
+                  title={product.name}
+                  price={product.price}
+                  quantity={product.quantity}
+                  handleClose={handleClose}
+                />
+              );
+            })}
+          </div>
+          {cartContext.items.length > 0 ? (
+            <CartHeader handleClose={handleClose} />
+          ) : (
+            ""
+          )}
         </Offcanvas.Body>
       </Offcanvas>
     </ShoppingCartContainer>

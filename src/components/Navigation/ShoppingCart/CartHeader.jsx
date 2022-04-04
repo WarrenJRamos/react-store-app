@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
-import { CartContext } from "../../../Context/CartContextProvider";
-import { CartHeaderContainer } from "../../../Styles/Navigation/ShoppingCart/CartHeader.styled";
+import React, { useContext } from 'react';
+import { CartContext } from '../../../Context/CartContextProvider';
+import { CartHeaderContainer } from '../../../Styles/Navigation/ShoppingCart/CartHeader.styled';
+import { useNavigate } from 'react-router-dom';
 
-export default function CartHeader() {
+export default function CartHeader(props) {
   const cartContext = useContext(CartContext);
+  const navigate = useNavigate();
 
-  const onReadyToCheckout = () => {};
+  const onReadyToCheckout = () => {
+    navigate('/checkout');
+    props.handleClose(false);
+  };
 
   const onClearCart = () => {
     cartContext.clearCart();
@@ -13,13 +18,16 @@ export default function CartHeader() {
 
   return (
     <CartHeaderContainer>
-      <button onClick={onReadyToCheckout} className="checkout-button">
-        Checkout
+      <p className='price'>Total: ${cartContext.totalPrice.toFixed(2)}</p>
+      <button
+        onClick={onReadyToCheckout}
+        className='cart-button checkout-button'
+      >
+        C<span>h</span>eckout
       </button>
-      <button onClick={onClearCart} className="clear-button">
-        Clear Cart
+      <button onClick={onClearCart} className='cart-button clear-button'>
+        Clear cart
       </button>
-      <div>Total: ${cartContext.totalPrice.toFixed(2)}</div>
     </CartHeaderContainer>
   );
 }

@@ -1,20 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { LandingContainer } from "../../Styles/Landing/LandingV2.styled";
 import Carousel from "./Carousel";
 import LandingSale from "./LandingSale";
 
 export default function LandingV2() {
+  const [effect, setEffect] = useState(false);
+  const navigate = useNavigate();
+
+  // Be defiant, be yourself. This is the new era. Choose SXU.
+
+  useEffect(() => {
+    console.log("Inside use effect");
+    // const timeout = setTimeout(() => {
+    setEffect(true);
+    // }, 2000);
+    // return timeout;
+  }, []);
+
+  const onViewNowHandler = () => {
+    navigate("/products/new");
+  };
+
   return (
     <LandingContainer>
-      <div class="hero">
-        <h1 class="hero__tagline">Lorem ipsum dolor</h1>
-        <div class="hero__bottom">
-          <p class="hero__content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at
-            lacus eros. Morbi tincidunt sit
+      <div className="hero">
+        <h1
+          className={`hero__tagline ${effect ? "hero__tagline--active" : ""}`}
+        >
+          S<span className="x">X</span>U Collection
+        </h1>
+        <div className="hero__bottom">
+          <p className="hero__content">
+            Be defiant, be yourself. This is the new era. Choose SXU.
           </p>
-          <div class="cta-group">
-            <button class="hero__cta--primary">Discover our collection</button>
+          <div className="cta-group">
+            <button className="hero__cta--primary" onClick={onViewNowHandler}>
+              View now
+            </button>
           </div>
         </div>
       </div>
