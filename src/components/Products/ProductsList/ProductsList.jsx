@@ -46,7 +46,7 @@ const ProductsList = (props) => {
       // console.log(i, wishList[wishListItem].user, currentUser.displayName);
       if (
         wishList[wishListItem].product.productId === productId &&
-        wishList[wishListItem].user === currentUser.displayName
+        wishList[wishListItem].user.email === currentUser.email
       ) {
         return true;
       }

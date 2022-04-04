@@ -15,7 +15,7 @@ export default function Wishlist() {
 
   const WishListItems = [];
   wishList.map((wishListItem) => {
-    if (wishListItem.user === currentUser.displayName) {
+    if (wishListItem.user.email === currentUser.email) {
       WishListItems.push(
         <WishListProductCard
           key={wishListItem.product.productId}

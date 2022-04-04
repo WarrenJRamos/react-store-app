@@ -69,7 +69,10 @@ const SelectedProduct = () => {
       {
         method: "POST",
         body: JSON.stringify({
-          user: currentUser.displayName,
+          user: {
+            displayName: currentUser.displayName,
+            email: currentUser.email,
+          },
           product: {
             firebaseProductId: product.firebaseProductId,
             productId: product.productId,
@@ -90,7 +93,7 @@ const SelectedProduct = () => {
       console.log(wishListItem.product.productId, product.productId);
       return (
         wishListItem.product.productId === product.productId &&
-        wishListItem.user === currentUser.displayName
+        wishListItem.user.email === currentUser.email
       );
     });
     console.log(wishListItem);
@@ -117,7 +120,10 @@ const SelectedProduct = () => {
         setWishList((prev) => {
           const newWishList = [...prev];
           newWishList.push({
-            user: currentUser.displayName,
+            user: {
+              displayName: currentUser.displayName,
+              email: currentUser.email,
+            },
             product: {
               firebaseProductId: product.firebaseProductId,
               productId: product.productId,

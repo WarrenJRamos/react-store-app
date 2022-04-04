@@ -51,7 +51,7 @@ const WishListProductCard = ({ product }) => {
         console.log(index, wishListItem.user, currentUser.displayName);
         console.log(index, wishListItem.product.productId, product.productId);
         return (
-          wishListItem.user === currentUser.displayName &&
+          wishListItem.user.displayName === currentUser.displayName &&
           wishListItem.product.productId === product.productId
         );
       }

@@ -64,6 +64,7 @@ const Product = (props) => {
   };
 
   // Gets called when user adds item to wishlist (via addToWishClickHandler)
+  // FIXME: ADD CURRENTUSER.EMAIL TO ALL RECORDS SINCE THAT UNIQUELY IDENTIFIES THE USER
   const postWishList = async () => {
     console.log("API WAS CALLED, POST WISHLIST ITEM");
     const response = await fetch(
@@ -71,7 +72,10 @@ const Product = (props) => {
       {
         method: "POST",
         body: JSON.stringify({
-          user: currentUser.displayName,
+          user: {
+            displayName: currentUser.displayName,
+            email: currentUser.email,
+          },
           product: {
             firebaseProductId: props.product.firebaseProductId,
             productId: props.product.productId,
@@ -96,7 +100,7 @@ const Product = (props) => {
       console.log(wishListItem.product.productId, props.product.productId);
       return (
         wishListItem.product.productId === props.product.productId &&
-        wishListItem.user === currentUser.displayName
+        wishListItem.user.email === currentUser.email
       );
     });
     console.log(wishListItem);
@@ -117,7 +121,10 @@ const Product = (props) => {
         setWishList((prev) => {
           const newWishList = [...prev];
           newWishList.push({
-            user: currentUser.displayName,
+            user: {
+              displayName: currentUser.displayName,
+              email: currentUser.email,
+            },
             product: {
               firebaseProductId: props.product.firebaseProductId,
               productId: props.product.productId,
@@ -182,7 +189,7 @@ const Product = (props) => {
           props.product.productId
         );
         return (
-          wishListItem.user === currentUser.displayName &&
+          wishListItem.user.email === currentUser.email &&
           wishListItem.product.productId === props.product.productId
         );
       }
