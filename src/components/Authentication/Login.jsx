@@ -68,7 +68,7 @@ export default function Login() {
             </button>
           </div>
           <button type="submit" disabled={isLoading}>
-            Register
+            Sign in
           </button>
         </form>
       </Form>

@@ -112,11 +112,16 @@ export const NavContainer = styled.div`
         .actions {
           display: flex;
           align-items: center;
+          gap: 15px;
 
           .account {
             display: flex;
             justify-content: center;
             align-items: center;
+
+            a {
+              color: white;
+            }
           }
 
           .cart {
