@@ -38,24 +38,14 @@ const ProductsList = (props) => {
     return <h2>loading....</h2>;
   }
 
-  // Remember to referense product.id instead of product.productId
-
-  // If the current product id is found within the wishList (from context),
-  //  then set the isInsideWishlist boolean to true
-  // For Product component: isInsideWishlist={}
-
-  const checkIfInsideWishList = (id) => {
-    console.log("Check if inside wishlist", wishList);
-    // console.log(currentUser);
-
-    // console.log(id);
-    // console.log(wishList[0].product.id);
+  const checkIfInsideWishList = (productId) => {
+    // console.log("Check if inside wishlist", wishList);
     let i = 0;
     for (const wishListItem in wishList) {
-      console.log(i, wishList[wishListItem].product.productId, id);
-      console.log(i, wishList[wishListItem].user, currentUser.displayName);
+      // console.log(i, wishList[wishListItem].product.productId, productId);
+      // console.log(i, wishList[wishListItem].user, currentUser.displayName);
       if (
-        wishList[wishListItem].product.productId === id &&
+        wishList[wishListItem].product.productId === productId &&
         wishList[wishListItem].user === currentUser.displayName
       ) {
         return true;
@@ -70,18 +60,20 @@ const ProductsList = (props) => {
       <div className={`${props.classes}`}>
         {props.products ? (
           currentProducts.map((product) => {
-            let isInsideWishlist = false;
+            let isInsideWishList = false;
             if (currentUser) {
-              if (checkIfInsideWishList(product.id)) {
-                isInsideWishlist = true;
+              if (checkIfInsideWishList(product.productId)) {
+                isInsideWishList = true;
               }
             }
-            console.log("MAPPING THROUGH", isInsideWishlist);
+            {
+              /* console.log("MAPPING THROUGH", isInsideWishList); */
+            }
             return (
               <Product
-                key={product.id}
+                key={product.productId}
                 product={product}
-                isInsideWishlist={isInsideWishlist}
+                isInsideWishList={isInsideWishList}
               />
             );
           })
