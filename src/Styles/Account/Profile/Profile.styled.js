@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const AccountContainer = styled.div`
   /* background-color: #e2c044; */
@@ -10,6 +10,16 @@ export const AccountContainer = styled.div`
   padding-right: 140px;
   border-left: 5px solid #f0f6f6;
   overflow: auto;
+
+  &.orders {
+    .orders__container {
+      width: 44vw;
+      display: flex;
+      height: 51vh;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
 
   .container {
     width: 55vw;
@@ -57,7 +67,7 @@ export const AccountContainer = styled.div`
 
       &::after {
         margin-top: 10px;
-        content: "";
+        content: '';
         height: 5px;
         display: block;
         background-color: #587b7f;
