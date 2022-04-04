@@ -10,14 +10,20 @@ import AddIcon from "@mui/icons-material/Add";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import Radio from "@mui/material/Radio";
 import { Snackbar } from "@mui/material";
+import GlobalContext from "../../Context/globalContext";
 
 const SelectedProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState([]);
   const [selectedValue, setSelectedValue] = useState("m");
   const cartContext = useContext(CartContext);
+  const context = useContext(GlobalContext);
+  const wishList = context.wishList;
+  const setWishList = context.setWishList;
   const { currentUser } = useAuth();
   const [snackbarIsActive, setSnackbarIsActive] = useState(false);
+  const [wishListSnackbarIsActive, setWishListSnackbarIsActive] =
+    useState(false);
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
@@ -38,12 +44,24 @@ const SelectedProduct = () => {
       `https://store-3a04a-default-rtdb.firebaseio.com/products/${firebaseProductId}.json`
     )
       .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
+      .then((product) => {
+        let transformedProduct = {
+          firebaseProductId: firebaseProductId,
+          productId: product.id,
+          category: product.category,
+          description: product.description,
+          image: product.image,
+          name: product.name,
+          price: product.price,
+          rating: product.rating,
+        };
+        // console.log(transformedProduct);
+        setProduct(transformedProduct);
         setIsLoading(false);
       });
   }, []);
 
+  // Gets called when user adds item to wishlist (via addToWishClickHandler)
   const postWishList = async () => {
     console.log("API WAS CALLED, POST WISHLIST ITEM");
     const response = await fetch(
@@ -53,7 +71,8 @@ const SelectedProduct = () => {
         body: JSON.stringify({
           user: currentUser.displayName,
           product: {
-            id: product.id,
+            firebaseProductId: product.firebaseProductId,
+            productId: product.productId,
             name: product.name,
             price: product.price,
             image: product.image,
@@ -61,17 +80,58 @@ const SelectedProduct = () => {
         }),
       }
     );
-    const responseData = response.json();
   };
-  const addToWishListHandler = (product) => {
-    // postWishList();
-    // .then((value) => {
-    //   console.log(value);
-    // })
-    // .catch((error) => {
-    //   console.log(error.message);
-    // });
-    console.log(product);
+
+  const addToWishClickHandler = () => {
+    console.log("Trying to add to wish list");
+    console.log("Wish List: ", wishList);
+    console.log("Product", product);
+    const wishListItem = wishList.find((wishListItem) => {
+      console.log(wishListItem.product.productId, product.productId);
+      return (
+        wishListItem.product.productId === product.productId &&
+        wishListItem.user === currentUser.displayName
+      );
+    });
+    console.log(wishListItem);
+
+    // If wishListItem exists, don't add to wishList
+    if (wishListItem) {
+      console.log(wishListItem);
+      console.log("Already in wish list, so didn't add to wish list");
+      setWishListSnackbarIsActive(true);
+      setSnackbarIsActive(true);
+      setTimeout(function () {
+        setWishListSnackbarIsActive(false);
+        setSnackbarIsActive(false);
+      }, 2000);
+      return;
+    }
+
+    // Add to wishList since it doesn't exist
+    postWishList()
+      .then((value) => {
+        console.log("Successfully posted to wishlist table");
+        // setIsFavorite(product.productId);
+        // After adding the item in the table, also update the local wishlist
+        setWishList((prev) => {
+          const newWishList = [...prev];
+          newWishList.push({
+            user: currentUser.displayName,
+            product: {
+              firebaseProductId: product.firebaseProductId,
+              productId: product.productId,
+              name: product.name,
+              price: product.price,
+              image: product.image,
+            },
+          });
+          return newWishList;
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   const handleSnackbarClose = () => {
@@ -81,12 +141,21 @@ const SelectedProduct = () => {
   const handleAddToCart = (e) => {
     e.preventDefault();
     setSnackbarIsActive(true);
-    cartContext.addItem({
-      id: product.id,
+    console.log("Adding item to cart", {
+      firebaseProductId: product.firebaseProductId,
+      productId: product.productId,
       name: product.name,
-      amount: 1,
       price: product.price,
       image: product.image,
+      quantity: 1,
+    });
+    cartContext.addItem({
+      firebaseProductId: product.firebaseProductId,
+      productId: product.productId,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1,
     });
   };
 
@@ -121,7 +190,7 @@ const SelectedProduct = () => {
           </span>
         </div>
         <div className="content-desc">{product.description}</div>
-        <div className="content-size">
+        {/* <div className="content-size">
           <div className="picker">
             <Radio {...controlProps("a")} label="small" />
             <Radio {...controlProps("b")} />
@@ -134,25 +203,33 @@ const SelectedProduct = () => {
             <span>L</span>
             <span>XL</span>
           </div>
-        </div>
+        </div> */}
         <div className="content-buttons">
           <button className="cart-btn" onClick={handleAddToCart}>
             <ShoppingCartIcon />
             Add to Cart
           </button>
-          <div className="wish-btn">
-            <span>
-              <AddIcon className="add" />
-            </span>
-            <button onClick={addToWishListHandler}>Add to Wish List</button>
-          </div>
+          {currentUser ? (
+            <div className="wish-btn">
+              <span>
+                <AddIcon className="add" />
+              </span>
+              <button onClick={addToWishClickHandler}>Add to Wish List</button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <Snackbar
         open={snackbarIsActive}
         autoHideDuration={2000}
         onClose={handleSnackbarClose}
-        message={`Added ${product.name} to Cart`}
+        message={
+          wishListSnackbarIsActive
+            ? `${product.name} is already in wish list`
+            : `Added ${product.name} to Cart`
+        }
       />
     </SelectedComponent>
   );

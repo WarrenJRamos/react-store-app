@@ -44,7 +44,7 @@ const Product = (props) => {
     ) {
       return;
     }
-
+    console.log("Adding item to cart");
     console.log({
       firebaseProductId: props.product.firebaseProductId,
       productId: props.product.productId,
