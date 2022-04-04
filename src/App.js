@@ -191,7 +191,10 @@ function App() {
               </Route>
 
               {/* We should probably move this into the /products */}
-              <Route path="/items/:id" element={<SelectedProduct />} />
+              <Route
+                path="/items/:firebaseProductId"
+                element={<SelectedProduct />}
+              />
 
               <Route
                 path="/products/*"
