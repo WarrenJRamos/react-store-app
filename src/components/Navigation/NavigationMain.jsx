@@ -91,7 +91,6 @@ const NavigationMain = () => {
           </div>
           <div className="cart">
             <ShoppingCart />
-            <StarBorderIcon />
           </div>
         </div>
       </div>
