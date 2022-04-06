@@ -57,6 +57,7 @@ export const NavContainer = styled.div`
         align-items: center;
         justify-content: space-between;
         /* position: sticky; */
+        padding-right: 20px;
 
         .title {
           font-family: "Playfair Display", serif;

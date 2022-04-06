@@ -21,6 +21,7 @@ export default function ShoppingCart() {
     <ShoppingCartContainer colorCultured={theme.colors.colorCultured}>
       <button type="button" className="shoppingCartButton" onClick={handleShow}>
         <ShoppingCartIcon />
+        <span>{cartContext.items.length}</span>
       </button>
 
       <Offcanvas
