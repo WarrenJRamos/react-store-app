@@ -3,6 +3,7 @@ import { CheckoutForm } from "../../Styles/Checkout/Checkout.styled";
 import { CartContext } from "../../Context/CartContextProvider";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthProvider";
+import { UnableToCheckout } from "./UnableToCheckout";
 
 const Checkout = (props) => {
   const navigate = useNavigate();
@@ -15,6 +16,9 @@ const Checkout = (props) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
+  console.log(currentUser);
+  const [userIsSignedIn] = useState(currentUser ? true : false);
+  console.log(userIsSignedIn);
 
   const cartContext = useContext(CartContext);
 
@@ -47,6 +51,11 @@ const Checkout = (props) => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+
+    // You have to be signed in to checkout
+    if (!userIsSignedIn) {
+      return;
+    }
 
     const enteredName = nameInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
@@ -108,6 +117,10 @@ const Checkout = (props) => {
     ${formInputsValidity.postal ? "" : "invalid"}`;
   const cityControlClasses = `control
     ${formInputsValidity.city ? "" : "invalid"}`;
+
+  if (!userIsSignedIn) {
+    return <UnableToCheckout />;
+  }
 
   return (
     <CheckoutForm className={"classes.form"} onSubmit={onSubmitHandler}>
